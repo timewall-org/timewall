@@ -1,0 +1,5 @@
+[
+  "babel-cli",
+  "babel-preset-latest",
+  "babel-preset-react"
+]
