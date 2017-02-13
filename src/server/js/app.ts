@@ -4,6 +4,8 @@ const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
+const process = require('process');
+
 class App {
   constructor () {
   }
@@ -36,10 +38,7 @@ class App {
 
     // ROUTES
 
-    app.get('/', (req, res) => {
-      res.status(200).send("HOME");
-    });
-
+    app.get('*', express.static('build/client'));
 
     // ERROR HANDLING
 

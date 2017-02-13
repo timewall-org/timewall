@@ -4,11 +4,12 @@ CLIENT_SRCS=$(shell find $(CLIENT_DIR) -type f)
 SERVER_OUT=build/server/js
 SERVER_DIR=src/server/js
 SERVER_SRCS=$(shell find $(SERVER_DIR) -type f)
-STATIC_OUT=build/client
-STATIC_DIR=src/client/static
-STATIC_SRCS=$(shell find $(STATIC_DIR) -type f)
+STATIC_SRCDIR=src/client/static
+STATIC_OUTDIR=build/client/
+STATIC_SRCS=$(shell find $(STATIC_SRCDIR) -type f)
+STATIC_OUTS=$(patsubst $(STATIC_SRCDIR)/%,$(STATIC_OUTDIR)/%,$(STATIC_SRCS))
 
-all: $(CLIENT_OUT) $(STATIC_OUT) $(SERVER_OUT)
+all: $(STATIC_OUTS) $(CLIENT_OUT) $(SERVER_OUT)
 
 $(CLIENT_OUT): $(CLIENT_SRCS)
 	mkdir -p $(shell dirname $(CLIENT_OUT))
@@ -16,13 +17,12 @@ $(CLIENT_OUT): $(CLIENT_SRCS)
 
 $(SERVER_OUT): $(SERVER_SRCS)
 	mkdir -p $(SERVER_OUT)
-	time tsc --outDir $(CURDIR)/$(SERVER_OUT) -p $(SERVER_DIR)
+	time tsc -p $(SERVER_DIR)
 	touch $(SERVER_OUT)
 
-$(STATIC_OUT): $(STATIC_SRCS)
-	mkdir -p $(STATIC_OUT)
-	cp -rf $(STATIC_DIR)/* $(STATIC_OUT)
-	touch $(STATIC_OUT)
+$(STATIC_OUTS): $(STATIC_SRCS)
+	mkdir -p $(STATIC_OUTDIR)
+	cp -rf $(STATIC_SRCDIR)/* $(STATIC_OUTDIR)
 
 clean:
 	rm -rf build

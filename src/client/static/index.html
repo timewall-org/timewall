@@ -9,9 +9,15 @@
 
   <link rel="stylesheet" href="css/tbd">
 
+  <script src="js/vendor/react.js"></script>
+  <script src="js/vendor/react-dom.js"></script>
   <script src="js/app.js"></script>
 </head>
 
 <body>
+ <div id="main"></div>
+ <script>
+   new Main().mount(document.getElementById("main"));
+ </script>
 </body>
 </html>
