@@ -16,6 +16,15 @@ let
       babel-cli
       babel-preset-latest
       babel-preset-react
+      cassandra-driver
+      uuid
+      source-map-support
+      mocha
+      body-parser
+      typescript
+      cookie-parser
+      express
+      morgan
       npm2nix
     ];
   };

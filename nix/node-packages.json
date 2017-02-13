@@ -1,5 +1,21 @@
 [
   "babel-cli",
   "babel-preset-latest",
-  "babel-preset-react"
+  "babel-preset-react",
+  "express",
+  "typescript",
+  "uuid",
+  "cassandra-driver",
+  "source-map-support",
+  "mocha",
+  "tsd",
+  "moment",
+  "URIjs",
+  "body-parser",
+  "cookie-parser",
+  "morgan",
+  "striptags",
+  "marked",
+  "hkdf",
+  "xxhash"
 ]
