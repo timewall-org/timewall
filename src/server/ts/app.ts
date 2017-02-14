@@ -3,12 +3,22 @@ const domain = require('domain');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-
 const process = require('process');
 
+import DI = require('./deps');
+
+function asyncRoute(f: (req: any, res: any, next: () => void) => Promise<void>) {
+	return async (req, res, next) => {
+		try {
+			await f(req, res, next);
+		} catch (err) {
+			next(err);
+		}
+	}
+}
+
 class App {
-  constructor () {
-  }
+  constructor (public di: DI) {}
 
   createApp () {
     var app = express();
@@ -37,6 +47,11 @@ class App {
     app.use(bodyParser.json());
 
     // ROUTES
+
+    app.get('/upgrade', asyncRoute(async (req, res, next) => {
+      await this.di.getSuperCommands().upgrade();
+      res.status(200).send("DONE");
+    }));
 
     app.get('*', express.static('build/client'));
 

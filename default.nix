@@ -25,7 +25,12 @@ let
       cookie-parser
       express
       morgan
+
+      # for generating Nix derivations of NPM packages
       npm2nix
+
+      # for cassandra client
+      jre8 pythonFull
     ];
   };
 in
