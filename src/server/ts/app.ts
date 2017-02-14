@@ -55,12 +55,6 @@ class App {
 
     app.get('*', express.static('build/client'));
 
-    // ERROR HANDLING
-
-    app.get('*', (req, res) => {
-      res.status(404).send("STICAZZI");
-    });
-
     return app;
   }
 }
