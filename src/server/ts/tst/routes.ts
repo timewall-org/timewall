@@ -29,23 +29,41 @@ after(() => {
 });
 
 describe('Routes', () => {
-  var apiMock;
-  before(() => {
-    apiMock = sinon.mock(di.getAPI());
-  });
-  after(() => {
-    apiMock.verify();
-  });
+  describe('/api/v1', () => {
+    it('success', (done) => {
+      var req = { endpoint: "endp", body: "bt" };
+      var res = { test: "test" };
+      var apiMock = sinon.mock(di.getAPI());
+      apiMock.expects("execute").withExactArgs(new Request("endp", "bt")).once().returns(res);
 
-  it('/api/v1', (done) => {
-    var req = { endpoint: "endp", body: "bt" };
-    var res = { test: "test" };
-    apiMock.expects("execute").withExactArgs(new Request("endp", "bt")).once().returns(res);
+      request(server)
+      .get("/api/v1")
+      .send(req)
+      .expect(res)
+      .expect(200, () => {
+        apiMock.verify();
+        done();
+      });
+    });
 
-    request(server)
-    .get("/api/v1")
-    .send(req)
-    .expect(res)
-    .expect(200, done);
+    it('invalid endpoint', (done) => {
+      var req = { endpoint: "INVALID", body: "something" };
+
+      request(server)
+      .get("/api/v1")
+      .send(req)
+      .expect(400, done);
+    });
+
+    it('internal error', (done) => {
+      var req = { endpoint: "INVALID", body: "something" };
+      sinon.stub(di.getAPI(), "execute").throws(new Util.AppError(500, "Internal Error"));
+
+      request(server)
+      .get("/api/v1")
+      .send(req)
+      .expect({ error: "Internal Error" })
+      .expect(500, done);
+    });
   });
 });

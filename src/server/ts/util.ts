@@ -1,6 +1,6 @@
 const util = require('util');
 
-export function AppError(status: number, internalMessage: string, userMessage?: string) {
+export function AppError(status: number, internalMessage: string, userMessage = "Internal Error") {
 	var JSError = Error as any;
   JSError.captureStackTrace(this, this.constructor);
   this.name = this.constructor.name;

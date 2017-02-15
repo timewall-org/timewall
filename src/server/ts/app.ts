@@ -60,8 +60,10 @@ class App {
         var ret = await this.di.getAPI().execute(request);
         res.status(200).send(ret);
       } catch (e) {
-        console.error(e);
-        res.status(e.status, e.userMessage);
+        if (config.log.enabled) {
+          console.error(e);
+        }
+        res.status(e.status).send({ error: e.userMessage });
       }
     }));
 

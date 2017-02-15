@@ -6,7 +6,7 @@ export class Request {
 }
 
 function invalidRequest(ctx): never {
-	throw new Util.AppError(400, "Invalid request", `Invalid request ${ctx}`);
+	throw new Util.AppError(400, `Invalid request ${ctx}`, "Invalid Request");
 }
 
 export class API {
