@@ -46,24 +46,15 @@ describe('Routes', () => {
       });
     });
 
-    it('invalid endpoint', (done) => {
-      var req = { endpoint: "INVALID", body: "something" };
+    it('failure', (done) => {
+      var req = { endpoint: "anything", body: "something" };
+      sinon.stub(di.getAPI(), "execute").throws(new Util.AppError(456, "Test", "Test"));
 
       request(server)
       .get("/api/v1")
       .send(req)
-      .expect(400, done);
-    });
-
-    it('internal error', (done) => {
-      var req = { endpoint: "INVALID", body: "something" };
-      sinon.stub(di.getAPI(), "execute").throws(new Util.AppError(500, "Internal Error"));
-
-      request(server)
-      .get("/api/v1")
-      .send(req)
-      .expect({ error: "Internal Error" })
-      .expect(500, done);
+      .expect({ error: "Test" })
+      .expect(456, done);
     });
   });
 });
