@@ -25,7 +25,7 @@ before(async () => {
   server = await Util.startApp(new App(di).createExpressApp(), config.tests.port);
 });
 after(() => {
-  //server.close();
+  server.close();
 });
 
 describe('Routes', () => {
