@@ -1,19 +1,17 @@
 require('source-map-support').install();
 
 import DI = require('./deps');
+import ProdDI = require('./prod_deps');
+import Util = require('./util');
 
-function main() {
+async function main(di: DI) {
   try {
-    var di = new DI();
-    var app = di.getExpressApp();
-    var server = app.listen(9081, function () {
-      var host = server.address().address;
-      var port = server.address().port;
-      console.log('http://%s:%s', host, port);
-    });
+    var app = di.getApp();
+    await Util.startApp(app, di.getConfig().port);
   } catch (e) {
     console.error(e.stack);
   }
 }
 
-main()
+var di = new ProdDI();
+main(di)

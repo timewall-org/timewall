@@ -25,6 +25,8 @@ let
       cookie-parser
       express
       morgan
+      sinon
+      supertest
 
       # for generating Nix derivations of NPM packages
       npm2nix

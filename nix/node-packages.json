@@ -17,5 +17,7 @@
   "striptags",
   "marked",
   "hkdf",
-  "xxhash"
+  "xxhash",
+  "sinon",
+  "supertest"
 ]

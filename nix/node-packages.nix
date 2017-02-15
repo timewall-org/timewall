@@ -22,15 +22,15 @@
   };
   "URIjs" = self.by-version."URIjs"."1.16.1";
   by-spec."abbrev"."1" =
-    self.by-version."abbrev"."1.0.9";
-  by-version."abbrev"."1.0.9" = self.buildNodePackage {
-    name = "abbrev-1.0.9";
-    version = "1.0.9";
+    self.by-version."abbrev"."1.1.0";
+  by-version."abbrev"."1.1.0" = self.buildNodePackage {
+    name = "abbrev-1.1.0";
+    version = "1.1.0";
     bin = false;
     src = fetchurl {
-      url = "https://registry.npmjs.org/abbrev/-/abbrev-1.0.9.tgz";
-      name = "abbrev-1.0.9.tgz";
-      sha1 = "91b4792588a7738c25f35dd6f63752a2f8776135";
+      url = "https://registry.npmjs.org/abbrev/-/abbrev-1.1.0.tgz";
+      name = "abbrev-1.1.0.tgz";
+      sha1 = "d0554c2256636e2f56e7c2e5ad183f859428d81f";
     };
     deps = {
     };
@@ -507,23 +507,23 @@
     cpu = [ ];
   };
   by-spec."babel-cli"."*" =
-    self.by-version."babel-cli"."6.22.2";
-  by-version."babel-cli"."6.22.2" = self.buildNodePackage {
-    name = "babel-cli-6.22.2";
-    version = "6.22.2";
+    self.by-version."babel-cli"."6.23.0";
+  by-version."babel-cli"."6.23.0" = self.buildNodePackage {
+    name = "babel-cli-6.23.0";
+    version = "6.23.0";
     bin = true;
     src = fetchurl {
-      url = "https://registry.npmjs.org/babel-cli/-/babel-cli-6.22.2.tgz";
-      name = "babel-cli-6.22.2.tgz";
-      sha1 = "3f814c8acf52759082b8fedd9627f938936ab559";
+      url = "https://registry.npmjs.org/babel-cli/-/babel-cli-6.23.0.tgz";
+      name = "babel-cli-6.23.0.tgz";
+      sha1 = "52ff946a2b0f64645c35e7bd5eea267aa0948c0f";
     };
     deps = {
-      "babel-core-6.22.1" = self.by-version."babel-core"."6.22.1";
-      "babel-register-6.22.0" = self.by-version."babel-register"."6.22.0";
-      "babel-polyfill-6.22.0" = self.by-version."babel-polyfill"."6.22.0";
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-core-6.23.1" = self.by-version."babel-core"."6.23.1";
+      "babel-register-6.23.0" = self.by-version."babel-register"."6.23.0";
+      "babel-polyfill-6.23.0" = self.by-version."babel-polyfill"."6.23.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
       "commander-2.9.0" = self.by-version."commander"."2.9.0";
-      "convert-source-map-1.3.0" = self.by-version."convert-source-map"."1.3.0";
+      "convert-source-map-1.4.0" = self.by-version."convert-source-map"."1.4.0";
       "fs-readdir-recursive-1.0.0" = self.by-version."fs-readdir-recursive"."1.0.0";
       "glob-7.1.1" = self.by-version."glob"."7.1.1";
       "lodash-4.17.4" = self.by-version."lodash"."4.17.4";
@@ -540,7 +540,7 @@
     os = [ ];
     cpu = [ ];
   };
-  "babel-cli" = self.by-version."babel-cli"."6.22.2";
+  "babel-cli" = self.by-version."babel-cli"."6.23.0";
   by-spec."babel-code-frame"."^6.22.0" =
     self.by-version."babel-code-frame"."6.22.0";
   by-version."babel-code-frame"."6.22.0" = self.buildNodePackage {
@@ -563,29 +563,29 @@
     os = [ ];
     cpu = [ ];
   };
-  by-spec."babel-core"."^6.22.0" =
-    self.by-version."babel-core"."6.22.1";
-  by-version."babel-core"."6.22.1" = self.buildNodePackage {
-    name = "babel-core-6.22.1";
-    version = "6.22.1";
+  by-spec."babel-core"."^6.23.0" =
+    self.by-version."babel-core"."6.23.1";
+  by-version."babel-core"."6.23.1" = self.buildNodePackage {
+    name = "babel-core-6.23.1";
+    version = "6.23.1";
     bin = false;
     src = fetchurl {
-      url = "https://registry.npmjs.org/babel-core/-/babel-core-6.22.1.tgz";
-      name = "babel-core-6.22.1.tgz";
-      sha1 = "9c5fd658ba1772d28d721f6d25d968fc7ae21648";
+      url = "https://registry.npmjs.org/babel-core/-/babel-core-6.23.1.tgz";
+      name = "babel-core-6.23.1.tgz";
+      sha1 = "c143cb621bb2f621710c220c5d579d15b8a442df";
     };
     deps = {
       "babel-code-frame-6.22.0" = self.by-version."babel-code-frame"."6.22.0";
-      "babel-generator-6.22.0" = self.by-version."babel-generator"."6.22.0";
-      "babel-helpers-6.22.0" = self.by-version."babel-helpers"."6.22.0";
-      "babel-messages-6.22.0" = self.by-version."babel-messages"."6.22.0";
-      "babel-template-6.22.0" = self.by-version."babel-template"."6.22.0";
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
-      "babel-register-6.22.0" = self.by-version."babel-register"."6.22.0";
-      "babel-traverse-6.22.1" = self.by-version."babel-traverse"."6.22.1";
-      "babel-types-6.22.0" = self.by-version."babel-types"."6.22.0";
+      "babel-generator-6.23.0" = self.by-version."babel-generator"."6.23.0";
+      "babel-helpers-6.23.0" = self.by-version."babel-helpers"."6.23.0";
+      "babel-messages-6.23.0" = self.by-version."babel-messages"."6.23.0";
+      "babel-template-6.23.0" = self.by-version."babel-template"."6.23.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
+      "babel-register-6.23.0" = self.by-version."babel-register"."6.23.0";
+      "babel-traverse-6.23.1" = self.by-version."babel-traverse"."6.23.1";
+      "babel-types-6.23.0" = self.by-version."babel-types"."6.23.0";
       "babylon-6.15.0" = self.by-version."babylon"."6.15.0";
-      "convert-source-map-1.3.0" = self.by-version."convert-source-map"."1.3.0";
+      "convert-source-map-1.4.0" = self.by-version."convert-source-map"."1.4.0";
       "debug-2.6.1" = self.by-version."debug"."2.6.1";
       "json5-0.5.1" = self.by-version."json5"."0.5.1";
       "lodash-4.17.4" = self.by-version."lodash"."4.17.4";
@@ -601,27 +601,26 @@
     os = [ ];
     cpu = [ ];
   };
-  by-spec."babel-core"."^6.22.1" =
-    self.by-version."babel-core"."6.22.1";
-  by-spec."babel-generator"."^6.22.0" =
-    self.by-version."babel-generator"."6.22.0";
-  by-version."babel-generator"."6.22.0" = self.buildNodePackage {
-    name = "babel-generator-6.22.0";
-    version = "6.22.0";
+  by-spec."babel-generator"."^6.23.0" =
+    self.by-version."babel-generator"."6.23.0";
+  by-version."babel-generator"."6.23.0" = self.buildNodePackage {
+    name = "babel-generator-6.23.0";
+    version = "6.23.0";
     bin = false;
     src = fetchurl {
-      url = "https://registry.npmjs.org/babel-generator/-/babel-generator-6.22.0.tgz";
-      name = "babel-generator-6.22.0.tgz";
-      sha1 = "d642bf4961911a8adc7c692b0c9297f325cda805";
+      url = "https://registry.npmjs.org/babel-generator/-/babel-generator-6.23.0.tgz";
+      name = "babel-generator-6.23.0.tgz";
+      sha1 = "6b8edab956ef3116f79d8c84c5a3c05f32a74bc5";
     };
     deps = {
-      "babel-messages-6.22.0" = self.by-version."babel-messages"."6.22.0";
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
-      "babel-types-6.22.0" = self.by-version."babel-types"."6.22.0";
+      "babel-messages-6.23.0" = self.by-version."babel-messages"."6.23.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
+      "babel-types-6.23.0" = self.by-version."babel-types"."6.23.0";
       "detect-indent-4.0.0" = self.by-version."detect-indent"."4.0.0";
       "jsesc-1.3.0" = self.by-version."jsesc"."1.3.0";
       "lodash-4.17.4" = self.by-version."lodash"."4.17.4";
       "source-map-0.5.6" = self.by-version."source-map"."0.5.6";
+      "trim-right-1.0.1" = self.by-version."trim-right"."1.0.1";
     };
     optionalDependencies = {
     };
@@ -642,8 +641,8 @@
     };
     deps = {
       "babel-helper-explode-assignable-expression-6.22.0" = self.by-version."babel-helper-explode-assignable-expression"."6.22.0";
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
-      "babel-types-6.22.0" = self.by-version."babel-types"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
+      "babel-types-6.23.0" = self.by-version."babel-types"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -651,20 +650,20 @@
     os = [ ];
     cpu = [ ];
   };
-  by-spec."babel-helper-builder-react-jsx"."^6.22.0" =
-    self.by-version."babel-helper-builder-react-jsx"."6.22.0";
-  by-version."babel-helper-builder-react-jsx"."6.22.0" = self.buildNodePackage {
-    name = "babel-helper-builder-react-jsx-6.22.0";
-    version = "6.22.0";
+  by-spec."babel-helper-builder-react-jsx"."^6.23.0" =
+    self.by-version."babel-helper-builder-react-jsx"."6.23.0";
+  by-version."babel-helper-builder-react-jsx"."6.23.0" = self.buildNodePackage {
+    name = "babel-helper-builder-react-jsx-6.23.0";
+    version = "6.23.0";
     bin = false;
     src = fetchurl {
-      url = "https://registry.npmjs.org/babel-helper-builder-react-jsx/-/babel-helper-builder-react-jsx-6.22.0.tgz";
-      name = "babel-helper-builder-react-jsx-6.22.0.tgz";
-      sha1 = "aafb31913e47761fd4d0b6987756a144a65fca0d";
+      url = "https://registry.npmjs.org/babel-helper-builder-react-jsx/-/babel-helper-builder-react-jsx-6.23.0.tgz";
+      name = "babel-helper-builder-react-jsx-6.23.0.tgz";
+      sha1 = "d53fc8c996e0bc56d0de0fc4cc55a7138395ea4b";
     };
     deps = {
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
-      "babel-types-6.22.0" = self.by-version."babel-types"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
+      "babel-types-6.23.0" = self.by-version."babel-types"."6.23.0";
       "esutils-2.0.2" = self.by-version."esutils"."2.0.2";
       "lodash-4.17.4" = self.by-version."lodash"."4.17.4";
     };
@@ -686,9 +685,9 @@
       sha1 = "119921b56120f17e9dae3f74b4f5cc7bcc1b37ef";
     };
     deps = {
-      "babel-traverse-6.22.1" = self.by-version."babel-traverse"."6.22.1";
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
-      "babel-types-6.22.0" = self.by-version."babel-types"."6.22.0";
+      "babel-traverse-6.23.1" = self.by-version."babel-traverse"."6.23.1";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
+      "babel-types-6.23.0" = self.by-version."babel-types"."6.23.0";
       "babel-helper-hoist-variables-6.22.0" = self.by-version."babel-helper-hoist-variables"."6.22.0";
     };
     optionalDependencies = {
@@ -697,22 +696,22 @@
     os = [ ];
     cpu = [ ];
   };
-  by-spec."babel-helper-define-map"."^6.22.0" =
-    self.by-version."babel-helper-define-map"."6.22.0";
-  by-version."babel-helper-define-map"."6.22.0" = self.buildNodePackage {
-    name = "babel-helper-define-map-6.22.0";
-    version = "6.22.0";
+  by-spec."babel-helper-define-map"."^6.23.0" =
+    self.by-version."babel-helper-define-map"."6.23.0";
+  by-version."babel-helper-define-map"."6.23.0" = self.buildNodePackage {
+    name = "babel-helper-define-map-6.23.0";
+    version = "6.23.0";
     bin = false;
     src = fetchurl {
-      url = "https://registry.npmjs.org/babel-helper-define-map/-/babel-helper-define-map-6.22.0.tgz";
-      name = "babel-helper-define-map-6.22.0.tgz";
-      sha1 = "9544e9502b2d6dfe7d00ff60e82bd5a7a89e95b7";
+      url = "https://registry.npmjs.org/babel-helper-define-map/-/babel-helper-define-map-6.23.0.tgz";
+      name = "babel-helper-define-map-6.23.0.tgz";
+      sha1 = "1444f960c9691d69a2ced6a205315f8fd00804e7";
     };
     deps = {
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
       "lodash-4.17.4" = self.by-version."lodash"."4.17.4";
-      "babel-types-6.22.0" = self.by-version."babel-types"."6.22.0";
-      "babel-helper-function-name-6.22.0" = self.by-version."babel-helper-function-name"."6.22.0";
+      "babel-types-6.23.0" = self.by-version."babel-types"."6.23.0";
+      "babel-helper-function-name-6.23.0" = self.by-version."babel-helper-function-name"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -732,9 +731,9 @@
       sha1 = "c97bf76eed3e0bae4048121f2b9dae1a4e7d0478";
     };
     deps = {
-      "babel-traverse-6.22.1" = self.by-version."babel-traverse"."6.22.1";
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
-      "babel-types-6.22.0" = self.by-version."babel-types"."6.22.0";
+      "babel-traverse-6.23.1" = self.by-version."babel-traverse"."6.23.1";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
+      "babel-types-6.23.0" = self.by-version."babel-types"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -743,22 +742,22 @@
     cpu = [ ];
   };
   by-spec."babel-helper-function-name"."^6.22.0" =
-    self.by-version."babel-helper-function-name"."6.22.0";
-  by-version."babel-helper-function-name"."6.22.0" = self.buildNodePackage {
-    name = "babel-helper-function-name-6.22.0";
-    version = "6.22.0";
+    self.by-version."babel-helper-function-name"."6.23.0";
+  by-version."babel-helper-function-name"."6.23.0" = self.buildNodePackage {
+    name = "babel-helper-function-name-6.23.0";
+    version = "6.23.0";
     bin = false;
     src = fetchurl {
-      url = "https://registry.npmjs.org/babel-helper-function-name/-/babel-helper-function-name-6.22.0.tgz";
-      name = "babel-helper-function-name-6.22.0.tgz";
-      sha1 = "51f1bdc4bb89b15f57a9b249f33d742816dcbefc";
+      url = "https://registry.npmjs.org/babel-helper-function-name/-/babel-helper-function-name-6.23.0.tgz";
+      name = "babel-helper-function-name-6.23.0.tgz";
+      sha1 = "25742d67175c8903dbe4b6cb9d9e1fcb8dcf23a6";
     };
     deps = {
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
-      "babel-types-6.22.0" = self.by-version."babel-types"."6.22.0";
-      "babel-traverse-6.22.1" = self.by-version."babel-traverse"."6.22.1";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
+      "babel-types-6.23.0" = self.by-version."babel-types"."6.23.0";
+      "babel-traverse-6.23.1" = self.by-version."babel-traverse"."6.23.1";
       "babel-helper-get-function-arity-6.22.0" = self.by-version."babel-helper-get-function-arity"."6.22.0";
-      "babel-template-6.22.0" = self.by-version."babel-template"."6.22.0";
+      "babel-template-6.23.0" = self.by-version."babel-template"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -766,6 +765,8 @@
     os = [ ];
     cpu = [ ];
   };
+  by-spec."babel-helper-function-name"."^6.23.0" =
+    self.by-version."babel-helper-function-name"."6.23.0";
   by-spec."babel-helper-get-function-arity"."^6.22.0" =
     self.by-version."babel-helper-get-function-arity"."6.22.0";
   by-version."babel-helper-get-function-arity"."6.22.0" = self.buildNodePackage {
@@ -778,8 +779,8 @@
       sha1 = "0beb464ad69dc7347410ac6ade9f03a50634f5ce";
     };
     deps = {
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
-      "babel-types-6.22.0" = self.by-version."babel-types"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
+      "babel-types-6.23.0" = self.by-version."babel-types"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -799,8 +800,8 @@
       sha1 = "3eacbf731d80705845dd2e9718f600cfb9b4ba72";
     };
     deps = {
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
-      "babel-types-6.22.0" = self.by-version."babel-types"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
+      "babel-types-6.23.0" = self.by-version."babel-types"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -808,20 +809,20 @@
     os = [ ];
     cpu = [ ];
   };
-  by-spec."babel-helper-optimise-call-expression"."^6.22.0" =
-    self.by-version."babel-helper-optimise-call-expression"."6.22.0";
-  by-version."babel-helper-optimise-call-expression"."6.22.0" = self.buildNodePackage {
-    name = "babel-helper-optimise-call-expression-6.22.0";
-    version = "6.22.0";
+  by-spec."babel-helper-optimise-call-expression"."^6.23.0" =
+    self.by-version."babel-helper-optimise-call-expression"."6.23.0";
+  by-version."babel-helper-optimise-call-expression"."6.23.0" = self.buildNodePackage {
+    name = "babel-helper-optimise-call-expression-6.23.0";
+    version = "6.23.0";
     bin = false;
     src = fetchurl {
-      url = "https://registry.npmjs.org/babel-helper-optimise-call-expression/-/babel-helper-optimise-call-expression-6.22.0.tgz";
-      name = "babel-helper-optimise-call-expression-6.22.0.tgz";
-      sha1 = "f8d5d4b40a6e2605a6a7f9d537b581bea3756d15";
+      url = "https://registry.npmjs.org/babel-helper-optimise-call-expression/-/babel-helper-optimise-call-expression-6.23.0.tgz";
+      name = "babel-helper-optimise-call-expression-6.23.0.tgz";
+      sha1 = "f3ee7eed355b4282138b33d02b78369e470622f5";
     };
     deps = {
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
-      "babel-types-6.22.0" = self.by-version."babel-types"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
+      "babel-types-6.23.0" = self.by-version."babel-types"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -841,9 +842,9 @@
       sha1 = "79f532be1647b1f0ee3474b5f5c3da58001d247d";
     };
     deps = {
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
       "lodash-4.17.4" = self.by-version."lodash"."4.17.4";
-      "babel-types-6.22.0" = self.by-version."babel-types"."6.22.0";
+      "babel-types-6.23.0" = self.by-version."babel-types"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -863,11 +864,11 @@
       sha1 = "2186ae73278ed03b8b15ced089609da981053383";
     };
     deps = {
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
-      "babel-template-6.22.0" = self.by-version."babel-template"."6.22.0";
-      "babel-types-6.22.0" = self.by-version."babel-types"."6.22.0";
-      "babel-traverse-6.22.1" = self.by-version."babel-traverse"."6.22.1";
-      "babel-helper-function-name-6.22.0" = self.by-version."babel-helper-function-name"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
+      "babel-template-6.23.0" = self.by-version."babel-template"."6.23.0";
+      "babel-types-6.23.0" = self.by-version."babel-types"."6.23.0";
+      "babel-traverse-6.23.1" = self.by-version."babel-traverse"."6.23.1";
+      "babel-helper-function-name-6.23.0" = self.by-version."babel-helper-function-name"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -876,23 +877,23 @@
     cpu = [ ];
   };
   by-spec."babel-helper-replace-supers"."^6.22.0" =
-    self.by-version."babel-helper-replace-supers"."6.22.0";
-  by-version."babel-helper-replace-supers"."6.22.0" = self.buildNodePackage {
-    name = "babel-helper-replace-supers-6.22.0";
-    version = "6.22.0";
+    self.by-version."babel-helper-replace-supers"."6.23.0";
+  by-version."babel-helper-replace-supers"."6.23.0" = self.buildNodePackage {
+    name = "babel-helper-replace-supers-6.23.0";
+    version = "6.23.0";
     bin = false;
     src = fetchurl {
-      url = "https://registry.npmjs.org/babel-helper-replace-supers/-/babel-helper-replace-supers-6.22.0.tgz";
-      name = "babel-helper-replace-supers-6.22.0.tgz";
-      sha1 = "1fcee2270657548908c34db16bcc345f9850cf42";
+      url = "https://registry.npmjs.org/babel-helper-replace-supers/-/babel-helper-replace-supers-6.23.0.tgz";
+      name = "babel-helper-replace-supers-6.23.0.tgz";
+      sha1 = "eeaf8ad9b58ec4337ca94223bacdca1f8d9b4bfd";
     };
     deps = {
-      "babel-helper-optimise-call-expression-6.22.0" = self.by-version."babel-helper-optimise-call-expression"."6.22.0";
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
-      "babel-traverse-6.22.1" = self.by-version."babel-traverse"."6.22.1";
-      "babel-messages-6.22.0" = self.by-version."babel-messages"."6.22.0";
-      "babel-template-6.22.0" = self.by-version."babel-template"."6.22.0";
-      "babel-types-6.22.0" = self.by-version."babel-types"."6.22.0";
+      "babel-helper-optimise-call-expression-6.23.0" = self.by-version."babel-helper-optimise-call-expression"."6.23.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
+      "babel-traverse-6.23.1" = self.by-version."babel-traverse"."6.23.1";
+      "babel-messages-6.23.0" = self.by-version."babel-messages"."6.23.0";
+      "babel-template-6.23.0" = self.by-version."babel-template"."6.23.0";
+      "babel-types-6.23.0" = self.by-version."babel-types"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -900,20 +901,22 @@
     os = [ ];
     cpu = [ ];
   };
-  by-spec."babel-helpers"."^6.22.0" =
-    self.by-version."babel-helpers"."6.22.0";
-  by-version."babel-helpers"."6.22.0" = self.buildNodePackage {
-    name = "babel-helpers-6.22.0";
-    version = "6.22.0";
+  by-spec."babel-helper-replace-supers"."^6.23.0" =
+    self.by-version."babel-helper-replace-supers"."6.23.0";
+  by-spec."babel-helpers"."^6.23.0" =
+    self.by-version."babel-helpers"."6.23.0";
+  by-version."babel-helpers"."6.23.0" = self.buildNodePackage {
+    name = "babel-helpers-6.23.0";
+    version = "6.23.0";
     bin = false;
     src = fetchurl {
-      url = "https://registry.npmjs.org/babel-helpers/-/babel-helpers-6.22.0.tgz";
-      name = "babel-helpers-6.22.0.tgz";
-      sha1 = "d275f55f2252b8101bff07bc0c556deda657392c";
+      url = "https://registry.npmjs.org/babel-helpers/-/babel-helpers-6.23.0.tgz";
+      name = "babel-helpers-6.23.0.tgz";
+      sha1 = "4f8f2e092d0b6a8808a4bde79c27f1e2ecf0d992";
     };
     deps = {
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
-      "babel-template-6.22.0" = self.by-version."babel-template"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
+      "babel-template-6.23.0" = self.by-version."babel-template"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -921,19 +924,19 @@
     os = [ ];
     cpu = [ ];
   };
-  by-spec."babel-messages"."^6.22.0" =
-    self.by-version."babel-messages"."6.22.0";
-  by-version."babel-messages"."6.22.0" = self.buildNodePackage {
-    name = "babel-messages-6.22.0";
-    version = "6.22.0";
+  by-spec."babel-messages"."^6.23.0" =
+    self.by-version."babel-messages"."6.23.0";
+  by-version."babel-messages"."6.23.0" = self.buildNodePackage {
+    name = "babel-messages-6.23.0";
+    version = "6.23.0";
     bin = false;
     src = fetchurl {
-      url = "https://registry.npmjs.org/babel-messages/-/babel-messages-6.22.0.tgz";
-      name = "babel-messages-6.22.0.tgz";
-      sha1 = "36066a214f1217e4ed4164867669ecb39e3ea575";
+      url = "https://registry.npmjs.org/babel-messages/-/babel-messages-6.23.0.tgz";
+      name = "babel-messages-6.23.0.tgz";
+      sha1 = "f3cdf4703858035b2a2951c6ec5edf6c62f2630e";
     };
     deps = {
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -953,7 +956,7 @@
       sha1 = "35157b101426fd2ffd3da3f75c7d1e91835bbf8a";
     };
     deps = {
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -1018,8 +1021,6 @@
     os = [ ];
     cpu = [ ];
   };
-  by-spec."babel-plugin-syntax-flow"."^6.3.13" =
-    self.by-version."babel-plugin-syntax-flow"."6.18.0";
   by-spec."babel-plugin-syntax-jsx"."^6.3.13" =
     self.by-version."babel-plugin-syntax-jsx"."6.18.0";
   by-version."babel-plugin-syntax-jsx"."6.18.0" = self.buildNodePackage {
@@ -1074,7 +1075,7 @@
     deps = {
       "babel-helper-remap-async-to-generator-6.22.0" = self.by-version."babel-helper-remap-async-to-generator"."6.22.0";
       "babel-plugin-syntax-async-functions-6.13.0" = self.by-version."babel-plugin-syntax-async-functions"."6.13.0";
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -1094,7 +1095,7 @@
       sha1 = "452692cb711d5f79dc7f85e440ce41b9f244d221";
     };
     deps = {
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -1114,7 +1115,7 @@
       sha1 = "bbc51b49f964d70cb8d8e0b94e820246ce3a6141";
     };
     deps = {
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -1123,22 +1124,22 @@
     cpu = [ ];
   };
   by-spec."babel-plugin-transform-es2015-block-scoping"."^6.22.0" =
-    self.by-version."babel-plugin-transform-es2015-block-scoping"."6.22.0";
-  by-version."babel-plugin-transform-es2015-block-scoping"."6.22.0" = self.buildNodePackage {
-    name = "babel-plugin-transform-es2015-block-scoping-6.22.0";
-    version = "6.22.0";
+    self.by-version."babel-plugin-transform-es2015-block-scoping"."6.23.0";
+  by-version."babel-plugin-transform-es2015-block-scoping"."6.23.0" = self.buildNodePackage {
+    name = "babel-plugin-transform-es2015-block-scoping-6.23.0";
+    version = "6.23.0";
     bin = false;
     src = fetchurl {
-      url = "https://registry.npmjs.org/babel-plugin-transform-es2015-block-scoping/-/babel-plugin-transform-es2015-block-scoping-6.22.0.tgz";
-      name = "babel-plugin-transform-es2015-block-scoping-6.22.0.tgz";
-      sha1 = "00d6e3a0bebdcfe7536b9d653b44a9141e63e47e";
+      url = "https://registry.npmjs.org/babel-plugin-transform-es2015-block-scoping/-/babel-plugin-transform-es2015-block-scoping-6.23.0.tgz";
+      name = "babel-plugin-transform-es2015-block-scoping-6.23.0.tgz";
+      sha1 = "e48895cf0b375be148cd7c8879b422707a053b51";
     };
     deps = {
-      "babel-traverse-6.22.1" = self.by-version."babel-traverse"."6.22.1";
-      "babel-types-6.22.0" = self.by-version."babel-types"."6.22.0";
-      "babel-template-6.22.0" = self.by-version."babel-template"."6.22.0";
+      "babel-traverse-6.23.1" = self.by-version."babel-traverse"."6.23.1";
+      "babel-types-6.23.0" = self.by-version."babel-types"."6.23.0";
+      "babel-template-6.23.0" = self.by-version."babel-template"."6.23.0";
       "lodash-4.17.4" = self.by-version."lodash"."4.17.4";
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -1147,26 +1148,26 @@
     cpu = [ ];
   };
   by-spec."babel-plugin-transform-es2015-classes"."^6.22.0" =
-    self.by-version."babel-plugin-transform-es2015-classes"."6.22.0";
-  by-version."babel-plugin-transform-es2015-classes"."6.22.0" = self.buildNodePackage {
-    name = "babel-plugin-transform-es2015-classes-6.22.0";
-    version = "6.22.0";
+    self.by-version."babel-plugin-transform-es2015-classes"."6.23.0";
+  by-version."babel-plugin-transform-es2015-classes"."6.23.0" = self.buildNodePackage {
+    name = "babel-plugin-transform-es2015-classes-6.23.0";
+    version = "6.23.0";
     bin = false;
     src = fetchurl {
-      url = "https://registry.npmjs.org/babel-plugin-transform-es2015-classes/-/babel-plugin-transform-es2015-classes-6.22.0.tgz";
-      name = "babel-plugin-transform-es2015-classes-6.22.0.tgz";
-      sha1 = "54d44998fd823d9dca15292324161c331c1b6f14";
+      url = "https://registry.npmjs.org/babel-plugin-transform-es2015-classes/-/babel-plugin-transform-es2015-classes-6.23.0.tgz";
+      name = "babel-plugin-transform-es2015-classes-6.23.0.tgz";
+      sha1 = "49b53f326202a2fd1b3bbaa5e2edd8a4f78643c1";
     };
     deps = {
-      "babel-helper-optimise-call-expression-6.22.0" = self.by-version."babel-helper-optimise-call-expression"."6.22.0";
-      "babel-helper-function-name-6.22.0" = self.by-version."babel-helper-function-name"."6.22.0";
-      "babel-helper-replace-supers-6.22.0" = self.by-version."babel-helper-replace-supers"."6.22.0";
-      "babel-template-6.22.0" = self.by-version."babel-template"."6.22.0";
-      "babel-traverse-6.22.1" = self.by-version."babel-traverse"."6.22.1";
-      "babel-helper-define-map-6.22.0" = self.by-version."babel-helper-define-map"."6.22.0";
-      "babel-messages-6.22.0" = self.by-version."babel-messages"."6.22.0";
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
-      "babel-types-6.22.0" = self.by-version."babel-types"."6.22.0";
+      "babel-helper-optimise-call-expression-6.23.0" = self.by-version."babel-helper-optimise-call-expression"."6.23.0";
+      "babel-helper-function-name-6.23.0" = self.by-version."babel-helper-function-name"."6.23.0";
+      "babel-helper-replace-supers-6.23.0" = self.by-version."babel-helper-replace-supers"."6.23.0";
+      "babel-template-6.23.0" = self.by-version."babel-template"."6.23.0";
+      "babel-traverse-6.23.1" = self.by-version."babel-traverse"."6.23.1";
+      "babel-helper-define-map-6.23.0" = self.by-version."babel-helper-define-map"."6.23.0";
+      "babel-messages-6.23.0" = self.by-version."babel-messages"."6.23.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
+      "babel-types-6.23.0" = self.by-version."babel-types"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -1186,8 +1187,8 @@
       sha1 = "7c383e9629bba4820c11b0425bdd6290f7f057e7";
     };
     deps = {
-      "babel-template-6.22.0" = self.by-version."babel-template"."6.22.0";
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-template-6.23.0" = self.by-version."babel-template"."6.23.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -1196,18 +1197,18 @@
     cpu = [ ];
   };
   by-spec."babel-plugin-transform-es2015-destructuring"."^6.22.0" =
-    self.by-version."babel-plugin-transform-es2015-destructuring"."6.22.0";
-  by-version."babel-plugin-transform-es2015-destructuring"."6.22.0" = self.buildNodePackage {
-    name = "babel-plugin-transform-es2015-destructuring-6.22.0";
-    version = "6.22.0";
+    self.by-version."babel-plugin-transform-es2015-destructuring"."6.23.0";
+  by-version."babel-plugin-transform-es2015-destructuring"."6.23.0" = self.buildNodePackage {
+    name = "babel-plugin-transform-es2015-destructuring-6.23.0";
+    version = "6.23.0";
     bin = false;
     src = fetchurl {
-      url = "https://registry.npmjs.org/babel-plugin-transform-es2015-destructuring/-/babel-plugin-transform-es2015-destructuring-6.22.0.tgz";
-      name = "babel-plugin-transform-es2015-destructuring-6.22.0.tgz";
-      sha1 = "8e0af2f885a0b2cf999d47c4c1dd23ce88cfa4c6";
+      url = "https://registry.npmjs.org/babel-plugin-transform-es2015-destructuring/-/babel-plugin-transform-es2015-destructuring-6.23.0.tgz";
+      name = "babel-plugin-transform-es2015-destructuring-6.23.0.tgz";
+      sha1 = "997bb1f1ab967f682d2b0876fe358d60e765c56d";
     };
     deps = {
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -1227,8 +1228,8 @@
       sha1 = "672397031c21610d72dd2bbb0ba9fb6277e1c36b";
     };
     deps = {
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
-      "babel-types-6.22.0" = self.by-version."babel-types"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
+      "babel-types-6.23.0" = self.by-version."babel-types"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -1237,18 +1238,18 @@
     cpu = [ ];
   };
   by-spec."babel-plugin-transform-es2015-for-of"."^6.22.0" =
-    self.by-version."babel-plugin-transform-es2015-for-of"."6.22.0";
-  by-version."babel-plugin-transform-es2015-for-of"."6.22.0" = self.buildNodePackage {
-    name = "babel-plugin-transform-es2015-for-of-6.22.0";
-    version = "6.22.0";
+    self.by-version."babel-plugin-transform-es2015-for-of"."6.23.0";
+  by-version."babel-plugin-transform-es2015-for-of"."6.23.0" = self.buildNodePackage {
+    name = "babel-plugin-transform-es2015-for-of-6.23.0";
+    version = "6.23.0";
     bin = false;
     src = fetchurl {
-      url = "https://registry.npmjs.org/babel-plugin-transform-es2015-for-of/-/babel-plugin-transform-es2015-for-of-6.22.0.tgz";
-      name = "babel-plugin-transform-es2015-for-of-6.22.0.tgz";
-      sha1 = "180467ad63aeea592a1caeee4bf1c8b3e2616265";
+      url = "https://registry.npmjs.org/babel-plugin-transform-es2015-for-of/-/babel-plugin-transform-es2015-for-of-6.23.0.tgz";
+      name = "babel-plugin-transform-es2015-for-of-6.23.0.tgz";
+      sha1 = "f47c95b2b613df1d3ecc2fdb7573623c75248691";
     };
     deps = {
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -1268,9 +1269,9 @@
       sha1 = "f5fcc8b09093f9a23c76ac3d9e392c3ec4b77104";
     };
     deps = {
-      "babel-helper-function-name-6.22.0" = self.by-version."babel-helper-function-name"."6.22.0";
-      "babel-types-6.22.0" = self.by-version."babel-types"."6.22.0";
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-helper-function-name-6.23.0" = self.by-version."babel-helper-function-name"."6.23.0";
+      "babel-types-6.23.0" = self.by-version."babel-types"."6.23.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -1290,7 +1291,7 @@
       sha1 = "4f54a02d6cd66cf915280019a31d31925377ca2e";
     };
     deps = {
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -1310,9 +1311,9 @@
       sha1 = "bf69cd34889a41c33d90dfb740e0091ccff52f21";
     };
     deps = {
-      "babel-plugin-transform-es2015-modules-commonjs-6.22.0" = self.by-version."babel-plugin-transform-es2015-modules-commonjs"."6.22.0";
-      "babel-template-6.22.0" = self.by-version."babel-template"."6.22.0";
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-plugin-transform-es2015-modules-commonjs-6.23.0" = self.by-version."babel-plugin-transform-es2015-modules-commonjs"."6.23.0";
+      "babel-template-6.23.0" = self.by-version."babel-template"."6.23.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -1321,20 +1322,20 @@
     cpu = [ ];
   };
   by-spec."babel-plugin-transform-es2015-modules-commonjs"."^6.22.0" =
-    self.by-version."babel-plugin-transform-es2015-modules-commonjs"."6.22.0";
-  by-version."babel-plugin-transform-es2015-modules-commonjs"."6.22.0" = self.buildNodePackage {
-    name = "babel-plugin-transform-es2015-modules-commonjs-6.22.0";
-    version = "6.22.0";
+    self.by-version."babel-plugin-transform-es2015-modules-commonjs"."6.23.0";
+  by-version."babel-plugin-transform-es2015-modules-commonjs"."6.23.0" = self.buildNodePackage {
+    name = "babel-plugin-transform-es2015-modules-commonjs-6.23.0";
+    version = "6.23.0";
     bin = false;
     src = fetchurl {
-      url = "https://registry.npmjs.org/babel-plugin-transform-es2015-modules-commonjs/-/babel-plugin-transform-es2015-modules-commonjs-6.22.0.tgz";
-      name = "babel-plugin-transform-es2015-modules-commonjs-6.22.0.tgz";
-      sha1 = "6ca04e22b8e214fb50169730657e7a07dc941145";
+      url = "https://registry.npmjs.org/babel-plugin-transform-es2015-modules-commonjs/-/babel-plugin-transform-es2015-modules-commonjs-6.23.0.tgz";
+      name = "babel-plugin-transform-es2015-modules-commonjs-6.23.0.tgz";
+      sha1 = "cba7aa6379fb7ec99250e6d46de2973aaffa7b92";
     };
     deps = {
-      "babel-types-6.22.0" = self.by-version."babel-types"."6.22.0";
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
-      "babel-template-6.22.0" = self.by-version."babel-template"."6.22.0";
+      "babel-types-6.23.0" = self.by-version."babel-types"."6.23.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
+      "babel-template-6.23.0" = self.by-version."babel-template"."6.23.0";
       "babel-plugin-transform-strict-mode-6.22.0" = self.by-version."babel-plugin-transform-strict-mode"."6.22.0";
     };
     optionalDependencies = {
@@ -1344,20 +1345,20 @@
     cpu = [ ];
   };
   by-spec."babel-plugin-transform-es2015-modules-systemjs"."^6.22.0" =
-    self.by-version."babel-plugin-transform-es2015-modules-systemjs"."6.22.0";
-  by-version."babel-plugin-transform-es2015-modules-systemjs"."6.22.0" = self.buildNodePackage {
-    name = "babel-plugin-transform-es2015-modules-systemjs-6.22.0";
-    version = "6.22.0";
+    self.by-version."babel-plugin-transform-es2015-modules-systemjs"."6.23.0";
+  by-version."babel-plugin-transform-es2015-modules-systemjs"."6.23.0" = self.buildNodePackage {
+    name = "babel-plugin-transform-es2015-modules-systemjs-6.23.0";
+    version = "6.23.0";
     bin = false;
     src = fetchurl {
-      url = "https://registry.npmjs.org/babel-plugin-transform-es2015-modules-systemjs/-/babel-plugin-transform-es2015-modules-systemjs-6.22.0.tgz";
-      name = "babel-plugin-transform-es2015-modules-systemjs-6.22.0.tgz";
-      sha1 = "810cd0cd025a08383b84236b92c6e31f88e644ad";
+      url = "https://registry.npmjs.org/babel-plugin-transform-es2015-modules-systemjs/-/babel-plugin-transform-es2015-modules-systemjs-6.23.0.tgz";
+      name = "babel-plugin-transform-es2015-modules-systemjs-6.23.0.tgz";
+      sha1 = "ae3469227ffac39b0310d90fec73bfdc4f6317b0";
     };
     deps = {
-      "babel-template-6.22.0" = self.by-version."babel-template"."6.22.0";
+      "babel-template-6.23.0" = self.by-version."babel-template"."6.23.0";
       "babel-helper-hoist-variables-6.22.0" = self.by-version."babel-helper-hoist-variables"."6.22.0";
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -1366,20 +1367,20 @@
     cpu = [ ];
   };
   by-spec."babel-plugin-transform-es2015-modules-umd"."^6.22.0" =
-    self.by-version."babel-plugin-transform-es2015-modules-umd"."6.22.0";
-  by-version."babel-plugin-transform-es2015-modules-umd"."6.22.0" = self.buildNodePackage {
-    name = "babel-plugin-transform-es2015-modules-umd-6.22.0";
-    version = "6.22.0";
+    self.by-version."babel-plugin-transform-es2015-modules-umd"."6.23.0";
+  by-version."babel-plugin-transform-es2015-modules-umd"."6.23.0" = self.buildNodePackage {
+    name = "babel-plugin-transform-es2015-modules-umd-6.23.0";
+    version = "6.23.0";
     bin = false;
     src = fetchurl {
-      url = "https://registry.npmjs.org/babel-plugin-transform-es2015-modules-umd/-/babel-plugin-transform-es2015-modules-umd-6.22.0.tgz";
-      name = "babel-plugin-transform-es2015-modules-umd-6.22.0.tgz";
-      sha1 = "60d0ba3bd23258719c64391d9bf492d648dc0fae";
+      url = "https://registry.npmjs.org/babel-plugin-transform-es2015-modules-umd/-/babel-plugin-transform-es2015-modules-umd-6.23.0.tgz";
+      name = "babel-plugin-transform-es2015-modules-umd-6.23.0.tgz";
+      sha1 = "8d284ae2e19ed8fe21d2b1b26d6e7e0fcd94f0f1";
     };
     deps = {
       "babel-plugin-transform-es2015-modules-amd-6.22.0" = self.by-version."babel-plugin-transform-es2015-modules-amd"."6.22.0";
-      "babel-template-6.22.0" = self.by-version."babel-template"."6.22.0";
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-template-6.23.0" = self.by-version."babel-template"."6.23.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -1399,8 +1400,8 @@
       sha1 = "daa60e114a042ea769dd53fe528fc82311eb98fc";
     };
     deps = {
-      "babel-helper-replace-supers-6.22.0" = self.by-version."babel-helper-replace-supers"."6.22.0";
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-helper-replace-supers-6.23.0" = self.by-version."babel-helper-replace-supers"."6.23.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -1409,23 +1410,23 @@
     cpu = [ ];
   };
   by-spec."babel-plugin-transform-es2015-parameters"."^6.22.0" =
-    self.by-version."babel-plugin-transform-es2015-parameters"."6.22.0";
-  by-version."babel-plugin-transform-es2015-parameters"."6.22.0" = self.buildNodePackage {
-    name = "babel-plugin-transform-es2015-parameters-6.22.0";
-    version = "6.22.0";
+    self.by-version."babel-plugin-transform-es2015-parameters"."6.23.0";
+  by-version."babel-plugin-transform-es2015-parameters"."6.23.0" = self.buildNodePackage {
+    name = "babel-plugin-transform-es2015-parameters-6.23.0";
+    version = "6.23.0";
     bin = false;
     src = fetchurl {
-      url = "https://registry.npmjs.org/babel-plugin-transform-es2015-parameters/-/babel-plugin-transform-es2015-parameters-6.22.0.tgz";
-      name = "babel-plugin-transform-es2015-parameters-6.22.0.tgz";
-      sha1 = "57076069232019094f27da8c68bb7162fe208dbb";
+      url = "https://registry.npmjs.org/babel-plugin-transform-es2015-parameters/-/babel-plugin-transform-es2015-parameters-6.23.0.tgz";
+      name = "babel-plugin-transform-es2015-parameters-6.23.0.tgz";
+      sha1 = "3a2aabb70c8af945d5ce386f1a4250625a83ae3b";
     };
     deps = {
-      "babel-traverse-6.22.1" = self.by-version."babel-traverse"."6.22.1";
+      "babel-traverse-6.23.1" = self.by-version."babel-traverse"."6.23.1";
       "babel-helper-call-delegate-6.22.0" = self.by-version."babel-helper-call-delegate"."6.22.0";
       "babel-helper-get-function-arity-6.22.0" = self.by-version."babel-helper-get-function-arity"."6.22.0";
-      "babel-template-6.22.0" = self.by-version."babel-template"."6.22.0";
-      "babel-types-6.22.0" = self.by-version."babel-types"."6.22.0";
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-template-6.23.0" = self.by-version."babel-template"."6.23.0";
+      "babel-types-6.23.0" = self.by-version."babel-types"."6.23.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -1445,8 +1446,8 @@
       sha1 = "8ba776e0affaa60bff21e921403b8a652a2ff723";
     };
     deps = {
-      "babel-types-6.22.0" = self.by-version."babel-types"."6.22.0";
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-types-6.23.0" = self.by-version."babel-types"."6.23.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -1466,7 +1467,7 @@
       sha1 = "d6d68a99f89aedc4536c81a542e8dd9f1746f8d1";
     };
     deps = {
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -1487,8 +1488,8 @@
     };
     deps = {
       "babel-helper-regex-6.22.0" = self.by-version."babel-helper-regex"."6.22.0";
-      "babel-types-6.22.0" = self.by-version."babel-types"."6.22.0";
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-types-6.23.0" = self.by-version."babel-types"."6.23.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -1508,7 +1509,7 @@
       sha1 = "a84b3450f7e9f8f1f6839d6d687da84bb1236d8d";
     };
     deps = {
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -1517,18 +1518,18 @@
     cpu = [ ];
   };
   by-spec."babel-plugin-transform-es2015-typeof-symbol"."^6.22.0" =
-    self.by-version."babel-plugin-transform-es2015-typeof-symbol"."6.22.0";
-  by-version."babel-plugin-transform-es2015-typeof-symbol"."6.22.0" = self.buildNodePackage {
-    name = "babel-plugin-transform-es2015-typeof-symbol-6.22.0";
-    version = "6.22.0";
+    self.by-version."babel-plugin-transform-es2015-typeof-symbol"."6.23.0";
+  by-version."babel-plugin-transform-es2015-typeof-symbol"."6.23.0" = self.buildNodePackage {
+    name = "babel-plugin-transform-es2015-typeof-symbol-6.23.0";
+    version = "6.23.0";
     bin = false;
     src = fetchurl {
-      url = "https://registry.npmjs.org/babel-plugin-transform-es2015-typeof-symbol/-/babel-plugin-transform-es2015-typeof-symbol-6.22.0.tgz";
-      name = "babel-plugin-transform-es2015-typeof-symbol-6.22.0.tgz";
-      sha1 = "87faf2336d3b6a97f68c4d906b0cd0edeae676e1";
+      url = "https://registry.npmjs.org/babel-plugin-transform-es2015-typeof-symbol/-/babel-plugin-transform-es2015-typeof-symbol-6.23.0.tgz";
+      name = "babel-plugin-transform-es2015-typeof-symbol-6.23.0.tgz";
+      sha1 = "dec09f1cddff94b52ac73d505c84df59dcceb372";
     };
     deps = {
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -1549,7 +1550,7 @@
     };
     deps = {
       "babel-helper-regex-6.22.0" = self.by-version."babel-helper-regex"."6.22.0";
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
       "regexpu-core-2.0.0" = self.by-version."regexpu-core"."2.0.0";
     };
     optionalDependencies = {
@@ -1572,7 +1573,7 @@
     deps = {
       "babel-plugin-syntax-exponentiation-operator-6.13.0" = self.by-version."babel-plugin-syntax-exponentiation-operator"."6.13.0";
       "babel-helper-builder-binary-assignment-operator-visitor-6.22.0" = self.by-version."babel-helper-builder-binary-assignment-operator-visitor"."6.22.0";
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -1592,7 +1593,7 @@
       sha1 = "84cb672935d43714fdc32bce84568d87441cf7cf";
     };
     deps = {
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
       "babel-plugin-syntax-flow-6.18.0" = self.by-version."babel-plugin-syntax-flow"."6.18.0";
     };
     optionalDependencies = {
@@ -1601,19 +1602,19 @@
     os = [ ];
     cpu = [ ];
   };
-  by-spec."babel-plugin-transform-react-display-name"."^6.22.0" =
-    self.by-version."babel-plugin-transform-react-display-name"."6.22.0";
-  by-version."babel-plugin-transform-react-display-name"."6.22.0" = self.buildNodePackage {
-    name = "babel-plugin-transform-react-display-name-6.22.0";
-    version = "6.22.0";
+  by-spec."babel-plugin-transform-react-display-name"."^6.23.0" =
+    self.by-version."babel-plugin-transform-react-display-name"."6.23.0";
+  by-version."babel-plugin-transform-react-display-name"."6.23.0" = self.buildNodePackage {
+    name = "babel-plugin-transform-react-display-name-6.23.0";
+    version = "6.23.0";
     bin = false;
     src = fetchurl {
-      url = "https://registry.npmjs.org/babel-plugin-transform-react-display-name/-/babel-plugin-transform-react-display-name-6.22.0.tgz";
-      name = "babel-plugin-transform-react-display-name-6.22.0.tgz";
-      sha1 = "077197520fa8562b8d3da4c3c4b0b1bdd7853f26";
+      url = "https://registry.npmjs.org/babel-plugin-transform-react-display-name/-/babel-plugin-transform-react-display-name-6.23.0.tgz";
+      name = "babel-plugin-transform-react-display-name-6.23.0.tgz";
+      sha1 = "4398910c358441dc4cef18787264d0412ed36b37";
     };
     deps = {
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -1621,20 +1622,20 @@
     os = [ ];
     cpu = [ ];
   };
-  by-spec."babel-plugin-transform-react-jsx"."^6.22.0" =
-    self.by-version."babel-plugin-transform-react-jsx"."6.22.0";
-  by-version."babel-plugin-transform-react-jsx"."6.22.0" = self.buildNodePackage {
-    name = "babel-plugin-transform-react-jsx-6.22.0";
-    version = "6.22.0";
+  by-spec."babel-plugin-transform-react-jsx"."^6.23.0" =
+    self.by-version."babel-plugin-transform-react-jsx"."6.23.0";
+  by-version."babel-plugin-transform-react-jsx"."6.23.0" = self.buildNodePackage {
+    name = "babel-plugin-transform-react-jsx-6.23.0";
+    version = "6.23.0";
     bin = false;
     src = fetchurl {
-      url = "https://registry.npmjs.org/babel-plugin-transform-react-jsx/-/babel-plugin-transform-react-jsx-6.22.0.tgz";
-      name = "babel-plugin-transform-react-jsx-6.22.0.tgz";
-      sha1 = "48556b7dd4c3fe97d1c943bcd54fc3f2561c1817";
+      url = "https://registry.npmjs.org/babel-plugin-transform-react-jsx/-/babel-plugin-transform-react-jsx-6.23.0.tgz";
+      name = "babel-plugin-transform-react-jsx-6.23.0.tgz";
+      sha1 = "23e892f7f2e759678eb5e4446a8f8e94e81b3470";
     };
     deps = {
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
-      "babel-helper-builder-react-jsx-6.22.0" = self.by-version."babel-helper-builder-react-jsx"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
+      "babel-helper-builder-react-jsx-6.23.0" = self.by-version."babel-helper-builder-react-jsx"."6.23.0";
       "babel-plugin-syntax-jsx-6.18.0" = self.by-version."babel-plugin-syntax-jsx"."6.18.0";
     };
     optionalDependencies = {
@@ -1655,7 +1656,7 @@
       sha1 = "df6d80a9da2612a121e6ddd7558bcbecf06e636e";
     };
     deps = {
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
       "babel-plugin-syntax-jsx-6.18.0" = self.by-version."babel-plugin-syntax-jsx"."6.18.0";
     };
     optionalDependencies = {
@@ -1676,7 +1677,7 @@
       sha1 = "66ac12153f5cd2d17b3c19268f4bf0197f44ecd6";
     };
     deps = {
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
       "babel-plugin-syntax-jsx-6.18.0" = self.by-version."babel-plugin-syntax-jsx"."6.18.0";
     };
     optionalDependencies = {
@@ -1717,8 +1718,8 @@
       sha1 = "e008df01340fdc87e959da65991b7e05970c8c7c";
     };
     deps = {
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
-      "babel-types-6.22.0" = self.by-version."babel-types"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
+      "babel-types-6.23.0" = self.by-version."babel-types"."6.23.0";
     };
     optionalDependencies = {
     };
@@ -1726,20 +1727,20 @@
     os = [ ];
     cpu = [ ];
   };
-  by-spec."babel-polyfill"."^6.22.0" =
-    self.by-version."babel-polyfill"."6.22.0";
-  by-version."babel-polyfill"."6.22.0" = self.buildNodePackage {
-    name = "babel-polyfill-6.22.0";
-    version = "6.22.0";
+  by-spec."babel-polyfill"."^6.23.0" =
+    self.by-version."babel-polyfill"."6.23.0";
+  by-version."babel-polyfill"."6.23.0" = self.buildNodePackage {
+    name = "babel-polyfill-6.23.0";
+    version = "6.23.0";
     bin = false;
     src = fetchurl {
-      url = "https://registry.npmjs.org/babel-polyfill/-/babel-polyfill-6.22.0.tgz";
-      name = "babel-polyfill-6.22.0.tgz";
-      sha1 = "1ac99ebdcc6ba4db1e2618c387b2084a82154a3b";
+      url = "https://registry.npmjs.org/babel-polyfill/-/babel-polyfill-6.23.0.tgz";
+      name = "babel-polyfill-6.23.0.tgz";
+      sha1 = "8364ca62df8eafb830499f699177466c3b03499d";
     };
     deps = {
       "core-js-2.4.1" = self.by-version."core-js"."2.4.1";
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
       "regenerator-runtime-0.10.1" = self.by-version."regenerator-runtime"."0.10.1";
     };
     optionalDependencies = {
@@ -1763,25 +1764,25 @@
       "babel-plugin-check-es2015-constants-6.22.0" = self.by-version."babel-plugin-check-es2015-constants"."6.22.0";
       "babel-plugin-transform-es2015-arrow-functions-6.22.0" = self.by-version."babel-plugin-transform-es2015-arrow-functions"."6.22.0";
       "babel-plugin-transform-es2015-block-scoped-functions-6.22.0" = self.by-version."babel-plugin-transform-es2015-block-scoped-functions"."6.22.0";
-      "babel-plugin-transform-es2015-block-scoping-6.22.0" = self.by-version."babel-plugin-transform-es2015-block-scoping"."6.22.0";
-      "babel-plugin-transform-es2015-classes-6.22.0" = self.by-version."babel-plugin-transform-es2015-classes"."6.22.0";
+      "babel-plugin-transform-es2015-block-scoping-6.23.0" = self.by-version."babel-plugin-transform-es2015-block-scoping"."6.23.0";
+      "babel-plugin-transform-es2015-classes-6.23.0" = self.by-version."babel-plugin-transform-es2015-classes"."6.23.0";
       "babel-plugin-transform-es2015-computed-properties-6.22.0" = self.by-version."babel-plugin-transform-es2015-computed-properties"."6.22.0";
-      "babel-plugin-transform-es2015-destructuring-6.22.0" = self.by-version."babel-plugin-transform-es2015-destructuring"."6.22.0";
+      "babel-plugin-transform-es2015-destructuring-6.23.0" = self.by-version."babel-plugin-transform-es2015-destructuring"."6.23.0";
       "babel-plugin-transform-es2015-duplicate-keys-6.22.0" = self.by-version."babel-plugin-transform-es2015-duplicate-keys"."6.22.0";
-      "babel-plugin-transform-es2015-for-of-6.22.0" = self.by-version."babel-plugin-transform-es2015-for-of"."6.22.0";
+      "babel-plugin-transform-es2015-for-of-6.23.0" = self.by-version."babel-plugin-transform-es2015-for-of"."6.23.0";
       "babel-plugin-transform-es2015-function-name-6.22.0" = self.by-version."babel-plugin-transform-es2015-function-name"."6.22.0";
       "babel-plugin-transform-es2015-literals-6.22.0" = self.by-version."babel-plugin-transform-es2015-literals"."6.22.0";
       "babel-plugin-transform-es2015-modules-amd-6.22.0" = self.by-version."babel-plugin-transform-es2015-modules-amd"."6.22.0";
-      "babel-plugin-transform-es2015-modules-commonjs-6.22.0" = self.by-version."babel-plugin-transform-es2015-modules-commonjs"."6.22.0";
-      "babel-plugin-transform-es2015-modules-systemjs-6.22.0" = self.by-version."babel-plugin-transform-es2015-modules-systemjs"."6.22.0";
-      "babel-plugin-transform-es2015-modules-umd-6.22.0" = self.by-version."babel-plugin-transform-es2015-modules-umd"."6.22.0";
+      "babel-plugin-transform-es2015-modules-commonjs-6.23.0" = self.by-version."babel-plugin-transform-es2015-modules-commonjs"."6.23.0";
+      "babel-plugin-transform-es2015-modules-systemjs-6.23.0" = self.by-version."babel-plugin-transform-es2015-modules-systemjs"."6.23.0";
+      "babel-plugin-transform-es2015-modules-umd-6.23.0" = self.by-version."babel-plugin-transform-es2015-modules-umd"."6.23.0";
       "babel-plugin-transform-es2015-object-super-6.22.0" = self.by-version."babel-plugin-transform-es2015-object-super"."6.22.0";
-      "babel-plugin-transform-es2015-parameters-6.22.0" = self.by-version."babel-plugin-transform-es2015-parameters"."6.22.0";
+      "babel-plugin-transform-es2015-parameters-6.23.0" = self.by-version."babel-plugin-transform-es2015-parameters"."6.23.0";
       "babel-plugin-transform-es2015-shorthand-properties-6.22.0" = self.by-version."babel-plugin-transform-es2015-shorthand-properties"."6.22.0";
       "babel-plugin-transform-es2015-spread-6.22.0" = self.by-version."babel-plugin-transform-es2015-spread"."6.22.0";
       "babel-plugin-transform-es2015-sticky-regex-6.22.0" = self.by-version."babel-plugin-transform-es2015-sticky-regex"."6.22.0";
       "babel-plugin-transform-es2015-template-literals-6.22.0" = self.by-version."babel-plugin-transform-es2015-template-literals"."6.22.0";
-      "babel-plugin-transform-es2015-typeof-symbol-6.22.0" = self.by-version."babel-plugin-transform-es2015-typeof-symbol"."6.22.0";
+      "babel-plugin-transform-es2015-typeof-symbol-6.23.0" = self.by-version."babel-plugin-transform-es2015-typeof-symbol"."6.23.0";
       "babel-plugin-transform-es2015-unicode-regex-6.22.0" = self.by-version."babel-plugin-transform-es2015-unicode-regex"."6.22.0";
       "babel-plugin-transform-regenerator-6.22.0" = self.by-version."babel-plugin-transform-regenerator"."6.22.0";
     };
@@ -1832,6 +1833,26 @@
     os = [ ];
     cpu = [ ];
   };
+  by-spec."babel-preset-flow"."^6.23.0" =
+    self.by-version."babel-preset-flow"."6.23.0";
+  by-version."babel-preset-flow"."6.23.0" = self.buildNodePackage {
+    name = "babel-preset-flow-6.23.0";
+    version = "6.23.0";
+    bin = false;
+    src = fetchurl {
+      url = "https://registry.npmjs.org/babel-preset-flow/-/babel-preset-flow-6.23.0.tgz";
+      name = "babel-preset-flow-6.23.0.tgz";
+      sha1 = "e71218887085ae9a24b5be4169affb599816c49d";
+    };
+    deps = {
+      "babel-plugin-transform-flow-strip-types-6.22.0" = self.by-version."babel-plugin-transform-flow-strip-types"."6.22.0";
+    };
+    optionalDependencies = {
+    };
+    peerDependencies = [];
+    os = [ ];
+    cpu = [ ];
+  };
   by-spec."babel-preset-latest"."*" =
     self.by-version."babel-preset-latest"."6.22.0";
   by-version."babel-preset-latest"."6.22.0" = self.buildNodePackage {
@@ -1856,22 +1877,21 @@
   };
   "babel-preset-latest" = self.by-version."babel-preset-latest"."6.22.0";
   by-spec."babel-preset-react"."*" =
-    self.by-version."babel-preset-react"."6.22.0";
-  by-version."babel-preset-react"."6.22.0" = self.buildNodePackage {
-    name = "babel-preset-react-6.22.0";
-    version = "6.22.0";
+    self.by-version."babel-preset-react"."6.23.0";
+  by-version."babel-preset-react"."6.23.0" = self.buildNodePackage {
+    name = "babel-preset-react-6.23.0";
+    version = "6.23.0";
     bin = false;
     src = fetchurl {
-      url = "https://registry.npmjs.org/babel-preset-react/-/babel-preset-react-6.22.0.tgz";
-      name = "babel-preset-react-6.22.0.tgz";
-      sha1 = "7bc97e2d73eec4b980fb6b4e4e0884e81ccdc165";
+      url = "https://registry.npmjs.org/babel-preset-react/-/babel-preset-react-6.23.0.tgz";
+      name = "babel-preset-react-6.23.0.tgz";
+      sha1 = "eb7cee4de98a3f94502c28565332da9819455195";
     };
     deps = {
-      "babel-plugin-syntax-flow-6.18.0" = self.by-version."babel-plugin-syntax-flow"."6.18.0";
+      "babel-preset-flow-6.23.0" = self.by-version."babel-preset-flow"."6.23.0";
       "babel-plugin-syntax-jsx-6.18.0" = self.by-version."babel-plugin-syntax-jsx"."6.18.0";
-      "babel-plugin-transform-flow-strip-types-6.22.0" = self.by-version."babel-plugin-transform-flow-strip-types"."6.22.0";
-      "babel-plugin-transform-react-display-name-6.22.0" = self.by-version."babel-plugin-transform-react-display-name"."6.22.0";
-      "babel-plugin-transform-react-jsx-6.22.0" = self.by-version."babel-plugin-transform-react-jsx"."6.22.0";
+      "babel-plugin-transform-react-display-name-6.23.0" = self.by-version."babel-plugin-transform-react-display-name"."6.23.0";
+      "babel-plugin-transform-react-jsx-6.23.0" = self.by-version."babel-plugin-transform-react-jsx"."6.23.0";
       "babel-plugin-transform-react-jsx-source-6.22.0" = self.by-version."babel-plugin-transform-react-jsx-source"."6.22.0";
       "babel-plugin-transform-react-jsx-self-6.22.0" = self.by-version."babel-plugin-transform-react-jsx-self"."6.22.0";
     };
@@ -1881,21 +1901,21 @@
     os = [ ];
     cpu = [ ];
   };
-  "babel-preset-react" = self.by-version."babel-preset-react"."6.22.0";
-  by-spec."babel-register"."^6.22.0" =
-    self.by-version."babel-register"."6.22.0";
-  by-version."babel-register"."6.22.0" = self.buildNodePackage {
-    name = "babel-register-6.22.0";
-    version = "6.22.0";
+  "babel-preset-react" = self.by-version."babel-preset-react"."6.23.0";
+  by-spec."babel-register"."^6.23.0" =
+    self.by-version."babel-register"."6.23.0";
+  by-version."babel-register"."6.23.0" = self.buildNodePackage {
+    name = "babel-register-6.23.0";
+    version = "6.23.0";
     bin = false;
     src = fetchurl {
-      url = "https://registry.npmjs.org/babel-register/-/babel-register-6.22.0.tgz";
-      name = "babel-register-6.22.0.tgz";
-      sha1 = "a61dd83975f9ca4a9e7d6eff3059494cd5ea4c63";
+      url = "https://registry.npmjs.org/babel-register/-/babel-register-6.23.0.tgz";
+      name = "babel-register-6.23.0.tgz";
+      sha1 = "c9aa3d4cca94b51da34826c4a0f9e08145d74ff3";
     };
     deps = {
-      "babel-core-6.22.1" = self.by-version."babel-core"."6.22.1";
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-core-6.23.1" = self.by-version."babel-core"."6.23.1";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
       "core-js-2.4.1" = self.by-version."core-js"."2.4.1";
       "home-or-tmp-2.0.0" = self.by-version."home-or-tmp"."2.0.0";
       "lodash-4.17.4" = self.by-version."lodash"."4.17.4";
@@ -1909,15 +1929,15 @@
     cpu = [ ];
   };
   by-spec."babel-runtime"."^6.18.0" =
-    self.by-version."babel-runtime"."6.22.0";
-  by-version."babel-runtime"."6.22.0" = self.buildNodePackage {
-    name = "babel-runtime-6.22.0";
-    version = "6.22.0";
+    self.by-version."babel-runtime"."6.23.0";
+  by-version."babel-runtime"."6.23.0" = self.buildNodePackage {
+    name = "babel-runtime-6.23.0";
+    version = "6.23.0";
     bin = false;
     src = fetchurl {
-      url = "https://registry.npmjs.org/babel-runtime/-/babel-runtime-6.22.0.tgz";
-      name = "babel-runtime-6.22.0.tgz";
-      sha1 = "1cf8b4ac67c77a4ddb0db2ae1f74de52ac4ca611";
+      url = "https://registry.npmjs.org/babel-runtime/-/babel-runtime-6.23.0.tgz";
+      name = "babel-runtime-6.23.0.tgz";
+      sha1 = "0a9489f144de70efb3ce4300accdb329e2fc543b";
     };
     deps = {
       "core-js-2.4.1" = self.by-version."core-js"."2.4.1";
@@ -1930,23 +1950,23 @@
     cpu = [ ];
   };
   by-spec."babel-runtime"."^6.22.0" =
-    self.by-version."babel-runtime"."6.22.0";
+    self.by-version."babel-runtime"."6.23.0";
   by-spec."babel-template"."^6.22.0" =
-    self.by-version."babel-template"."6.22.0";
-  by-version."babel-template"."6.22.0" = self.buildNodePackage {
-    name = "babel-template-6.22.0";
-    version = "6.22.0";
+    self.by-version."babel-template"."6.23.0";
+  by-version."babel-template"."6.23.0" = self.buildNodePackage {
+    name = "babel-template-6.23.0";
+    version = "6.23.0";
     bin = false;
     src = fetchurl {
-      url = "https://registry.npmjs.org/babel-template/-/babel-template-6.22.0.tgz";
-      name = "babel-template-6.22.0.tgz";
-      sha1 = "403d110905a4626b317a2a1fcb8f3b73204b2edb";
+      url = "https://registry.npmjs.org/babel-template/-/babel-template-6.23.0.tgz";
+      name = "babel-template-6.23.0.tgz";
+      sha1 = "04d4f270adbb3aa704a8143ae26faa529238e638";
     };
     deps = {
       "babylon-6.15.0" = self.by-version."babylon"."6.15.0";
-      "babel-traverse-6.22.1" = self.by-version."babel-traverse"."6.22.1";
-      "babel-types-6.22.0" = self.by-version."babel-types"."6.22.0";
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-traverse-6.23.1" = self.by-version."babel-traverse"."6.23.1";
+      "babel-types-6.23.0" = self.by-version."babel-types"."6.23.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
       "lodash-4.17.4" = self.by-version."lodash"."4.17.4";
     };
     optionalDependencies = {
@@ -1955,25 +1975,27 @@
     os = [ ];
     cpu = [ ];
   };
+  by-spec."babel-template"."^6.23.0" =
+    self.by-version."babel-template"."6.23.0";
   by-spec."babel-traverse"."^6.22.0" =
-    self.by-version."babel-traverse"."6.22.1";
-  by-version."babel-traverse"."6.22.1" = self.buildNodePackage {
-    name = "babel-traverse-6.22.1";
-    version = "6.22.1";
+    self.by-version."babel-traverse"."6.23.1";
+  by-version."babel-traverse"."6.23.1" = self.buildNodePackage {
+    name = "babel-traverse-6.23.1";
+    version = "6.23.1";
     bin = false;
     src = fetchurl {
-      url = "https://registry.npmjs.org/babel-traverse/-/babel-traverse-6.22.1.tgz";
-      name = "babel-traverse-6.22.1.tgz";
-      sha1 = "3b95cd6b7427d6f1f757704908f2fc9748a5f59f";
+      url = "https://registry.npmjs.org/babel-traverse/-/babel-traverse-6.23.1.tgz";
+      name = "babel-traverse-6.23.1.tgz";
+      sha1 = "d3cb59010ecd06a97d81310065f966b699e14f48";
     };
     deps = {
       "babel-code-frame-6.22.0" = self.by-version."babel-code-frame"."6.22.0";
-      "babel-messages-6.22.0" = self.by-version."babel-messages"."6.22.0";
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
-      "babel-types-6.22.0" = self.by-version."babel-types"."6.22.0";
+      "babel-messages-6.23.0" = self.by-version."babel-messages"."6.23.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
+      "babel-types-6.23.0" = self.by-version."babel-types"."6.23.0";
       "babylon-6.15.0" = self.by-version."babylon"."6.15.0";
       "debug-2.6.1" = self.by-version."debug"."2.6.1";
-      "globals-9.14.0" = self.by-version."globals"."9.14.0";
+      "globals-9.15.0" = self.by-version."globals"."9.15.0";
       "invariant-2.2.2" = self.by-version."invariant"."2.2.2";
       "lodash-4.17.4" = self.by-version."lodash"."4.17.4";
     };
@@ -1983,21 +2005,23 @@
     os = [ ];
     cpu = [ ];
   };
-  by-spec."babel-traverse"."^6.22.1" =
-    self.by-version."babel-traverse"."6.22.1";
+  by-spec."babel-traverse"."^6.23.0" =
+    self.by-version."babel-traverse"."6.23.1";
+  by-spec."babel-traverse"."^6.23.1" =
+    self.by-version."babel-traverse"."6.23.1";
   by-spec."babel-types"."^6.19.0" =
-    self.by-version."babel-types"."6.22.0";
-  by-version."babel-types"."6.22.0" = self.buildNodePackage {
-    name = "babel-types-6.22.0";
-    version = "6.22.0";
+    self.by-version."babel-types"."6.23.0";
+  by-version."babel-types"."6.23.0" = self.buildNodePackage {
+    name = "babel-types-6.23.0";
+    version = "6.23.0";
     bin = false;
     src = fetchurl {
-      url = "https://registry.npmjs.org/babel-types/-/babel-types-6.22.0.tgz";
-      name = "babel-types-6.22.0.tgz";
-      sha1 = "2a447e8d0ea25d2512409e4175479fd78cc8b1db";
+      url = "https://registry.npmjs.org/babel-types/-/babel-types-6.23.0.tgz";
+      name = "babel-types-6.23.0.tgz";
+      sha1 = "bb17179d7538bad38cd0c9e115d340f77e7e9acf";
     };
     deps = {
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
       "esutils-2.0.2" = self.by-version."esutils"."2.0.2";
       "lodash-4.17.4" = self.by-version."lodash"."4.17.4";
       "to-fast-properties-1.0.2" = self.by-version."to-fast-properties"."1.0.2";
@@ -2009,7 +2033,9 @@
     cpu = [ ];
   };
   by-spec."babel-types"."^6.22.0" =
-    self.by-version."babel-types"."6.22.0";
+    self.by-version."babel-types"."6.23.0";
+  by-spec."babel-types"."^6.23.0" =
+    self.by-version."babel-types"."6.23.0";
   by-spec."babylon"."^6.11.0" =
     self.by-version."babylon"."6.15.0";
   by-version."babylon"."6.15.0" = self.buildNodePackage {
@@ -2521,6 +2547,25 @@
     self.by-version."commander"."2.9.0";
   by-spec."commander"."^2.9.0" =
     self.by-version."commander"."2.9.0";
+  by-spec."component-emitter"."^1.2.0" =
+    self.by-version."component-emitter"."1.2.1";
+  by-version."component-emitter"."1.2.1" = self.buildNodePackage {
+    name = "component-emitter-1.2.1";
+    version = "1.2.1";
+    bin = false;
+    src = fetchurl {
+      url = "https://registry.npmjs.org/component-emitter/-/component-emitter-1.2.1.tgz";
+      name = "component-emitter-1.2.1.tgz";
+      sha1 = "137918d6d78283f7df7a6b7c5a63e140e69425e6";
+    };
+    deps = {
+    };
+    optionalDependencies = {
+    };
+    peerDependencies = [];
+    os = [ ];
+    cpu = [ ];
+  };
   by-spec."concat-map"."0.0.1" =
     self.by-version."concat-map"."0.0.1";
   by-version."concat-map"."0.0.1" = self.buildNodePackage {
@@ -2627,15 +2672,15 @@
     cpu = [ ];
   };
   by-spec."convert-source-map"."^1.1.0" =
-    self.by-version."convert-source-map"."1.3.0";
-  by-version."convert-source-map"."1.3.0" = self.buildNodePackage {
-    name = "convert-source-map-1.3.0";
-    version = "1.3.0";
+    self.by-version."convert-source-map"."1.4.0";
+  by-version."convert-source-map"."1.4.0" = self.buildNodePackage {
+    name = "convert-source-map-1.4.0";
+    version = "1.4.0";
     bin = false;
     src = fetchurl {
-      url = "https://registry.npmjs.org/convert-source-map/-/convert-source-map-1.3.0.tgz";
-      name = "convert-source-map-1.3.0.tgz";
-      sha1 = "e9f3e9c6e2728efc2676696a70eb382f73106a67";
+      url = "https://registry.npmjs.org/convert-source-map/-/convert-source-map-1.4.0.tgz";
+      name = "convert-source-map-1.4.0.tgz";
+      sha1 = "e3dad195bf61bfe13a7a3c73e9876ec14a0268f3";
     };
     deps = {
     };
@@ -2696,6 +2741,25 @@
       url = "https://registry.npmjs.org/cookie-signature/-/cookie-signature-1.0.6.tgz";
       name = "cookie-signature-1.0.6.tgz";
       sha1 = "e303a882b342cc3ee8ca513a79999734dab3ae2c";
+    };
+    deps = {
+    };
+    optionalDependencies = {
+    };
+    peerDependencies = [];
+    os = [ ];
+    cpu = [ ];
+  };
+  by-spec."cookiejar"."^2.0.6" =
+    self.by-version."cookiejar"."2.1.0";
+  by-version."cookiejar"."2.1.0" = self.buildNodePackage {
+    name = "cookiejar-2.1.0";
+    version = "2.1.0";
+    bin = false;
+    src = fetchurl {
+      url = "https://registry.npmjs.org/cookiejar/-/cookiejar-2.1.0.tgz";
+      name = "cookiejar-2.1.0.tgz";
+      sha1 = "86549689539b6d0e269b6637a304be508194d898";
     };
     deps = {
     };
@@ -3380,7 +3444,7 @@
     cpu = [ ];
   };
   "express" = self.by-version."express"."4.14.1";
-  by-spec."extend"."~3.0.0" =
+  by-spec."extend"."^3.0.0" =
     self.by-version."extend"."3.0.0";
   by-version."extend"."3.0.0" = self.buildNodePackage {
     name = "extend-3.0.0";
@@ -3399,6 +3463,8 @@
     os = [ ];
     cpu = [ ];
   };
+  by-spec."extend"."~3.0.0" =
+    self.by-version."extend"."3.0.0";
   by-spec."extglob"."^0.3.1" =
     self.by-version."extglob"."0.3.2";
   by-version."extglob"."0.3.2" = self.buildNodePackage {
@@ -3601,7 +3667,7 @@
     os = [ ];
     cpu = [ ];
   };
-  by-spec."form-data"."~2.1.1" =
+  by-spec."form-data"."^2.1.1" =
     self.by-version."form-data"."2.1.2";
   by-version."form-data"."2.1.2" = self.buildNodePackage {
     name = "form-data-2.1.2";
@@ -3616,6 +3682,47 @@
       "asynckit-0.4.0" = self.by-version."asynckit"."0.4.0";
       "combined-stream-1.0.5" = self.by-version."combined-stream"."1.0.5";
       "mime-types-2.1.14" = self.by-version."mime-types"."2.1.14";
+    };
+    optionalDependencies = {
+    };
+    peerDependencies = [];
+    os = [ ];
+    cpu = [ ];
+  };
+  by-spec."form-data"."~2.1.1" =
+    self.by-version."form-data"."2.1.2";
+  by-spec."formatio"."1.1.1" =
+    self.by-version."formatio"."1.1.1";
+  by-version."formatio"."1.1.1" = self.buildNodePackage {
+    name = "formatio-1.1.1";
+    version = "1.1.1";
+    bin = false;
+    src = fetchurl {
+      url = "https://registry.npmjs.org/formatio/-/formatio-1.1.1.tgz";
+      name = "formatio-1.1.1.tgz";
+      sha1 = "5ed3ccd636551097383465d996199100e86161e9";
+    };
+    deps = {
+      "samsam-1.1.3" = self.by-version."samsam"."1.1.3";
+    };
+    optionalDependencies = {
+    };
+    peerDependencies = [];
+    os = [ ];
+    cpu = [ ];
+  };
+  by-spec."formidable"."^1.1.1" =
+    self.by-version."formidable"."1.1.1";
+  by-version."formidable"."1.1.1" = self.buildNodePackage {
+    name = "formidable-1.1.1";
+    version = "1.1.1";
+    bin = false;
+    src = fetchurl {
+      url = "https://registry.npmjs.org/formidable/-/formidable-1.1.1.tgz";
+      name = "formidable-1.1.1.tgz";
+      sha1 = "96b8886f7c3c3508b932d6bd70c4d3a88f35f1a9";
+    };
+    deps = {
     };
     optionalDependencies = {
     };
@@ -4010,15 +4117,15 @@
     cpu = [ ];
   };
   by-spec."globals"."^9.0.0" =
-    self.by-version."globals"."9.14.0";
-  by-version."globals"."9.14.0" = self.buildNodePackage {
-    name = "globals-9.14.0";
-    version = "9.14.0";
+    self.by-version."globals"."9.15.0";
+  by-version."globals"."9.15.0" = self.buildNodePackage {
+    name = "globals-9.15.0";
+    version = "9.15.0";
     bin = false;
     src = fetchurl {
-      url = "https://registry.npmjs.org/globals/-/globals-9.14.0.tgz";
-      name = "globals-9.14.0.tgz";
-      sha1 = "8859936af0038741263053b39d0e76ca241e4034";
+      url = "https://registry.npmjs.org/globals/-/globals-9.15.0.tgz";
+      name = "globals-9.15.0.tgz";
+      sha1 = "7a5d8fd865e69de910b090b15a87772f9423c5de";
     };
     deps = {
     };
@@ -4435,6 +4542,25 @@
       url = "https://registry.npmjs.org/inherits/-/inherits-2.0.3.tgz";
       name = "inherits-2.0.3.tgz";
       sha1 = "633c2c83e3da42a502f52466022480f4208261de";
+    };
+    deps = {
+    };
+    optionalDependencies = {
+    };
+    peerDependencies = [];
+    os = [ ];
+    cpu = [ ];
+  };
+  by-spec."inherits"."2.0.1" =
+    self.by-version."inherits"."2.0.1";
+  by-version."inherits"."2.0.1" = self.buildNodePackage {
+    name = "inherits-2.0.1";
+    version = "2.0.1";
+    bin = false;
+    src = fetchurl {
+      url = "https://registry.npmjs.org/inherits/-/inherits-2.0.1.tgz";
+      name = "inherits-2.0.1.tgz";
+      sha1 = "b17d08d326b4423e568eff719f91b0b1cbdf69f1";
     };
     deps = {
     };
@@ -5522,6 +5648,25 @@
     os = [ ];
     cpu = [ ];
   };
+  by-spec."lolex"."1.3.2" =
+    self.by-version."lolex"."1.3.2";
+  by-version."lolex"."1.3.2" = self.buildNodePackage {
+    name = "lolex-1.3.2";
+    version = "1.3.2";
+    bin = false;
+    src = fetchurl {
+      url = "https://registry.npmjs.org/lolex/-/lolex-1.3.2.tgz";
+      name = "lolex-1.3.2.tgz";
+      sha1 = "7c3da62ffcb30f0f5a80a2566ca24e45d8a01f31";
+    };
+    deps = {
+    };
+    optionalDependencies = {
+    };
+    peerDependencies = [];
+    os = [ ];
+    cpu = [ ];
+  };
   by-spec."long"."^2.2.0" =
     self.by-version."long"."2.4.0";
   by-version."long"."2.4.0" = self.buildNodePackage {
@@ -5695,7 +5840,7 @@
     os = [ ];
     cpu = [ ];
   };
-  by-spec."methods"."~1.1.2" =
+  by-spec."methods"."^1.1.1" =
     self.by-version."methods"."1.1.2";
   by-version."methods"."1.1.2" = self.buildNodePackage {
     name = "methods-1.1.2";
@@ -5714,6 +5859,8 @@
     os = [ ];
     cpu = [ ];
   };
+  by-spec."methods"."~1.1.2" =
+    self.by-version."methods"."1.1.2";
   by-spec."micromatch"."^2.1.5" =
     self.by-version."micromatch"."2.3.11";
   by-version."micromatch"."2.3.11" = self.buildNodePackage {
@@ -5765,6 +5912,8 @@
     os = [ ];
     cpu = [ ];
   };
+  by-spec."mime"."^1.3.4" =
+    self.by-version."mime"."1.3.4";
   by-spec."mime-db"."~1.26.0" =
     self.by-version."mime-db"."1.26.0";
   by-version."mime-db"."1.26.0" = self.buildNodePackage {
@@ -6323,7 +6472,7 @@
       sha1 = "c6465dbf08abcd4db359317f79ac68a646b28ff9";
     };
     deps = {
-      "abbrev-1.0.9" = self.by-version."abbrev"."1.0.9";
+      "abbrev-1.1.0" = self.by-version."abbrev"."1.1.0";
     };
     optionalDependencies = {
     };
@@ -7025,7 +7174,7 @@
     os = [ ];
     cpu = [ ];
   };
-  by-spec."qs"."~6.3.0" =
+  by-spec."qs"."^6.1.0" =
     self.by-version."qs"."6.3.0";
   by-version."qs"."6.3.0" = self.buildNodePackage {
     name = "qs-6.3.0";
@@ -7044,6 +7193,8 @@
     os = [ ];
     cpu = [ ];
   };
+  by-spec."qs"."~6.3.0" =
+    self.by-version."qs"."6.3.0";
   by-spec."randomatic"."^1.1.3" =
     self.by-version."randomatic"."1.1.6";
   by-version."randomatic"."1.1.6" = self.buildNodePackage {
@@ -7182,6 +7333,8 @@
     self.by-version."readable-stream"."2.2.2";
   by-spec."readable-stream"."^2.0.2" =
     self.by-version."readable-stream"."2.2.2";
+  by-spec."readable-stream"."^2.0.5" =
+    self.by-version."readable-stream"."2.2.2";
   by-spec."readable-stream"."~1.0.26" =
     self.by-version."readable-stream"."1.0.34";
   by-version."readable-stream"."1.0.34" = self.buildNodePackage {
@@ -7304,8 +7457,8 @@
       sha1 = "0f88bb2bc03932ddb7b6b7312e68078f01026d6c";
     };
     deps = {
-      "babel-runtime-6.22.0" = self.by-version."babel-runtime"."6.22.0";
-      "babel-types-6.22.0" = self.by-version."babel-types"."6.22.0";
+      "babel-runtime-6.23.0" = self.by-version."babel-runtime"."6.23.0";
+      "babel-types-6.23.0" = self.by-version."babel-types"."6.23.0";
       "private-0.1.7" = self.by-version."private"."0.1.7";
     };
     optionalDependencies = {
@@ -7560,6 +7713,44 @@
     self.by-version."rimraf"."2.5.4";
   by-spec."rimraf"."~2.5.4" =
     self.by-version."rimraf"."2.5.4";
+  by-spec."samsam"."1.1.2" =
+    self.by-version."samsam"."1.1.2";
+  by-version."samsam"."1.1.2" = self.buildNodePackage {
+    name = "samsam-1.1.2";
+    version = "1.1.2";
+    bin = false;
+    src = fetchurl {
+      url = "https://registry.npmjs.org/samsam/-/samsam-1.1.2.tgz";
+      name = "samsam-1.1.2.tgz";
+      sha1 = "bec11fdc83a9fda063401210e40176c3024d1567";
+    };
+    deps = {
+    };
+    optionalDependencies = {
+    };
+    peerDependencies = [];
+    os = [ ];
+    cpu = [ ];
+  };
+  by-spec."samsam"."~1.1" =
+    self.by-version."samsam"."1.1.3";
+  by-version."samsam"."1.1.3" = self.buildNodePackage {
+    name = "samsam-1.1.3";
+    version = "1.1.3";
+    bin = false;
+    src = fetchurl {
+      url = "https://registry.npmjs.org/samsam/-/samsam-1.1.3.tgz";
+      name = "samsam-1.1.3.tgz";
+      sha1 = "9f5087419b4d091f232571e7fa52e90b0f552621";
+    };
+    deps = {
+    };
+    optionalDependencies = {
+    };
+    peerDependencies = [];
+    os = [ ];
+    cpu = [ ];
+  };
   by-spec."semver"."^4.3.1" =
     self.by-version."semver"."4.3.6";
   by-version."semver"."4.3.6" = self.buildNodePackage {
@@ -7770,6 +7961,30 @@
     os = [ ];
     cpu = [ ];
   };
+  by-spec."sinon"."*" =
+    self.by-version."sinon"."1.17.7";
+  by-version."sinon"."1.17.7" = self.buildNodePackage {
+    name = "sinon-1.17.7";
+    version = "1.17.7";
+    bin = false;
+    src = fetchurl {
+      url = "https://registry.npmjs.org/sinon/-/sinon-1.17.7.tgz";
+      name = "sinon-1.17.7.tgz";
+      sha1 = "4542a4f49ba0c45c05eb2e9dd9d203e2b8efe0bf";
+    };
+    deps = {
+      "formatio-1.1.1" = self.by-version."formatio"."1.1.1";
+      "util-0.10.3" = self.by-version."util"."0.10.3";
+      "lolex-1.3.2" = self.by-version."lolex"."1.3.2";
+      "samsam-1.1.2" = self.by-version."samsam"."1.1.2";
+    };
+    optionalDependencies = {
+    };
+    peerDependencies = [];
+    os = [ ];
+    cpu = [ ];
+  };
+  "sinon" = self.by-version."sinon"."1.17.7";
   by-spec."slash"."^1.0.0" =
     self.by-version."slash"."1.0.0";
   by-version."slash"."1.0.0" = self.buildNodePackage {
@@ -8141,6 +8356,57 @@
     cpu = [ ];
   };
   "striptags" = self.by-version."striptags"."3.0.1";
+  by-spec."superagent"."^3.0.0" =
+    self.by-version."superagent"."3.4.3";
+  by-version."superagent"."3.4.3" = self.buildNodePackage {
+    name = "superagent-3.4.3";
+    version = "3.4.3";
+    bin = false;
+    src = fetchurl {
+      url = "https://registry.npmjs.org/superagent/-/superagent-3.4.3.tgz";
+      name = "superagent-3.4.3.tgz";
+      sha1 = "556648e95636f49173708b7002faaf3088bcea7f";
+    };
+    deps = {
+      "component-emitter-1.2.1" = self.by-version."component-emitter"."1.2.1";
+      "cookiejar-2.1.0" = self.by-version."cookiejar"."2.1.0";
+      "debug-2.6.1" = self.by-version."debug"."2.6.1";
+      "extend-3.0.0" = self.by-version."extend"."3.0.0";
+      "form-data-2.1.2" = self.by-version."form-data"."2.1.2";
+      "formidable-1.1.1" = self.by-version."formidable"."1.1.1";
+      "methods-1.1.2" = self.by-version."methods"."1.1.2";
+      "mime-1.3.4" = self.by-version."mime"."1.3.4";
+      "qs-6.3.0" = self.by-version."qs"."6.3.0";
+      "readable-stream-2.2.2" = self.by-version."readable-stream"."2.2.2";
+    };
+    optionalDependencies = {
+    };
+    peerDependencies = [];
+    os = [ ];
+    cpu = [ ];
+  };
+  by-spec."supertest"."*" =
+    self.by-version."supertest"."3.0.0";
+  by-version."supertest"."3.0.0" = self.buildNodePackage {
+    name = "supertest-3.0.0";
+    version = "3.0.0";
+    bin = false;
+    src = fetchurl {
+      url = "https://registry.npmjs.org/supertest/-/supertest-3.0.0.tgz";
+      name = "supertest-3.0.0.tgz";
+      sha1 = "8d4bb68fd1830ee07033b1c5a5a9a4021c965296";
+    };
+    deps = {
+      "superagent-3.4.3" = self.by-version."superagent"."3.4.3";
+      "methods-1.1.2" = self.by-version."methods"."1.1.2";
+    };
+    optionalDependencies = {
+    };
+    peerDependencies = [];
+    os = [ ];
+    cpu = [ ];
+  };
+  "supertest" = self.by-version."supertest"."3.0.0";
   by-spec."supports-color"."3.1.2" =
     self.by-version."supports-color"."3.1.2";
   by-version."supports-color"."3.1.2" = self.buildNodePackage {
@@ -8342,6 +8608,25 @@
     };
     deps = {
       "punycode-1.4.1" = self.by-version."punycode"."1.4.1";
+    };
+    optionalDependencies = {
+    };
+    peerDependencies = [];
+    os = [ ];
+    cpu = [ ];
+  };
+  by-spec."trim-right"."^1.0.1" =
+    self.by-version."trim-right"."1.0.1";
+  by-version."trim-right"."1.0.1" = self.buildNodePackage {
+    name = "trim-right-1.0.1";
+    version = "1.0.1";
+    bin = false;
+    src = fetchurl {
+      url = "https://registry.npmjs.org/trim-right/-/trim-right-1.0.1.tgz";
+      name = "trim-right-1.0.1.tgz";
+      sha1 = "cb2e1203067e0c8de1f614094b9fe45704ea6003";
+    };
+    deps = {
     };
     optionalDependencies = {
     };
@@ -8650,6 +8935,26 @@
   };
   by-spec."user-home"."^1.1.1" =
     self.by-version."user-home"."1.1.1";
+  by-spec."util".">=0.10.3 <1" =
+    self.by-version."util"."0.10.3";
+  by-version."util"."0.10.3" = self.buildNodePackage {
+    name = "util-0.10.3";
+    version = "0.10.3";
+    bin = false;
+    src = fetchurl {
+      url = "https://registry.npmjs.org/util/-/util-0.10.3.tgz";
+      name = "util-0.10.3.tgz";
+      sha1 = "7afb1afe50805246489e3db7fe0ed379336ac0f9";
+    };
+    deps = {
+      "inherits-2.0.1" = self.by-version."inherits"."2.0.1";
+    };
+    optionalDependencies = {
+    };
+    peerDependencies = [];
+    os = [ ];
+    cpu = [ ];
+  };
   by-spec."util-deprecate"."~1.0.1" =
     self.by-version."util-deprecate"."1.0.2";
   by-version."util-deprecate"."1.0.2" = self.buildNodePackage {

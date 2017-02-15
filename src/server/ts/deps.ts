@@ -3,9 +3,11 @@ const cassandra = require('cassandra-driver');
 import App = require('./app');
 import SuperCommands = require('./supercommands');
 import CassandraClient = require('./csclient');
+import Util = require('./util');
+import { API } from './api';
+
 import config = require('./conf');
 
-// Anti-magic sane dependency injection
 class DI {
   instances: [string][];
 
@@ -20,36 +22,21 @@ class DI {
     return this.instances[name];
   }
 
-  getConfig() {
-    return this.getInstance("config", () => config);
+  overrideConfig(conf: typeof config): void {}
+
+  getConfig(): typeof config {
+    var newconfig = Util.deepClone(config);
+    this.overrideConfig(newconfig);
+    return this.getInstance("config", () => newconfig);
   }
 
-  getExpressApp() {
-    return this.getInstance("expressApp", () => new App(this).createApp());
-  }
-
-  getSuperCommands() {
-    return this.getInstance("superCommands", () => new SuperCommands(this));
-  }
-
-  getNativeCassandraClient() {
-    return this.getInstance("nativeCassandraClient", () => new cassandra.Client(this.getConfig().cassandra));
-  }
-
-  getRootNativeCassandraClient() {
-    var conf = {
-      contactPoints: this.getConfig().cassandra.contactPoints
-    };
-    return this.getInstance("rootNativeCassandraClient", () => new cassandra.Client(conf));
-  }
-
-  getRootCassandraClient() {
-    return this.getInstance("rootCassandraClient", () => new CassandraClient(this.getRootNativeCassandraClient()));
-  }
-
-  getCassandraClient() {
-    return this.getInstance("cassandraClient", () => new CassandraClient(this.getNativeCassandraClient()));
-  }
+  getApp(): App { return null; }
+  getSuperCommands(): SuperCommands { return null; }
+  getNativeCassandraClient(): any { return null; }
+  getRootNativeCassandraClient(): any { return null; }
+  getRootCassandraClient(): CassandraClient { return null; }
+  getCassandraClient(): CassandraClient { return null; }
+  getAPI(): API { return null; }
 }
 
 export = DI;
