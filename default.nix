@@ -2,7 +2,7 @@ with import ./nix/nixpkgs.nix;
 with nixpkgs;
 
 let
-  nodejs = import ./nix/v7-5.5.nix { inherit nixpkgs nixpkgsPath; };
+  nodejs = nixpkgs.nodejs; #import ./nix/v7-5.5.nix { inherit nixpkgs nixpkgsPath; };
   nodePackages = import "${nixpkgsPath}/pkgs/top-level/node-packages.nix" {
     inherit stdenv pkgs nodejs;
     self = nodePackages;
