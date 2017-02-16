@@ -4,10 +4,8 @@ with nixpkgs;
 
 let
   args = {
-    inherit stdenv openssl python2 zlib libuv v8 utillinux http-parser
+    inherit stdenv openssl python2 zlib libuv v8 utillinux http-parser darwin
     pkgconfig runCommand fetchurl which libtool fetchpatch callPackage;
-
-    darwin = null;
     enableNpm = true;
   };
 
