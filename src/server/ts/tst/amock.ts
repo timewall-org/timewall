@@ -10,82 +10,80 @@ function amock(obj, funcName?) {
     return obj[funcName];
   }
 
-  if (typeof obj === "function") {
-    var state = {
-      catchThrow: false,
-      calls: []
+  if (typeof obj !== "function") {
+    var proto = Object.getPrototypeOf(obj);
+    var op = Object.getOwnPropertyNames(obj);
+    for (var i=0; i < op.length; i++) {
+      var name = op[i];
+      obj[name] = amock(obj[name]);
+    }
+    return obj;
+  }
+
+  var f = function() {
+    var call = {
+      this: this,
+      arguments: arguments,
+      result: undefined,
+      exception: undefined,
+    };
+    f.state.calls.push(call);
+
+    var handleResult = res => {
+      call.result = res;
+      return res;
+    };
+    var handleError = err => {
+      call.exception = err;
+      if (!f.state.catchThrow) {
+        throw err;
+      }
     };
 
-    var func = function() {
-      var call = {
-        this: this,
-        arguments: arguments,
-        result: undefined,
-        exception: undefined,
-      };
-      state.calls.push(call);
-
-      var handleResult = res => {
-        call.result = res;
-        return res;
-      };
-      var handleError = err => {
-        call.exception = err;
-        if (!state.catchThrow) {
-          throw err;
-        }
-      };
-
-      var ret;
-      try {
-        ret = obj.apply(this, arguments);
-        if (ret instanceof Promise) {
-          return new Promise((resolve, reject) => {
-            ret.then((res) => {
-              resolve(handleResult(res));
-            }, (err) => {
-              try {
-                handleError(err);
-                resolve();
-              } catch (err2) {
-                reject(err2);
-              }
-            });
+    var ret;
+    try {
+      ret = obj.apply(this, arguments);
+      if (ret instanceof Promise) {
+        return new Promise((resolve, reject) => {
+          ret.then((res) => {
+            resolve(handleResult(res));
+          }, (err) => {
+            try {
+              handleError(err);
+              resolve();
+            } catch (err2) {
+              reject(err2);
+            }
           });
-        } else {
-          return handleResult(ret);
-        }
-      } catch (err) {
-        return handleError(err);
+        });
+      } else {
+        return handleResult(ret);
       }
-    };
+    } catch (err) {
+      return handleError(err);
+    }
+  } as any;
 
-    var f = func as any;
-    f.catchThrow = () => { state.catchThrow = true; };
-    f.threw = f => {
-      var didThrow = false;
-      for (var call of state.calls) {
-        if (call.exception) {
-          didThrow = true;
-          if (f) {
-            return f(call.exception, call);
-          }
-          break;
+  f.state = {
+    catchThrow: false,
+    calls: []
+  };
+  f.catchThrow = () => { f.state.catchThrow = true; };
+  f.threw = func => {
+    var didThrow = false;
+    for (var call of f.state.calls) {
+      if (call.exception) {
+        didThrow = true;
+        if (func) {
+          return func(call.exception, call);
         }
+        break;
       }
-      assert(didThrow);
-    };
+    }
+    assert(didThrow);
+  };
 
-    return func;
-  }
-
-  var proto = Object.getPrototypeOf(obj);
-  var op = Object.getOwnPropertyNames(obj);
-  for (var i=0; i < op.length; i++) {
-    var name = op[i];
-    obj[name] = amock(obj[name]);
-  }
-  return obj;
+  return f;
 }
 
 export = amock;
