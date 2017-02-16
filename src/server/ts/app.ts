@@ -68,7 +68,7 @@ class App {
     }));
 
     app.get('/upgrade', asyncRoute(async (req, res) => {
-      await this.di.getSuperCommands().upgrade();
+      await this.di.getSuperCommands().upgradeV0();
       res.status(200).send("DONE");
     }));
 

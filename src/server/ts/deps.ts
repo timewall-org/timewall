@@ -8,6 +8,7 @@ import { API } from './api';
 
 import config = require('./conf');
 
+// Sane, simple container for dependency injection
 class DI {
   instances: [string][];
 

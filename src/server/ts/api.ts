@@ -12,11 +12,11 @@ function invalidRequest(ctx): never {
 export class API {
   constructor(public di: DI) {}
 
-  async api_publish(r: Request): Promise<any> {
+  async api_publishEvent(r: Request): Promise<any> {
     return null;
   }
 
-  async api_search(r: Request): Promise<any> {
+  async api_searchEvents(r: Request): Promise<any> {
     return null;
   }
 

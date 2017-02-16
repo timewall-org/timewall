@@ -1,4 +1,4 @@
-import base = require('./base');
+import { BaseDI } from './base';
 import DI = require('../deps');
 import App = require('../app');
 import { Request, API } from '../api';
@@ -7,28 +7,23 @@ import config = require('../conf');
 const sinon = require('sinon');
 const request = require('supertest');
 
-var server;
-
-class TestDI extends DI {
-  overrideConfig(config) {
-    config.log.enabled = false;
-  }
-
+class TestDI extends BaseDI {
   getAPI() {
     return this.getInstance("api", () => new API(this));
   }
 }
-var di = new TestDI();
-
-var server;
-before(async () => {
-  server = await Util.startApp(new App(di).createExpressApp(), config.tests.port);
-});
-after(() => {
-  server.close();
-});
 
 describe('Routes', () => {
+  var di;
+  var server;
+  before(async () => {
+    di = new TestDI();
+    server = await Util.startApp(new App(di).createExpressApp(), config.tests.port);
+  });
+  after(() => {
+    server.close();
+  });
+
   describe('/api/v1', () => {
     it('success', (done) => {
       var req = { endpoint: "endp", body: "bt" };

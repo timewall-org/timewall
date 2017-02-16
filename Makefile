@@ -24,7 +24,7 @@ $(STATIC_OUTS): $(STATIC_SRCS)
 	mkdir -p $(STATIC_OUTDIR)
 	cp -rf $(STATIC_SRCDIR)/* $(STATIC_OUTDIR)
 
-test:
+test: $(SERVER_OUT)
 	mocha build/server/js/tst/*.js
 
 clean:

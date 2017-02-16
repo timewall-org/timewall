@@ -1,9 +1,13 @@
 import DI = require('../deps');
 
-class Testbed {
+export class BaseDI extends DI {
+  overrideConfig(config) {
+    config.log.enabled = false;
+  }
+}
+
+export class Testbed {
   async setup(suite) {
     suite.timeout(100000);
   }
 }
-
-export = new Testbed();

@@ -3,7 +3,7 @@ import DI = require('./deps');
 class SuperCommands {
   constructor(public di: DI) {}
 
-  async upgrade() {
+  async upgradeV0() {
     await this.createCassandraKeyspace();
     await this.createCassandraSchema();
   }
@@ -20,26 +20,26 @@ class SuperCommands {
     var cs = this.di.getCassandraClient();
 
     await cs.execute(`
-      CREATE TYPE geopoint (
+      CREATE TYPE Geopoint (
         lng double,
         lat double
       )
     `);
 
     await cs.execute(`
-      CREATE TYPE location (
+      CREATE TYPE Location (
         name text,
-        loc frozen<geopoint>,
+        point frozen<Geopoint>,
         url text
       )
     `);
 
     await cs.execute(`
-      CREATE TABLE event (
+      CREATE TABLE Event (
         id timeuuid,
-        location frozen<location>,
-        start_time bigint,
-        end_time bigint,
+        location frozen<Location>,
+        startTime bigint,
+        endTime bigint,
         content text,
         primary key (id)
       )
