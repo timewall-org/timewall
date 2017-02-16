@@ -26,10 +26,16 @@ $(STATIC_OUTS): $(STATIC_SRCS)
 	mkdir -p $(STATIC_OUTDIR)
 	cp -rf $(STATIC_SRCDIR)/* $(STATIC_OUTDIR)
 
-test: $(SERVER_OUT)
+test: .tested
+
+.tested: $(SERVER_OUT)
 	mocha build/server/js/tst/*.js
+	touch .tested
+
+watch:
+	sh ./watch.sh
 
 clean:
 	rm -rf build
 
-.PHONY: all build clean test
+.PHONY: all build clean watch
