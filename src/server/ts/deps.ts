@@ -3,6 +3,7 @@ const cassandra = require('cassandra-driver');
 import App = require('./app');
 import SuperCommands = require('./supercommands');
 import CassandraClient = require('./csclient');
+import DB = require('./db');
 import Util = require('./util');
 import { API } from './api';
 
@@ -26,7 +27,7 @@ class DI {
   overrideConfig(conf: typeof config): void {}
 
   getConfig(): typeof config {
-    var newconfig = Util.deepClone(config);
+    var newconfig = Util.deepCloneJSON(config);
     this.overrideConfig(newconfig);
     return this.getInstance("config", () => newconfig);
   }
@@ -38,6 +39,7 @@ class DI {
   getRootCassandraClient(): CassandraClient { return null; }
   getCassandraClient(): CassandraClient { return null; }
   getAPI(): API { return null; }
+  getDB(): DB { return null; }
 }
 
 export = DI;

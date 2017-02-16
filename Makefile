@@ -9,7 +9,9 @@ STATIC_OUTDIR=build/client/
 STATIC_SRCS=$(shell find $(STATIC_SRCDIR) -type f)
 STATIC_OUTS=$(patsubst $(STATIC_SRCDIR)/%,$(STATIC_OUTDIR)/%,$(STATIC_SRCS))
 
-all: $(STATIC_OUTS) $(CLIENT_OUT) $(SERVER_OUT)
+all: build test
+
+build: $(STATIC_OUTS) $(CLIENT_OUT) $(SERVER_OUT)
 
 $(CLIENT_OUT): $(CLIENT_SRCS)
 	mkdir -p $(shell dirname $(CLIENT_OUT))
@@ -30,4 +32,4 @@ test: $(SERVER_OUT)
 clean:
 	rm -rf build
 
-.PHONY: all clean test
+.PHONY: all build clean test

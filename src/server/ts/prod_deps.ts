@@ -2,6 +2,7 @@ const cassandra = require('cassandra-driver');
 
 import DI = require('./deps');
 import App = require('./app');
+import DB = require('./db');
 import SuperCommands = require('./supercommands');
 import CassandraClient = require('./csclient');
 import { API } from './api';
@@ -42,6 +43,10 @@ class ProdDI extends DI {
 
   getAPI() {
     return this.getInstance("api", () => new API(this));
+  }
+
+  getDB() {
+    return this.getInstance("db", () => new DB(this));
   }
 }
 

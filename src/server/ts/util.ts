@@ -1,4 +1,5 @@
 const util = require('util');
+const cassandra = require('cassandra-driver');
 
 export function AppError(status: number, internalMessage: string, userMessage = "Internal Error") {
 	var JSError = Error as any;
@@ -22,6 +23,15 @@ export function startApp(app, port): Promise<any> {
   });
 }
 
-export function deepClone<T>(obj: T): T {
+export function deepCloneJSON<T>(obj: T): T {
   return JSON.parse(JSON.stringify(obj));
+}
+
+export function copyObject<T>(obj: T): T {
+  var obj = Object.create(Object.getPrototypeOf(this)) as T;
+  return Object.assign(obj, this);
+}
+
+export function uuid1() {
+  return cassandra.types.TimeUuid.now();
 }
