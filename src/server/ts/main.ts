@@ -7,7 +7,8 @@ import Util = require('./util');
 async function main(di: DI) {
   try {
     var app = di.getApp();
-    await Util.startApp(app.createExpressApp(), di.getConfig().port);
+    var server = await Util.startApp(app.createExpressApp(), di.getConfig().port);
+    console.log(server.address());
   } catch (e) {
     console.error(e.stack);
   }
