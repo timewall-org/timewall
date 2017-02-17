@@ -1,20 +1,15 @@
 const assert = require('assert');
 
-function amock(obj, funcName?) {
-  if (obj.prototype) {
-    return amock(Object.create(obj.prototype));
-  }
-
-  if (funcName) {
-    obj[funcName] = amock(Object.getPrototypeOf(obj)[funcName]);
-    return obj[funcName];
-  }
-
+var amock = ((obj) => {
   if (typeof obj !== "function") {
+    if (obj.prototype) {
+      return amock(Object.create(obj.prototype));
+    }
+
     var proto = Object.getPrototypeOf(obj);
-    var op = Object.getOwnPropertyNames(obj);
-    for (var i=0; i < op.length; i++) {
-      var name = op[i];
+    var names = Object.getOwnPropertyNames(proto);
+    for (var i = 0; i < names.length; i++) {
+      var name = names[i];
       obj[name] = amock(obj[name]);
     }
     return obj;
@@ -25,16 +20,23 @@ function amock(obj, funcName?) {
       this: this,
       arguments: arguments,
       result: undefined,
-      exception: undefined,
+      exception: undefined
     };
     f.state.calls.push(call);
 
     var handleResult = res => {
       call.result = res;
-      return res;
+      if (f.state.returns) {
+        return f.state.returns[0];
+      } else {
+        return res;
+      }
     };
     var handleError = err => {
       call.exception = err;
+      if (f.state.throws) {
+        throw f.state.throws;
+      }
       if (!f.state.catchThrow) {
         throw err;
       }
@@ -65,25 +67,42 @@ function amock(obj, funcName?) {
   } as any;
 
   f.state = {
-    catchThrow: false,
     calls: []
   };
-  f.catchThrow = () => { f.state.catchThrow = true; };
-  f.threw = func => {
-    var didThrow = false;
+
+  for (var fname in amock.functions) {
+    f[fname] = (fname => { return function() {
+      var args = Array.prototype.slice.call(arguments);
+      args.splice(0, 0, f);
+      amock.functions[fname].apply(f, args);
+      return f;
+    }}) (fname);
+  }
+
+  return f;
+}) as any;
+
+amock.functions = {
+  anyCall: (f, u) => {
+    var matched = false;
     for (var call of f.state.calls) {
-      if (call.exception) {
-        didThrow = true;
-        if (func) {
-          return func(call.exception, call);
+      if (!!f(call)) {
+        matched = true;
+        if (u) {
+          u(call);
         }
         break;
       }
     }
-    assert(didThrow);
-  };
+    assert(matched);
+  },
 
-  return f;
-}
+  catchThrow: f => { f.state.catchThrow = true; },
+  returns: (f, x) => { f.state.returns = [x]; },
+  once: f => assert(f.state.calls.length == 1),
+  never: f => assert(f.state.calls.length == 0),
+  threw: (f, u) => f.anyCall(c => c.exception, u),
+  throws: (f, e) => { f.state.throws = e; }
+};
 
 export = amock;

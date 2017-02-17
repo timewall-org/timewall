@@ -9,7 +9,7 @@ STATIC_OUTDIR=build/client/
 STATIC_SRCS=$(shell find $(STATIC_SRCDIR) -type f)
 STATIC_OUTS=$(patsubst $(STATIC_SRCDIR)/%,$(STATIC_OUTDIR)/%,$(STATIC_SRCS))
 
-all: build test
+all: build .tested
 
 build: $(STATIC_OUTS) $(CLIENT_OUT) $(SERVER_OUT)
 
@@ -26,11 +26,12 @@ $(STATIC_OUTS): $(STATIC_SRCS)
 	mkdir -p $(STATIC_OUTDIR)
 	cp -rf $(STATIC_SRCDIR)/* $(STATIC_OUTDIR)
 
-test: .tested
+test:
+	mocha build/server/js/tst/*.js
 
 .tested: $(SERVER_OUT)
-	mocha build/server/js/tst/*.js
-	touch .tested
+	make test
+	@touch .tested
 
 watch:
 	sh ./watch.sh
@@ -38,4 +39,4 @@ watch:
 clean:
 	rm -rf build
 
-.PHONY: all build clean watch
+.PHONY: all build clean watch test

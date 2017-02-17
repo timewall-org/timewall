@@ -22,7 +22,7 @@ describe("DB", () => {
   describe("insertEvent", () => {
     it("invalid event", async () => {
       var event = new Model.Event();
-      amock(db, 'insertEvent').catchThrow();
+      amock(db).insertEvent.catchThrow();
       await db.insertEvent(event);
       db.insertEvent.threw();
     });
