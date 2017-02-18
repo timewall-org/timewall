@@ -6,6 +6,7 @@ import Util = require('../util');
 import config = require('../conf');
 import amock = require('./amock');
 const request = require('supertest');
+const assert = require('assert');
 
 class TestDI extends BaseDI {
   getAPI() {
@@ -35,7 +36,7 @@ describe('Routes', () => {
       .send(req)
       .expect(res)
       .expect(200, () => {
-        di.getAPI().execute.once(); // TODO: .withArgs(new Request(req.endpoint, req.body));
+        assert(di.getAPI().execute.once().withArgs(new Request(req.endpoint, req.body)).verify());
         done();
       });
     });

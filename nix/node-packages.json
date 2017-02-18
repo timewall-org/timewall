@@ -19,5 +19,6 @@
   "hkdf",
   "xxhash",
   "sinon",
-  "supertest"
+  "supertest",
+  "lodash"
 ]

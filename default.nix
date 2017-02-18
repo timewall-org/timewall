@@ -10,7 +10,7 @@ let
   };
 
   app = stdenv.mkDerivation rec {
-    name = "dtime";
+    name = "timewall";
     buildInputs = with nodePackages; [
       nodejs
       babel-cli
@@ -27,6 +27,7 @@ let
       morgan
       sinon
       supertest
+      lodash
 
       # for generating Nix derivations of NPM packages
       npm2nix

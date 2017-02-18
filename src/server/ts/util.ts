@@ -1,5 +1,34 @@
 const util = require('util');
 const cassandra = require('cassandra-driver');
+const _ = require('lodash');
+
+(Array.prototype as any).equals = function(arr: any[]) {
+  if (this.length != arr.length) {
+    return false;
+  }
+  for (var i=0; i < this.length; i++) {
+    if (!equals(this[i], arr[i])) {
+      return false;
+    }
+  }
+  return true;
+};
+
+export function equals(obj1: any, obj2: any) {
+  if (obj1 == obj2) {
+    return true;
+  }
+  if (typeof obj1 !== typeof obj2) {
+    return false;
+  }
+  if (obj1.equals) {
+    return obj1.equals(obj2);
+  }
+  if (obj2.equals) {
+    return false;
+  }
+  return _.isEqual(obj1, obj2);
+}
 
 export function AppError(status: number, internalMessage: string, userMessage = "Internal Error") {
 	var JSError = Error as any;

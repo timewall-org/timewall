@@ -1,7 +1,8 @@
+import Util = require('../util');
 const assert = require('assert');
 
 var amock = ((obj) => {
-  if (typeof obj !== "function") {
+  if (!(obj instanceof Function)) {
     if (obj.prototype) {
       return amock(Object.create(obj.prototype));
     }
@@ -16,9 +17,10 @@ var amock = ((obj) => {
   }
 
   var f = function() {
+    var args = Array.prototype.slice.call(arguments);
     var call = {
       this: this,
-      arguments: arguments,
+      args: args,
       result: undefined,
       exception: undefined
     };
@@ -44,7 +46,7 @@ var amock = ((obj) => {
 
     var ret;
     try {
-      ret = obj.apply(this, arguments);
+      ret = obj.apply(this, args);
       if (ret instanceof Promise) {
         return new Promise((resolve, reject) => {
           ret.then((res) => {
@@ -66,26 +68,23 @@ var amock = ((obj) => {
     }
   } as any;
 
-  f.state = {
-    calls: []
-  };
-
   for (var fname in amock.functions) {
     f[fname] = (fname => { return function() {
-      var args = Array.prototype.slice.call(arguments);
-      args.splice(0, 0, f);
-      amock.functions[fname].apply(f, args);
+      amock.functions[fname].apply(f, arguments);
       return f;
     }}) (fname);
   }
+  f["verify"] = () => !!f.state.assertion;
 
-  return f;
+  return f.reset();
 }) as any;
 
 amock.functions = {
-  anyCall: (f, u) => {
+  assert: function(v) { this.state.assertion &= v; },
+
+  anyCall: function(f, u) {
     var matched = false;
-    for (var call of f.state.calls) {
+    for (var call of this.state.calls) {
       if (!!f(call)) {
         matched = true;
         if (u) {
@@ -94,15 +93,17 @@ amock.functions = {
         break;
       }
     }
-    assert(matched);
+    this.assert(matched);
   },
 
-  catchThrow: f => { f.state.catchThrow = true; },
-  returns: (f, x) => { f.state.returns = [x]; },
-  once: f => assert(f.state.calls.length == 1),
-  never: f => assert(f.state.calls.length == 0),
-  threw: (f, u) => f.anyCall(c => c.exception, u),
-  throws: (f, e) => { f.state.throws = e; }
+  reset: function() { this.state = { calls: [], assertion: true }; },
+  catchThrow: function() { this.state.catchThrow = true; },
+  returns: function(x) { this.state.returns = [x]; },
+  once: function() { this.assert(this.state.calls.length == 1) },
+  never: function() { this.assert(this.state.calls.length == 0) },
+  threw: function(u) { this.anyCall(c => c.exception, u) },
+  throws: function(e) { this.state.throws = e; },
+  withArgs: function(...args) { this.anyCall(c => Util.equals(args, c.args)); }
 };
 
 export = amock;
