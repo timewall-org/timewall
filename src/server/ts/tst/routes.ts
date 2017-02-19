@@ -8,6 +8,18 @@ import amock = require('./amock');
 const request = require('supertest');
 const assert = require('assert');
 
+async function doreq(req) {
+  return new Promise((resolve, reject) => {
+    req.end((err, res) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(res);
+      }
+    });
+  });
+}
+
 class TestDI extends BaseDI {
   getAPI() {
     return this.getInstance("api", () => amock(new API(this)));
@@ -17,39 +29,37 @@ class TestDI extends BaseDI {
 describe('Routes', () => {
   var di;
   var server;
-  before(async () => {
+  beforeEach(async () => {
     di = new TestDI();
     server = await Util.startApp(new App(di).createExpressApp(), config.tests.port);
   });
-  after(() => {
+  afterEach(() => {
     server.close();
   });
 
   describe('/api/v1', () => {
-    it('success', (done) => {
+    it('success', async () => {
       var req = { endpoint: "endp", body: "bt" };
       var res = { test: "test" };
       di.getAPI().execute.returns(res);
 
-      request(server)
+      await doreq(request(server)
       .get("/api/v1")
       .send(req)
       .expect(res)
-      .expect(200, () => {
-        assert(di.getAPI().execute.once().withArgs(new Request(req.endpoint, req.body)).verify());
-        done();
-      });
+      .expect(200));
+      di.getAPI().execute.once().withArgs(new Request(req.endpoint, req.body));
     });
 
-    it('failure', (done) => {
+    it('failure', async () => {
       var req = { endpoint: "anything", body: "something" };
-      di.getAPI().execute.throws(new Util.AppError(456, "Test", "Test"));
+      di.getAPI().execute.throws(new Util.AppError(456, "Test", "Test user"));
 
-      request(server)
+      await doreq(request(server)
       .get("/api/v1")
       .send(req)
-      .expect({ error: "Test" })
-      .expect(456, done);
+      .expect({ error: "Test user" })
+      .expect(456));
     });
   });
 });
