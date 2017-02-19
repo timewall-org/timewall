@@ -9,9 +9,7 @@ const request = require('supertest');
 const assert = require('assert');
 
 class TestDI extends BaseDI {
-  getAPI() {
-    return this.getInstance("api", () => amock(new API(this)));
-  }
+  createAPI() { return amock.of(API); }
 }
 
 describe('Routes', () => {

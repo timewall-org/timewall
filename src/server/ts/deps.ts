@@ -32,14 +32,23 @@ class DI {
     return this.getInstance("config", () => newconfig);
   }
 
-  getApp(): App { return null; }
-  getSuperCommands(): SuperCommands { return null; }
-  getNativeCassandraClient(): any { return null; }
-  getRootNativeCassandraClient(): any { return null; }
-  getRootCassandraClient(): CassandraClient { return null; }
-  getCassandraClient(): CassandraClient { return null; }
-  getAPI(): API { return null; }
-  getDB(): DB { return null; }
+  getApp(): App { return this.getInstance("app", () => this.createApp()); }
+  getSuperCommands(): SuperCommands { return this.getInstance("superCommands", () => this.createSuperCommands()); }
+  getNativeCassandraClient(): any { return this.getInstance("nativeCassandraClient", () => this.createNativeCassandraClient()); }
+  getRootNativeCassandraClient(): any { return this.getInstance("rootNativeCassandraClient", () => this.createRootNativeCassandraClient()); }
+  getRootCassandraClient(): CassandraClient { return this.getInstance("rootCassandraClient", () => this.createRootCassandraClient()); }
+  getCassandraClient(): CassandraClient { return this.getInstance("cassandraClient", () => this.createCassandraClient()); }
+  getAPI(): API { return this.getInstance("api", () => this.createAPI()); }
+  getDB(): DB { return this.getInstance("db", () => this.createDB()); }
+
+  createApp(): App { return null; }
+  createSuperCommands(): SuperCommands { return null; }
+  createNativeCassandraClient(): any { return null; }
+  createRootNativeCassandraClient(): any { return null; }
+  createRootCassandraClient(): CassandraClient { return null; }
+  createCassandraClient(): CassandraClient { return null; }
+  createAPI(): API { return null; }
+  createDB(): DB { return null; }
 }
 
 export = DI;

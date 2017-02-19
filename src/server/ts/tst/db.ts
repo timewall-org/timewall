@@ -6,9 +6,7 @@ import Model = require('../models/all');
 import amock = require('./amock');
 
 class TestDI extends BaseDI {
-  getCassandraClient() {
-    return this.getInstance("cassandraClient", () => amock.of(CassandraClient));
-  }
+  createCassandraClient() { return amock.of(CassandraClient); }
 }
 
 describe("DB", () => {
