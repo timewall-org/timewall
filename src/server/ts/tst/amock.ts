@@ -7,9 +7,23 @@ class Call {
   constructor(public self: any, public args: any[]) {}
 }
 
+function unexpectedInvocation(obj?, name?) {
+  return () => {
+    if (obj && name) {
+      assert(false, `unexpected invocation of ${obj.constructor.name}.${name}()`);
+    } else {
+      assert(false, `unexpected invocation`);
+    }
+  }
+}
+
 class Amock {
   func: any;
+  defaultfunc: any;
   realfunc: any;
+  parentobj: any;
+  funcname: string;
+
   calls: Call[];
   curCall: number;
 
@@ -29,7 +43,7 @@ class Amock {
   }
 
   resetStubs() {
-    this.func = () => assert(false, "unexpected invocation");
+    this.func = this.defaultfunc || this.realfunc;
     return this;
   }
 
@@ -61,7 +75,9 @@ class Amock {
 
   // stubbing
   stub(f) { this.func = f; return this; }
+  defaultStub(f) { this.defaultfunc = f; return this.stub(f); }
   allow() { return this.stub(this.realfunc); }
+  disallow() { return this.stub(unexpectedInvocation(this.parentobj, this.funcname)); }
   returns(x) { return this.stub(() => x); }
   throws(e) { return this.stub(() => { throw e; }); }
   areturns(x) { return this.stub(() => Promise.resolve(x)); }
@@ -77,13 +93,19 @@ class Amock {
   threw() { assert(!!this.ccall().error, "did not throw"); return this; };
 }
 
-var amock = ((obj) => {
+var defaultOptions = { parent: undefined, name: undefined, disallowAll: false };
+var amock = ((obj, options = defaultOptions) => {
   if (!(obj instanceof Function)) {
     var proto = Object.getPrototypeOf(obj);
     var names = Object.getOwnPropertyNames(proto);
     for (var i = 0; i < names.length; i++) {
       var name = names[i];
-      obj[name] = amock(obj[name]);
+      if (name !== "constructor") {
+        obj[name] = amock(obj[name], { parent: obj, name: name });
+        if (options.disallowAll) {
+          obj[name].defaultStub(unexpectedInvocation(obj, name));
+        }
+      }
     }
     return obj;
   }
@@ -94,6 +116,8 @@ var amock = ((obj) => {
   } as any as Amock;
 
   f.realfunc = obj;
+  f.parentobj = options.parent;
+  f.funcname = options.name;
 
   for (var name of Object.getOwnPropertyNames(Amock.prototype)) {
     if (name !== "constructor") {
@@ -106,6 +130,6 @@ var amock = ((obj) => {
 
 amock.Amock = Amock;
 amock.Call = Call;
-amock.of = f => amock(Object.create(f.prototype));
+amock.of = f => amock(Object.create(f.prototype), { disallowAll: true });
 
 export = amock;

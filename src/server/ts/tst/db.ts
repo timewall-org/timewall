@@ -20,9 +20,16 @@ describe("DB", () => {
   });
 
   describe("insertEvent", () => {
-    it("invalid event", async () => {
-      var event = new Model.Event();
+    it("success", async () => {
+      var event = amock.of(Model.Event);
+      event.isValid.returns(true);
+      cs.execute.returns();
+      await db.insertEvent(event);
+      cs.execute.once();
+    });
 
+    it("invalid event", async () => {
+      var event = amock.of(Model.Event).isValid.returns(false);
       db.insertEvent.catch();
       await db.insertEvent(event);
       db.insertEvent.threw();
