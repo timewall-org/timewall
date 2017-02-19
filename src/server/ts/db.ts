@@ -30,9 +30,10 @@ class DB {
     await this.cs.execute("INSERT INTO event ?", [event]);
   }
 
-  async getEvent(id: any) {
+  async getEvent(id: any): Promise<Model.Event> {
     var res = await this.cs.execute("SELECT * FROM event WHERE id = ?", [id]);
-    return firstRow(res, "Event not found");
+    var data = firstRow(res, "Event not found");
+    return new Model.Event().fromCassandra(data);
   }
 }
 

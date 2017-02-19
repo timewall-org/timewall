@@ -6,6 +6,10 @@ class Location {
   url: string;
 
   fromCassandra(obj) {
+    if (!obj) {
+      return null;
+    }
+    
     this.name = obj.name;
     this.point = new Geopoint().fromCassandra(obj);
     this.url = obj.url;

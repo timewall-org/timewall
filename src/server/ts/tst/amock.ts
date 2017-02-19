@@ -91,6 +91,7 @@ class Amock {
   once() { assert(this.calls.length == 1, "not called once"); return this; };
   never() { assert(this.calls.length == 0, "got called"); return this; };
   threw() { assert(!!this.ccall().error, "did not throw"); return this; };
+  returned(x) { assert.deepStrictEqual(this.ccall().result, x); return this; };
 }
 
 var defaultOptions = { parent: undefined, name: undefined, disallowAll: false };
