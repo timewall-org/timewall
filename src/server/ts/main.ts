@@ -1,7 +1,7 @@
 require('source-map-support').install();
 
 import DI = require('./deps');
-import ProdDI = require('./prod_deps');
+import DefaultDI = require('./default_deps');
 import Util = require('./util');
 
 async function main(di: DI) {
@@ -14,5 +14,5 @@ async function main(di: DI) {
   }
 }
 
-var di = new ProdDI();
+var di = new DefaultDI("prod");
 main(di)

@@ -1,4 +1,4 @@
-import { BaseDI, doreq } from './base';
+import { TestDI, doreq } from './base';
 import DI = require('../deps');
 import App = require('../app');
 import { Request, API } from '../api';
@@ -12,9 +12,9 @@ describe('Routes', () => {
   var di, api, server;
   beforeEach(async () => {
     api = amock.of(API);
-    di = amock(new BaseDI());
+    di = amock(new TestDI());
     di.createAPI.returns(api);
-    server = await Util.startApp(new App(di).createExpressApp(), config.tests.port);
+    server = await Util.startApp(new App(di).createExpressApp(), di.getConfig().port);
   });
   afterEach(() => {
     server.close();

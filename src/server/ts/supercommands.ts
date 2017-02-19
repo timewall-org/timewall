@@ -10,9 +10,10 @@ class SuperCommands {
 
   async createCassandraKeyspace() {
     var rootcs = this.di.getRootCassandraClient();
+    var keyspace = this.di.getConfig().cassandra.keyspace;
 
     await rootcs.execute(`
-      CREATE KEYSPACE "timewall" WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 } AND DURABLE_WRITES = true;
+      CREATE KEYSPACE ${keyspace} WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 } AND DURABLE_WRITES = true;
     `);
   }
 

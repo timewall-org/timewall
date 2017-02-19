@@ -1,4 +1,4 @@
-import { BaseDI } from './base';
+import { TestDI } from './base';
 import DI = require('../deps');
 import DB = require('../db');
 import CassandraClient = require('../csclient');
@@ -10,7 +10,7 @@ describe("DB", () => {
   var di, db, cs;
   beforeEach(() => {
     cs = amock.of(CassandraClient);
-    di = amock(new BaseDI());
+    di = amock(new TestDI());
     di.createCassandraClient.returns(cs);
     db = amock(new DB(di));
   });
