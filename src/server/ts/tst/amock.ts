@@ -97,15 +97,18 @@ var defaultOptions = { parent: undefined, name: undefined, disallowAll: false };
 var amock = ((obj, options = defaultOptions) => {
   if (!(obj instanceof Function)) {
     var proto = Object.getPrototypeOf(obj);
-    var names = Object.getOwnPropertyNames(proto);
-    for (var i = 0; i < names.length; i++) {
-      var name = names[i];
-      if (name !== "constructor") {
-        obj[name] = amock(obj[name], { parent: obj, name: name });
-        if (options.disallowAll) {
-          obj[name].defaultStub(unexpectedInvocation(obj, name));
+    while (proto && proto !== Object.prototype) {
+      var names = Object.getOwnPropertyNames(proto);
+      for (var i = 0; i < names.length; i++) {
+        var name = names[i];
+        if (name !== "constructor") {
+          obj[name] = amock(obj[name], { parent: obj, name: name });
+          if (options.disallowAll) {
+            obj[name].defaultStub(unexpectedInvocation(obj, name));
+          }
         }
       }
+      proto = Object.getPrototypeOf(proto);
     }
     return obj;
   }

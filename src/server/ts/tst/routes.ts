@@ -8,15 +8,12 @@ import amock = require('./amock');
 const request = require('supertest');
 const assert = require('assert');
 
-class TestDI extends BaseDI {
-  createAPI() { return amock.of(API); }
-}
-
 describe('Routes', () => {
   var di, api, server;
   beforeEach(async () => {
-    di = new TestDI();
-    api = di.getAPI();
+    api = amock.of(API);
+    di = amock(new BaseDI());
+    di.createAPI.returns(api);
     server = await Util.startApp(new App(di).createExpressApp(), config.tests.port);
   });
   afterEach(() => {

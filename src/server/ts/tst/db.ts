@@ -5,16 +5,13 @@ import CassandraClient = require('../csclient');
 import Model = require('../models/all');
 import amock = require('./amock');
 
-class TestDI extends BaseDI {
-  createCassandraClient() { return amock.of(CassandraClient); }
-}
-
 describe("DB", () => {
   var di, db, cs;
   beforeEach(() => {
-    di = new TestDI();
+    cs = amock.of(CassandraClient);
+    di = amock(new BaseDI());
+    di.createCassandraClient.returns(cs);
     db = amock(new DB(di));
-    cs = di.getCassandraClient();
   });
 
   describe("insertEvent", () => {
