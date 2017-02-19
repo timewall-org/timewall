@@ -39,10 +39,13 @@ export function uuid1() {
 
 export function deepObjectOverride(target, override) {
   for (var name of Object.getOwnPropertyNames(override)) {
-    if (Object.getPrototypeOf([]).constructor === Object) {
-      deepObjectOverride(target[name], override[name]);
-    } else {
-      target[name] = override[name];
+    if (override.hasOwnProperty(name)) {
+      var child = target[name];
+      if (child && Object.getPrototypeOf(child).constructor === Object) {
+        deepObjectOverride(child, override[name]);
+      } else {
+        target[name] = override[name];
+      }
     }
   }
 }
