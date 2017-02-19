@@ -13,3 +13,16 @@ export class Testbed {
     suite.timeout(100000);
   }
 }
+
+// supertest requests
+export async function doreq(req) {
+  return new Promise((resolve, reject) => {
+    req.end((err, res) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(res);
+      }
+    });
+  });
+}

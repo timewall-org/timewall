@@ -4,27 +4,29 @@ import DB = require('../db');
 import CassandraClient = require('../csclient');
 import Model = require('../models/all');
 import amock = require('./amock');
-const sinon = require('sinon');
 
 class TestDI extends BaseDI {
   getCassandraClient() {
-    return this.getInstance("cassandraClient", () => amock(CassandraClient));
+    return this.getInstance("cassandraClient", () => amock.of(CassandraClient));
   }
 }
 
 describe("DB", () => {
-  var di, db;
-  before(() => {
+  var di, db, cs;
+  beforeEach(() => {
     di = new TestDI();
-    db = new DB(di);
+    db = amock(new DB(di));
+    cs = di.getCassandraClient();
   });
 
   describe("insertEvent", () => {
     it("invalid event", async () => {
       var event = new Model.Event();
-      amock(db).insertEvent.catchThrow();
+
+      db.insertEvent.catch();
       await db.insertEvent(event);
       db.insertEvent.threw();
+      cs.execute.never();
     });
   });
 });
