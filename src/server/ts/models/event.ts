@@ -17,7 +17,7 @@ class Event extends BaseModel {
   }
 
   isValid() {
-    if (!(this.id && this.location && this.startTime && this.endTime && this.content)) {
+    if (!(this.id && this.location && this.location.isValid() && this.startTime && this.endTime && this.content)) {
       return false;
     }
     if (this.startTime.value > this.endTime.value) {
@@ -29,8 +29,8 @@ class Event extends BaseModel {
   fromCassandra(obj) {
     this.id = obj.id;
     this.location = new Location().fromCassandra(obj.location);
-    this.startTime = new Histamp(obj.startTime);
-    this.endTime = new Histamp(obj.endTime);
+    this.startTime = new Histamp(Util.fromLong(obj.starttime));
+    this.endTime = new Histamp(Util.fromLong(obj.endtime));
     this.content = obj.content;
     return this;
   }

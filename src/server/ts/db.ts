@@ -27,7 +27,7 @@ class DB {
 
   async insertEvent(event: Model.Event) {
     check(event.isValid());
-    await this.cs.execute("INSERT INTO event ?", [event]);
+    await this.cs.execute("INSERT INTO event JSON ?", [JSON.stringify(event)]);
   }
 
   async getEvent(id: any): Promise<Model.Event> {

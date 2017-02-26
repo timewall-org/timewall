@@ -46,6 +46,11 @@ class SuperCommands {
       )
     `);
   }
+
+  async truncateCassandra() {
+    var cs = this.di.getCassandraClient();
+    await cs.execute("TRUNCATE TABLE Event");
+  }
 }
 
 export = SuperCommands;

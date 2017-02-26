@@ -37,6 +37,14 @@ export function uuid1() {
   return cassandra.types.TimeUuid.now();
 }
 
+export function toLong(num: number) {
+  return cassandra.types.Long.fromNumber(num);
+}
+
+export function fromLong(long): number {
+  return long.toNumber();
+}
+
 export function deepObjectOverride(target, override) {
   for (var name of Object.getOwnPropertyNames(override)) {
     if (override.hasOwnProperty(name)) {

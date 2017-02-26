@@ -1,6 +1,7 @@
 import { TestDI } from './base';
 import DI = require('../deps');
 import DB = require('../db');
+import Util = require('../util');
 import CassandraClient = require('../csclient');
 import Model = require('../models/all');
 import amock = require('./amock');
@@ -36,7 +37,7 @@ describe("DB", () => {
 
   describe("getEvent", () => {
     it("found", async () => {
-      var row = { id: "some id", content: "some content" };
+      var row = { id: "some id", starttime: Util.toLong(123), endtime: Util.toLong(321), content: "some content" };
       cs.execute.areturns({ rows: [row] });
       var actual = await db.getEvent(row.id);
       db.getEvent.returned(new Model.Event().fromCassandra(row));

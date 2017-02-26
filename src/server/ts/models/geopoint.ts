@@ -7,6 +7,10 @@ class Geopoint {
     this.lat = obj.lat;
     return this;
   }
+
+  isValid() {
+    return this.lng && this.lat;
+  }
 }
 
 export = Geopoint;

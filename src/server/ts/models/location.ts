@@ -9,11 +9,15 @@ class Location {
     if (!obj) {
       return null;
     }
-    
+
     this.name = obj.name;
-    this.point = new Geopoint().fromCassandra(obj);
+    this.point = new Geopoint().fromCassandra(obj.point);
     this.url = obj.url;
     return this;
+  }
+
+  isValid() {
+    return this.name && this.point && this.point.isValid() && this.url;
   }
 }
 
