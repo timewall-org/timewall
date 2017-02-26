@@ -21,6 +21,12 @@ class SuperCommands {
     var cs = this.di.getCassandraClient();
 
     await cs.execute(`
+      CREATE TYPE Histamp (
+        value bigint
+      )
+    `);
+
+    await cs.execute(`
       CREATE TYPE Geopoint (
         lng double,
         lat double
@@ -39,15 +45,21 @@ class SuperCommands {
       CREATE TABLE Event (
         id timeuuid,
         location frozen<Location>,
-        startTime bigint,
-        endTime bigint,
+        startTime frozen<Histamp>,
+        endTime frozen<Histamp>,
         content text,
         primary key (id)
       )
     `);
   }
 
-  async truncateCassandra() {
+  async dropCassandraKeyspace() {
+    var cs = this.di.getRootCassandraClient();
+    var keyspace = this.di.getConfig().cassandra.keyspace;
+    await cs.execute(`DROP KEYSPACE ${keyspace}`);
+  }
+
+  async truncateCassandraTables() {
     var cs = this.di.getCassandraClient();
     await cs.execute("TRUNCATE TABLE Event");
   }

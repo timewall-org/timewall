@@ -1,6 +1,6 @@
 import Geopoint = require('./geopoint');
 import Location = require('./location');
-import Histamp = require('../histamp');
+import Histamp = require('./histamp');
 import BaseModel = require('./base');
 import Util = require('../util');
 
@@ -29,8 +29,8 @@ class Event extends BaseModel {
   fromCassandra(obj) {
     this.id = obj.id;
     this.location = new Location().fromCassandra(obj.location);
-    this.startTime = new Histamp(Util.fromLong(obj.starttime));
-    this.endTime = new Histamp(Util.fromLong(obj.endtime));
+    this.startTime = Histamp.fromCassandra(obj.starttime);
+    this.endTime = Histamp.fromCassandra(obj.endtime);
     this.content = obj.content;
     return this;
   }

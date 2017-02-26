@@ -37,7 +37,7 @@ describe("DB", () => {
 
   describe("getEvent", () => {
     it("found", async () => {
-      var row = { id: "some id", starttime: Util.toLong(123), endtime: Util.toLong(321), content: "some content" };
+      var row = { id: "some id", starttime: { value: Util.toLong(123) }, endtime: { value: Util.toLong(321) }, content: "some content" };
       cs.execute.areturns({ rows: [row] });
       var actual = await db.getEvent(row.id);
       db.getEvent.returned(new Model.Event().fromCassandra(row));
