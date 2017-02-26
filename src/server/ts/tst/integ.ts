@@ -8,16 +8,31 @@ import amock = require('./amock');
 const assert = require('assert');
 
 var di : DefaultDI;
+var cassandraAvailable = false;
 before(async () => {
   di = new DefaultDI("tests");
   var cmd = di.getSuperCommands();
-  try { await cmd.dropCassandraKeyspace(); } catch(e) {}
-  await cmd.createCassandraKeyspace();
-  await cmd.createCassandraSchema();
-  await cmd.truncateCassandraTables();
+
+  try {
+    await di.getRootNativeCassandraClient().connect();
+    cassandraAvailable = true;
+  } catch(e) {}
+
+  if (cassandraAvailable) {
+    try { await cmd.dropCassandraKeyspace(); } catch(e) {}
+    await cmd.createCassandraKeyspace();
+    await cmd.createCassandraSchema();
+    await cmd.truncateCassandraTables();
+  }
 });
 
 describe("Integration tests", () => {
+  beforeEach(function() {
+    if (!cassandraAvailable) {
+      this.skip();
+    }
+  });
+
   describe("DB", () => {
     it("insert and retrieve event", async () => {
       var expected = randomEvent();
