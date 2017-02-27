@@ -3,6 +3,7 @@ const cassandra = require('cassandra-driver');
 import App = require('./app');
 import SuperCommands = require('./supercommands');
 import CassandraClient = require('./csclient');
+import ElasticSearchClient = require('./esclient');
 import DB = require('./db');
 import Util = require('./util');
 import { API } from './api';
@@ -33,6 +34,7 @@ class DI {
   getRootNativeCassandraClient(): any { return this.getInstance("rootNativeCassandraClient", () => this.createRootNativeCassandraClient()); }
   getRootCassandraClient(): CassandraClient { return this.getInstance("rootCassandraClient", () => this.createRootCassandraClient()); }
   getCassandraClient(): CassandraClient { return this.getInstance("cassandraClient", () => this.createCassandraClient()); }
+  getElasticSearchClient(): ElasticSearchClient { return this.getInstance("elasticSearchClient", () => this.createElasticSearchClient()); }
   getAPI(): API { return this.getInstance("api", () => this.createAPI()); }
   getDB(): DB { return this.getInstance("db", () => this.createDB()); }
 
@@ -47,6 +49,7 @@ class DI {
   createRootNativeCassandraClient(): any { return null; }
   createRootCassandraClient(): CassandraClient { return null; }
   createCassandraClient(): CassandraClient { return null; }
+  createElasticSearchClient(): ElasticSearchClient { return null; }
   createAPI(): API { return null; }
   createDB(): DB { return null; }
 }
