@@ -23,6 +23,11 @@ export = {
     cassandra: {
       keyspace: "teststimewall"
     },
+    elasticsearch: {
+      index: {
+        event: 'testsevent'
+      }
+    },
     port: 7080,
     log: {
       enabled: false

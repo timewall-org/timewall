@@ -6,6 +6,7 @@ class SuperCommands {
   async upgradeV0() {
     await this.createCassandraKeyspace();
     await this.createCassandraSchema();
+    await this.createElasticSearchIndex();
   }
 
   async createCassandraKeyspace() {
@@ -28,7 +29,7 @@ class SuperCommands {
 
     await cs.execute(`
       CREATE TYPE Geopoint (
-        lng double,
+        lon double,
         lat double
       )
     `);
@@ -59,9 +60,51 @@ class SuperCommands {
     await cs.execute(`DROP KEYSPACE ${keyspace}`);
   }
 
-  async truncateCassandraTables() {
-    var cs = this.di.getCassandraClient();
-    await cs.execute("TRUNCATE TABLE Event");
+  async dropElasticSearchIndex() {
+    var es = this.di.getElasticSearchClient();
+    var event = this.di.getConfig().elasticsearch.index.event;
+    var index = `${event}-v1`;
+
+    await es.post('/_aliases', {
+      "actions" : [
+        { "remove" : { "index" : index, "alias" : event } }
+      ]
+    });
+    await es.del(index);
+  }
+
+  async createElasticSearchIndex() {
+    var es = this.di.getElasticSearchClient();
+    var event = this.di.getConfig().elasticsearch.index.event;
+    var index = `${event}-v1`;
+    await es.put(index, {
+      "settings": {
+        "index": {
+          "number_of_shards": 3,
+          "number_of_replicas": 1,
+          "mapper.dynamic": false
+        }
+      },
+      "mappings": {
+        "event": {
+          "dynamic": false,
+          "_source": { "enabled": false },
+          "_all": { "enabled": false },
+          "properties": {
+            "point": { "type": "geo_point" },
+            "content": { "type": "text" },
+            "startTime": { "type": "long" },
+            "endTime": { "type": "long" }
+          }
+        }
+      }
+    });
+
+    await es.post('/_aliases', {
+      "actions" : [
+        { "add" : { "index" : index, "alias" : event } }
+      ]
+    });
   }
 }
 

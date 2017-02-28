@@ -1,15 +1,15 @@
 class Geopoint {
-  lng: number;
+  lon: number;
   lat: number;
 
   fromCassandra(obj) {
-    this.lng = obj.lng;
+    this.lon = obj.lon;
     this.lat = obj.lat;
     return this;
   }
 
   isValid() {
-    return this.lng && this.lat;
+    return this.lon && this.lat;
   }
 }
 

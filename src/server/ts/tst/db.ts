@@ -23,6 +23,7 @@ describe("DB", () => {
     it("success", async () => {
       var event = amock.of(Model.Event);
       event.id = "some-id";
+      event.location = new Model.Location();
       event.startTime = new Model.Histamp(123);
       event.endTime = new Model.Histamp(321);
       event.isValid.returns(true);

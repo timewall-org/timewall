@@ -9,10 +9,10 @@ class ElasticSearchClient {
 		var resolve, reject;
 		var p = new Promise((f1, f2) => { resolve = f1; reject = f2; });
 
-    var fullpath = path+"?filter_path=errors,took,hits&ignore_indices=missing";
+    var fullpath = path+"?filter_path=errors,took,hits";
 		var opts = {
 				hostname: this.di.getConfig().elasticsearch.host,
-				port: this.di.getConfig().elasticsearch.host,
+				port: this.di.getConfig().elasticsearch.port,
 				path: fullpath,
 				method: method,
 				headers: {}
@@ -61,7 +61,7 @@ class ElasticSearchClient {
 		return p;
 	}
 
-	async get(path, data) {
+	async get(path, data?) {
 		return await this.request("GET", path, data);
 	}
 

@@ -5,6 +5,7 @@ import App = require('./app');
 import DB = require('./db');
 import SuperCommands = require('./supercommands');
 import CassandraClient = require('./csclient');
+import ElasticSearchClient = require('./esclient');
 import { API } from './api';
 import Util = require('./util');
 
@@ -21,6 +22,7 @@ class DefaultDI extends DI {
   }
   createRootCassandraClient() { return new CassandraClient(this.getRootNativeCassandraClient()); }
   createCassandraClient() { return new CassandraClient(this.getNativeCassandraClient()); }
+  createElasticSearchClient() { return new ElasticSearchClient(this); }
   createAPI() { return new API(this); }
   createDB() { return new DB(this); }
 }

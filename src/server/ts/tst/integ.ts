@@ -9,6 +9,7 @@ const assert = require('assert');
 
 var di : DefaultDI;
 var cassandraAvailable = false;
+var elasticSearchAvailable = false;
 before(async () => {
   di = new DefaultDI("tests");
   var cmd = di.getSuperCommands();
@@ -18,17 +19,26 @@ before(async () => {
     cassandraAvailable = true;
   } catch(e) {}
 
+  try {
+    await di.getElasticSearchClient().get("/");
+    elasticSearchAvailable = true;
+  } catch(e) {}
+
   if (cassandraAvailable) {
     try { await cmd.dropCassandraKeyspace(); } catch(e) {}
     await cmd.createCassandraKeyspace();
     await cmd.createCassandraSchema();
-    await cmd.truncateCassandraTables();
+  }
+
+  if (elasticSearchAvailable) {
+    try { await cmd.dropElasticSearchIndex(); } catch(e) {}
+    await cmd.createElasticSearchIndex();
   }
 });
 
 describe("Integration tests", () => {
   beforeEach(function() {
-    if (!cassandraAvailable) {
+    if (!(cassandraAvailable && elasticSearchAvailable)) {
       this.skip();
     }
   });

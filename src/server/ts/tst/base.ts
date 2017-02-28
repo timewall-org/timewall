@@ -19,7 +19,7 @@ export class Testbed {
 export function randomEvent(): Model.Event {
   var geopoint = new Model.Geopoint();
   geopoint.lat = 0.45;
-  geopoint.lng = 0.12;
+  geopoint.lon = 0.12;
 
   var location = new Model.Location();
   location.name = "Foo";
