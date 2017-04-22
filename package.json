@@ -1,0 +1,33 @@
+{
+  "name": "timewall",
+  "version": "1.0.0",
+  "description": "timewall.org",
+  "devDependencies": {
+    "@types/node": "7.0.13",
+    "@types/react": "15.0.22",
+    "@types/react-dom": "15.5.0",
+    "typescript": "2.2.2",
+    "mocha": "*"
+  },
+
+  "dependencies": {
+    "react": "15.1.0",
+    "react-dom": "15.1.0",
+    "express": "*",
+    "uuid": "*",
+    "cassandra-driver": "*",
+    "source-map-support": "*",
+    "moment": "*",
+    "urijs": "*",
+    "body-parser": "*",
+    "cookie-parser": "*",
+    "morgan": "*",
+    "striptags": "*",
+    "marked": "*",
+    "hkdf": "*",
+    "xxhash": "*",
+    "sinon": "*",
+    "supertest": "*",
+    "lodash": "*"
+  }
+}

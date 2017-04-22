@@ -1,4 +1,6 @@
 build
+.idea/
+timewall.iml
 node_modules
 result
 .tested
