@@ -1,5 +1,5 @@
 import sms = require('source-map-support');
-(sms as SMS).install();
+sms.install();
 
 import DI = require('../deps');
 import Model = require('../models/all');

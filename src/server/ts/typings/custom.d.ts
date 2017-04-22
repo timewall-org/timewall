@@ -4,7 +4,3 @@ declare var before: any;
 declare var after: any;
 declare var beforeEach: any;
 declare var afterEach: any;
-
-declare interface SMS {
-  install();
-}
