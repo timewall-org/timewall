@@ -5,8 +5,8 @@ import Util = require('./util');
 class ElasticSearchClient {
 	constructor(public di: DI) {}
 
-	request (method: string, path: string, data: string): Promise<any> {
-		var resolve, reject;
+	request (method: string, path: string, data?: string): Promise<any> {
+		var resolve: any, reject: any;
 		var p = new Promise((f1, f2) => { resolve = f1; reject = f2; });
 
     var fullpath = path+"?filter_path=errors,took,hits";
@@ -18,10 +18,10 @@ class ElasticSearchClient {
 				headers: {}
 		};
 
-		var body: string = null;
+		var body: string | null = null;
 
 		if (data) {
-			var body = JSON.stringify(data);
+			body = JSON.stringify(data);
 			opts.headers = { "Content-Length": body.length };
 		}
 
@@ -61,21 +61,21 @@ class ElasticSearchClient {
 		return p;
 	}
 
-	async get(path, data?) {
+	async get(path: string, data?: any) {
 		return await this.request("GET", path, data);
 	}
 
-	async post(path, data) {
+	async post(path: string, data: any) {
 		return await this.request("POST", path, data);
 	}
 
-	async put(path, data) {
+	async put(path: string, data: any) {
 		return await this.request("PUT", path, data);
 	}
 
-	async del(path) {
+	async del(path: string) {
     try {
-      await this.request("DELETE", path, null);
+      await this.request("DELETE", path);
     } catch (e) {
       if (!(e.json && e.json.status === 404)) {
         throw e;
@@ -83,17 +83,17 @@ class ElasticSearchClient {
     }
 	}
 
-	async search (path, query) {
+	async search (path: string, query: any) {
 		var res = await this.get(`${path}/_search`, query);
 		return res;
 	}
 
-  async create (path, doc) {
+  async create (path: string, doc: any) {
     var res = await this.put(`${path}/_create`, doc);
 		return res;
   }
 
-	async update(path, doc) {
+	async update(path: string, doc: any) {
 		var req = {
 			doc: doc,
 			doc_as_upsert: true

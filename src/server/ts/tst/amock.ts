@@ -1,4 +1,4 @@
-const assert = require('assert');
+import assert = require('assert');
 
 class Call {
   result: any;
@@ -7,7 +7,7 @@ class Call {
   constructor(public self: any, public args: any[]) {}
 }
 
-function unexpectedInvocation(obj?, name?) {
+function unexpectedInvocation(obj?: any, name?: any) {
   return () => {
     if (obj && name) {
       assert(false, `unexpected invocation of ${obj.constructor.name}.${name}()`);
@@ -47,11 +47,11 @@ class Amock {
     return this;
   }
 
-  spyCall(self, args) {
+  spyCall(self: any, args: any) {
     var call = new Call(this, args);
     this.calls.push(call);
 
-    var handle = (res, err) => {
+    var handle = (res: any, err: any) => {
       call.result = res;
       call.error = err;
       if (err && !this._catch) {
@@ -74,28 +74,28 @@ class Amock {
   }
 
   // stubbing
-  stub(f) { this.func = f; return this; }
-  defaultStub(f) { this.defaultfunc = f; return this.stub(f); }
+  stub(f: any) { this.func = f; return this; }
+  defaultStub(f: any) { this.defaultfunc = f; return this.stub(f); }
   allow() { return this.stub(this.realfunc); }
   disallow() { return this.stub(unexpectedInvocation(this.parentobj, this.funcname)); }
-  returns(x) { return this.stub(() => x); }
-  throws(e) { return this.stub(() => { throw e; }); }
-  areturns(x) { return this.stub(() => Promise.resolve(x)); }
-  athrows(x) { return this.stub(() => Promise.reject(x)); }
+  returns(x: any) { return this.stub(() => x); }
+  throws(e: any) { return this.stub(() => { throw e; }); }
+  areturns(x: any) { return this.stub(() => Promise.resolve(x)); }
+  athrows(x: any) { return this.stub(() => Promise.reject(x)); }
 
   catch() { this._catch = true; return this.allow(); }
 
   // verifying
   next() { this.curCall++; return this; };
-  withArgs(...args) { assert.deepStrictEqual(this.ccall().args, args); return this; };
+  withArgs(...args: any[]) { assert.deepStrictEqual(this.ccall().args, args); return this; };
   once() { assert(this.calls.length == 1, "not called once"); return this; };
   never() { assert(this.calls.length == 0, "got called"); return this; };
   threw() { assert(!!this.ccall().error, "did not throw"); return this; };
-  returned(x) { assert.deepStrictEqual(this.ccall().result, x); return this; };
+  returned(x: any) { assert.deepStrictEqual(this.ccall().result, x); return this; };
 }
 
 var defaultOptions = { parent: undefined, name: undefined, disallowAll: false };
-var amock = ((obj, options = defaultOptions) => {
+var amock = ((obj: any, options = defaultOptions) => {
   if (!(obj instanceof Function)) {
     var proto = Object.getPrototypeOf(obj);
     while (proto && proto !== Object.prototype) {
@@ -117,7 +117,7 @@ var amock = ((obj, options = defaultOptions) => {
   var f = function() {
     var args = Array.prototype.slice.call(arguments);
     return f.spyCall(this, args);
-  } as any as Amock;
+  } as any;
 
   f.realfunc = obj;
   f.parentobj = options.parent;
@@ -125,7 +125,7 @@ var amock = ((obj, options = defaultOptions) => {
 
   for (var name of Object.getOwnPropertyNames(Amock.prototype)) {
     if (name !== "constructor") {
-      f[name] = Amock.prototype[name];
+      f[name] = (Amock.prototype as any)[name];
     }
   }
 
@@ -134,6 +134,6 @@ var amock = ((obj, options = defaultOptions) => {
 
 amock.Amock = Amock;
 amock.Call = Call;
-amock.of = f => amock(Object.create(f.prototype), { disallowAll: true });
+amock.of = (f: any) => amock(Object.create(f.prototype), { disallowAll: true });
 
 export = amock;

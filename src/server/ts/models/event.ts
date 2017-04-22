@@ -26,7 +26,7 @@ class Event extends BaseModel {
     return true;
   }
 
-  fromCassandra(obj) {
+  fromCassandra(obj: any) {
     this.id = obj.id;
     this.location = new Location().fromCassandra(obj.location);
     this.startTime = Histamp.fromCassandra(obj.starttime);

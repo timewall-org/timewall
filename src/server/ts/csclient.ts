@@ -1,8 +1,10 @@
-class CassandraClient {
-  constructor (public csclient: any) {}
+import cassandra = require('cassandra-driver');
 
-  execute(text, params = [], opts = { prepare: true }): Promise<any> {
-    return new Promise<any>((resolve, reject) => this.csclient.execute(text, params, opts, (err, res) => {
+class CassandraClient {
+  constructor (public csclient: cassandra.Client) {}
+
+  execute(text: string, params: any[] = [], opts = { prepare: true }): Promise<cassandra.types.ResultSet> {
+    return new Promise((resolve, reject) => this.csclient.execute(text, params, opts, (err, res) => {
       if (err) {
         reject(err);
       } else {

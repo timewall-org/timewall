@@ -13,7 +13,7 @@ import config = require('./conf');
 // Sane, simple container for dependency injection
 class DI {
   env: string;
-  instances: [string][];
+  instances: { [key:string]:any };
 
   constructor(env: string) {
     this.env = env;
@@ -40,18 +40,18 @@ class DI {
 
   createConfig(): typeof config.default {
     var newconfig = Util.deepCloneJSON(config.default);
-    Util.deepObjectOverride(newconfig, config[this.env] || {});
+    Util.deepObjectOverride(newconfig, (config as any)[this.env] || {});
     return newconfig;
   }
-  createApp(): App { return null; }
-  createSuperCommands(): SuperCommands { return null; }
-  createNativeCassandraClient(): any { return null; }
-  createRootNativeCassandraClient(): any { return null; }
-  createRootCassandraClient(): CassandraClient { return null; }
-  createCassandraClient(): CassandraClient { return null; }
-  createElasticSearchClient(): ElasticSearchClient { return null; }
-  createAPI(): API { return null; }
-  createDB(): DB { return null; }
+  createApp(): App { return null as any; }
+  createSuperCommands(): SuperCommands { return null as any; }
+  createNativeCassandraClient(): any { return null as any; }
+  createRootNativeCassandraClient(): any { return null as any; }
+  createRootCassandraClient(): CassandraClient { return null as any; }
+  createCassandraClient(): CassandraClient { return null as any; }
+  createElasticSearchClient(): ElasticSearchClient { return null as any; }
+  createAPI(): API { return null as any; }
+  createDB(): DB { return null as any; }
 }
 
 export = DI;

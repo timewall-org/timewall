@@ -9,8 +9,8 @@ import DI = require('./deps');
 import api = require('./api');
 import {Request, Response, NextFunction, IRouterMatcher} from "express";
 
-function asyncRoute(f: (req: Request, res: Response, next: () => NextFunction) => Promise<void>) {
-	return async (req, res, next) => {
+function asyncRoute(f: (req: Request, res: Response, next: NextFunction) => Promise<void>) {
+	return async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			await f(req, res, next);
 		} catch (err) {
@@ -30,7 +30,7 @@ class App {
 
     app.use((req, res, next) => {
       var d = domain.create();
-      d.on('error', err => next(err));
+      d.on('error', (err: Error) => next(err));
       d.run(next);
     });
 

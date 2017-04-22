@@ -1,6 +1,7 @@
 import sms = require('source-map-support');
 sms.install();
 
+import request = require('supertest');
 import DI = require('../deps');
 import Model = require('../models/all');
 import Util = require('../util');
@@ -12,7 +13,7 @@ export class TestDI extends DI {
 }
 
 export class Testbed {
-  async setup(suite) {
+  async setup(suite: any) {
     suite.timeout(100000);
   }
 }
@@ -37,7 +38,7 @@ export function randomEvent(): Model.Event {
 }
 
 // supertest requests
-export async function doreq(req) {
+export async function doreq(req: request.Request) {
   return new Promise((resolve, reject) => {
     req.end((err, res) => {
       if (err) {

@@ -6,17 +6,18 @@ import ElasticSearchClient = require('./esclient');
 
 import cassandra = require('cassandra-driver');
 
-function check(cond) {
+function check(cond: boolean) {
   if (!cond) {
     throw new Util.AppError(400, "Condition not met", "Invalid Request");
   }
 }
 
-function firstRow(res, userMessage) {
-  if (!res.rows && !res.rows[0]) {
+function firstRow(res: cassandra.types.ResultSet, userMessage: string) {
+  var first = res.rows[0];
+  if (!first) {
     throw new Util.AppError(404, "Row not found", userMessage);
   }
-  return res.rows[0];
+  return first;
 }
 
 class DB {

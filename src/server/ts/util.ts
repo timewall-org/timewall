@@ -1,21 +1,26 @@
 import util = require('util');
 import cassandra = require('cassandra-driver');
-import _ = require('lodash');
+import express = require('express');
 import * as Long from "long";
 
-export function AppError(status: number, internalMessage: string, userMessage = "Internal Error") {
-	var JSError = Error as any;
-  JSError.captureStackTrace(this, this.constructor);
-  this.name = this.constructor.name;
-  this.internalMessage = internalMessage;
-  this.userMessage = userMessage;
-  this.status = status;
-}
-util.inherits(AppError, Error);
+export class AppError extends Error {
+  private internalMessage: string;
+  private userMessage: string;
+  private status: number;
 
-export function startApp(app, port): Promise<any> {
+  constructor(status: number, internalMessage: string, userMessage = "Internal Error") {
+    super(internalMessage);
+    this.internalMessage = internalMessage;
+    this.userMessage = userMessage;
+    this.status = status;
+
+    Object.setPrototypeOf(this, AppError.prototype);
+  }
+}
+
+export function startApp(app: express.Express, port: number): Promise<any> {
   return new Promise((resolve, reject) => {
-    var server = app.listen(port, (err) => {
+    var server = app.listen(port, (err: Error) => {
       if (err) {
         reject(err);
       } else {
@@ -30,8 +35,8 @@ export function deepCloneJSON<T>(obj: T): T {
 }
 
 export function copyObject<T>(obj: T): T {
-  var obj = Object.create(Object.getPrototypeOf(this)) as T;
-  return Object.assign(obj, this);
+  var obj2 = Object.create(Object.getPrototypeOf(obj)) as T;
+  return Object.assign(obj2, obj);
 }
 
 export function uuid1() {
@@ -42,11 +47,11 @@ export function toLong(num: number) {
   return Long.fromNumber(num);
 }
 
-export function fromLong(long): number {
+export function fromLong(long: Long): number {
   return long.toNumber();
 }
 
-export function deepObjectOverride(target, override) {
+export function deepObjectOverride(target: any, override: any) {
   for (var name of Object.getOwnPropertyNames(override)) {
     if (override.hasOwnProperty(name)) {
       var child = target[name];

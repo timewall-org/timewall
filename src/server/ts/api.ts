@@ -5,7 +5,7 @@ export class Request {
   constructor (public endpoint: string, public body: any) { }
 }
 
-function invalidRequest(ctx): never {
+function invalidRequest(ctx: Request): never {
 	throw new Util.AppError(400, `Invalid request ${ctx}`, "Invalid Request");
 }
 
@@ -21,7 +21,7 @@ export class API {
   }
 
   async execute(r: Request): Promise<any> {
-    var method = this["api_"+r.endpoint];
+    var method = (this as any)["api_"+r.endpoint] as ((r: Request) => Promise<any>);
     if (!method) {
       invalidRequest(r);
     }

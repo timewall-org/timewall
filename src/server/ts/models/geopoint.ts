@@ -2,7 +2,7 @@ class Geopoint {
   lon: number;
   lat: number;
 
-  fromCassandra(obj) {
+  fromCassandra(obj: any) {
     this.lon = obj.lon;
     this.lat = obj.lat;
     return this;

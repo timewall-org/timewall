@@ -9,7 +9,7 @@ import request = require('supertest');
 import assert = require('assert');
 
 describe('Routes', () => {
-  var di, api, server;
+  var di, api: any, server: any;
   beforeEach(async () => {
     api = amock.of(API);
     di = amock(new TestDI());

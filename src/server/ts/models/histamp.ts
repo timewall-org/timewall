@@ -3,7 +3,7 @@ import Util = require('../util');
 class Histamp {
   constructor(public value: number) {}
 
-  static fromCassandra(obj) {
+  static fromCassandra(obj: any) {
     return new Histamp(Util.fromLong(obj.value));
   }
 

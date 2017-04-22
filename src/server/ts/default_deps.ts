@@ -12,19 +12,19 @@ import Util = require('./util');
 import config = require('./conf');
 
 class DefaultDI extends DI {
-  createApp() { return new App(this) };
-  createSuperCommands() { return new SuperCommands(this); }
-  createNativeCassandraClient() { return new cassandra.Client(this.getConfig().cassandra); }
-  createRootNativeCassandraClient() {
+  createApp(): App { return new App(this) };
+  createSuperCommands(): SuperCommands { return new SuperCommands(this); }
+  createNativeCassandraClient(): cassandra.Client { return new cassandra.Client(this.getConfig().cassandra); }
+  createRootNativeCassandraClient(): cassandra.Client {
     var conf = Util.deepCloneJSON(this.getConfig().cassandra);
     delete conf.keyspace;
     return new cassandra.Client(conf);
   }
-  createRootCassandraClient() { return new CassandraClient(this.getRootNativeCassandraClient()); }
-  createCassandraClient() { return new CassandraClient(this.getNativeCassandraClient()); }
-  createElasticSearchClient() { return new ElasticSearchClient(this); }
-  createAPI() { return new API(this); }
-  createDB() { return new DB(this); }
+  createRootCassandraClient(): CassandraClient { return new CassandraClient(this.getRootNativeCassandraClient()); }
+  createCassandraClient(): CassandraClient { return new CassandraClient(this.getNativeCassandraClient()); }
+  createElasticSearchClient(): ElasticSearchClient { return new ElasticSearchClient(this); }
+  createAPI(): API { return new API(this); }
+  createDB(): DB { return new DB(this); }
 }
 
 export = DefaultDI;
