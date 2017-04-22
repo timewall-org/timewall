@@ -5,7 +5,7 @@ import CassandraClient = require('../csclient');
 import Model = require('../models/all');
 import Util = require('../util');
 import amock = require('./amock');
-const assert = require('assert');
+import assert = require('assert');
 
 var di : DefaultDI;
 var cassandraAvailable = false;

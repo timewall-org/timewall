@@ -1,4 +1,4 @@
-const cassandra = require('cassandra-driver');
+import cassandra = require('cassandra-driver');
 
 import App = require('./app');
 import SuperCommands = require('./supercommands');

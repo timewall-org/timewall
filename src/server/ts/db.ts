@@ -4,7 +4,7 @@ import Model = require('./models/all');
 import CassandraClient = require('./csclient');
 import ElasticSearchClient = require('./esclient');
 
-const cassandra = require('cassandra-driver');
+import cassandra = require('cassandra-driver');
 
 function check(cond) {
   if (!cond) {

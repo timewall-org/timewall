@@ -5,8 +5,8 @@ import { Request, API } from '../api';
 import Util = require('../util');
 import config = require('../conf');
 import amock = require('./amock');
-const request = require('supertest');
-const assert = require('assert');
+import request = require('supertest');
+import assert = require('assert');
 
 describe('Routes', () => {
   var di, api, server;

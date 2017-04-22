@@ -1,4 +1,4 @@
-var http = require('http');
+import http = require('http');
 import DI = require('./deps');
 import Util = require('./util');
 

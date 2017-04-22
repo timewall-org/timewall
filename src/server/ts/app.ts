@@ -1,14 +1,15 @@
-const express = require('express');
-const domain = require('domain');
-const morgan = require('morgan');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-const process = require('process');
+import express = require('express');
+import domain = require('domain');
+import morgan = require('morgan');
+import cookieParser = require('cookie-parser');
+import bodyParser = require('body-parser');
+import process = require('process');
 
 import DI = require('./deps');
-import { Request } from './api';
+import api = require('./api');
+import {Request, Response, NextFunction, IRouterMatcher} from "express";
 
-function asyncRoute(f: (req: any, res: any, next: () => void) => Promise<void>) {
+function asyncRoute(f: (req: Request, res: Response, next: () => NextFunction) => Promise<void>) {
 	return async (req, res, next) => {
 		try {
 			await f(req, res, next);
@@ -55,7 +56,7 @@ class App {
     app.get('/api/v1', asyncRoute(async (req, res) => {
       var endpoint = req.body.endpoint;
       var body = req.body.body;
-      var request = new Request(endpoint, body);
+      var request = new api.Request(endpoint, body);
       try {
         var ret = await this.di.getAPI().execute(request);
         res.status(200).send(ret);

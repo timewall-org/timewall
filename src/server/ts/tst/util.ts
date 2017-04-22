@@ -1,5 +1,5 @@
 import Util = require('../util');
-const assert = require('assert');
+import assert = require('assert');
 
 describe("Utils", () => {
   it("deepObjectOverride", () => {

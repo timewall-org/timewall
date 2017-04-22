@@ -1,6 +1,7 @@
-const util = require('util');
-const cassandra = require('cassandra-driver');
-const _ = require('lodash');
+import util = require('util');
+import cassandra = require('cassandra-driver');
+import _ = require('lodash');
+import * as Long from "long";
 
 export function AppError(status: number, internalMessage: string, userMessage = "Internal Error") {
 	var JSError = Error as any;
@@ -38,7 +39,7 @@ export function uuid1() {
 }
 
 export function toLong(num: number) {
-  return cassandra.types.Long.fromNumber(num);
+  return Long.fromNumber(num);
 }
 
 export function fromLong(long): number {

@@ -6,7 +6,7 @@ import CassandraClient = require('../csclient');
 import ElasticSearchClient = require('../esclient');
 import Model = require('../models/all');
 import amock = require('./amock');
-const assert = require('assert');
+import assert = require('assert');
 
 describe("DB", () => {
   var di, db, cs, es;

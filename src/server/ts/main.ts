@@ -1,4 +1,5 @@
-require('source-map-support').install();
+import sms = require('source-map-support');
+(sms as SMS).install();
 
 import DI = require('./deps');
 import DefaultDI = require('./default_deps');

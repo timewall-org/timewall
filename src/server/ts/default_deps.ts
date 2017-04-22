@@ -1,4 +1,4 @@
-const cassandra = require('cassandra-driver');
+import cassandra = require('cassandra-driver');
 
 import DI = require('./deps');
 import App = require('./app');
