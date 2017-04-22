@@ -1,7 +1,4 @@
 [
-  "babel-cli",
-  "babel-preset-latest",
-  "babel-preset-react",
   "express",
   "typescript",
   "uuid",
@@ -20,5 +17,6 @@
   "xxhash",
   "sinon",
   "supertest",
-  "lodash"
+  "lodash",
+  "react"
 ]

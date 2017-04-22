@@ -4,5 +4,8 @@
     "module": "commonjs",
     "outDir": "../../../build/server/js",
     "sourceMap": true
+    /*"noImplicitAny": true
+    "strictNullChecks": true,
+    "alwaysStrict": true*/
   }
 }

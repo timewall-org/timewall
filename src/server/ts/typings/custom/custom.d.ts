@@ -1,5 +1,3 @@
-declare var require: any;
-
 declare var describe: any;
 declare var it: any;
 declare var before: any;
