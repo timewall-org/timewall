@@ -17,7 +17,7 @@ export function ajax(method: string, endpoint: string, body: any = null) {
     xhr.setRequestHeader('Content-Type', 'application/json');
 
     xhr.onload = () => {
-      resolve((JSON.parse(xhr.response));
+      resolve(JSON.parse(xhr.response));
     };
     xhr.onerror = (...args: any[]) => {
       console.log("XHR ERROR", args, xhr.response);
