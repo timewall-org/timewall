@@ -1,53 +1,42 @@
-CLIENT_OUT=build/client/js/app.js
-CLIENT_DIR=src/client/ts
-CLIENT_SRCS=$(shell find $(CLIENT_DIR) -type f)
-SERVER_OUT=build/server/js
+BUILD_DIR=build
+CLIENT_OUT=$(BUILD_DIR)/client
+CLIENT_DIR=src/client
+CLIENT_DIR_TS=$(CLIENT_DIR)/ts
+CLIENT_DIR_STATIC=$(CLIENT_DIR)/static
+SERVER_OUT=$(BUILD_DIR)/server
 SERVER_DIR=src/server/ts
-SERVER_SRCS=$(shell find $(SERVER_DIR) -type f)
-STATIC_SRCDIR=src/client/static
-STATIC_OUTDIR=build/client/
-STATIC_SRCS=$(shell find $(STATIC_SRCDIR) -type f)
-STATIC_OUTS=$(patsubst $(STATIC_SRCDIR)/%,$(STATIC_OUTDIR)/%,$(STATIC_SRCS))
+TEST_DIR=tst/server/ts
 TSC=node_modules/.bin/tsc
 MOCHA=node_modules/.bin/mocha
 
-all: build .tested
+all: build test
 
-build: $(STATIC_OUTS) $(CLIENT_OUT) $(SERVER_OUT)
+build: buildClient buildServer
 
-$(CLIENT_OUT): $(CLIENT_SRCS)
-	mkdir -p $(shell dirname $(CLIENT_OUT))
-	time $(TSC) -p $(CLIENT_DIR)
+buildClient: buildClientJs buildClientStatic
 
-$(SERVER_OUT): $(SERVER_SRCS)
-	mkdir -p $(SERVER_OUT)
-	time $(TSC) -p $(SERVER_DIR)
-	touch $(SERVER_OUT)
+buildClientJs:
+	$(TSC) -p $(CLIENT_DIR_TS)
 
-static: $(STATIC_OUTS)
+buildClientStatic:
+	cp -a $(CLIENT_DIR)/static/* $(CLIENT_OUT)/
 
-
-$(STATIC_OUTS): $(STATIC_SRCS)
-	mkdir -p $(STATIC_OUTDIR)
-	cp -rf $(STATIC_SRCDIR)/* $(STATIC_OUTDIR)
+buildServer:
+	$(TSC) -p $(SERVER_DIR)
 
 test:
-	$(MOCHA) build/server/js/tst/*.js
-
-.tested: $(SERVER_OUT)
-	make test
-	@touch .tested
+	TS_NODE_PROJECT=$(TEST_DIR) $(MOCHA) --require ts-node/register --timeout 10000 $(TEST_DIR)/*.ts
 
 watch:
 	trap 'kill -9 0; exit' SIGINT SIGTERM SIGHUP EXIT; \
 	($(TSC) -w -p $(SERVER_DIR) &); \
-	($(TSC) -w -p $(CLIENT_DIR) &); \
+	($(TSC) -w -p $(CLIENT_DIR_TS) &); \
 	while true; do \
-		make -s static; \
+		make -s buildClientStatic; \
 		sleep 1; \
 	done
 
 clean:
 	rm -rf build
 
-.PHONY: all static build clean watch test
+.PHONY: all buildClient buildClientJs buildClientStatic buildServer test watch clean

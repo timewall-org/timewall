@@ -35,6 +35,7 @@ class DB {
     check(event.isValid());
     await this.cs.execute("INSERT INTO event JSON ?", [JSON.stringify(event)]);
     var esdoc = {
+      creationTime: event.id.getDate().getTime(),
       startTime: event.startTime.value,
       endTime: event.endTime.value,
       content: event.content

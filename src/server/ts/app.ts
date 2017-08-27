@@ -62,7 +62,6 @@ class App {
         var ret = await this.di.getAPI().execute(req, res);
         res.status(200).send(ret);
       } catch (e) {
-        console.log(e);
         this.logger.error(e);
         res.status(e.status).send({ error: e.userMessage });
       }

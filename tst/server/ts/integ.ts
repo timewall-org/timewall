@@ -19,15 +19,10 @@ before(async () => {
     elasticSearchAvailable = true;
   } catch(e) {}
 
-  if (cassandraAvailable) {
+  if (cassandraAvailable && elasticSearchAvailable) {
     try { await cmd.dropCassandraKeyspace(); } catch(e) {}
-    await cmd.createCassandraKeyspace();
-    await cmd.createCassandraSchema();
-  }
-
-  if (elasticSearchAvailable) {
     try { await cmd.dropElasticSearchIndex(); } catch(e) {}
-    await cmd.createElasticSearchIndex();
+    await cmd.upgradeV0();
   }
 });
 

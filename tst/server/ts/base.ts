@@ -31,7 +31,7 @@ export function randomEvent(): Model.Event {
   location.url = "something";
 
   var event = new Model.Event();
-  event.id = Util.uuid1();
+  event.setNewId();
   event.location = location;
   event.startTime = Histamp.now();
   event.endTime = Histamp.now();

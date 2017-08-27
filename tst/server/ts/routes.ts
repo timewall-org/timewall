@@ -1,7 +1,7 @@
 import { TestDI, doreq } from './base';
 import DI = require('../../../src/server/ts/deps');
 import App = require('../../../src/server/ts/app');
-import { Request, API } from '../../../src/server/ts/api';
+import { API } from '../../../src/server/ts/api';
 import Util = require('../../../src/server/ts/util');
 import config = require('../../../src/server/ts/conf');
 import amock = require('./amock');
@@ -16,9 +16,6 @@ describe('Routes', () => {
     di.createAPI.returns(api);
     app = new App(di).createExpressApp();
   });
-  afterEach(() => {
-    app.close();
-  });
 
   describe('/api/v1', () => {
     it('success', async () => {
@@ -31,7 +28,7 @@ describe('Routes', () => {
       .send(req)
       .expect(res)
       .expect(200));
-      api.execute.once().withArgs(new Request(req.endpoint, req.body));
+      api.execute.once();
     });
 
     it('failure', async () => {

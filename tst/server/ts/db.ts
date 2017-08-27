@@ -1,4 +1,4 @@
-import { TestDI } from './base';
+import {randomEvent, TestDI} from './base';
 import DI = require('../../../src/server/ts/deps');
 import DB = require('../../../src/server/ts/db');
 import Util = require('../../../src/server/ts/util');
@@ -21,12 +21,7 @@ describe("DB", () => {
 
   describe("insertEvent", () => {
     it("success", async () => {
-      var event = amock.of(Model.Event);
-      event.id = "some-id";
-      event.location = new Model.Location();
-      event.startTime = new Model.Histamp(123);
-      event.endTime = new Model.Histamp(321);
-      event.isValid.returns(true);
+      var event = randomEvent();
       cs.execute.returns();
       es.create.returns();
       await db.insertEvent(event);
@@ -50,13 +45,13 @@ describe("DB", () => {
       var row = { id: "some id", starttime: { value: Util.toLong(123) }, endtime: { value: Util.toLong(321) }, location: { name: "foo", point: { lat: 123, lon: 321 } }, content: "some content" };
       cs.execute.areturns({ rows: [row] });
       await db.getEvent(row.id);
-      db.getEvent.returned(new Model.Event().fromCassandra(row));
+      db.getEvent.returned(Model.Event.fromCassandra(row));
     });
 
     it("not found", async () => {
       cs.execute.areturns({ rows: [] });
       db.getEvent.catch();
-      await db.getEvent("some id");
+      await db.getEvent(new Model.TimeUuid());
       db.getEvent.threw();
     });
   });

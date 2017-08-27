@@ -1,4 +1,4 @@
-import Util = require('../src/server/ts/util');
+import Util = require('../../../src/server/ts/util');
 import assert = require('assert');
 
 describe("Utils", () => {

@@ -60,6 +60,19 @@ class SuperCommands {
     await cs.execute(`DROP KEYSPACE ${keyspace}`);
   }
 
+  async dropElasticSearchIndex() {
+    var es = this.di.getElasticSearchClient();
+    var alias = this.di.getConfig().elasticsearch.index.event;
+    var index = `${alias}-v1`;
+
+    await es.post('/_aliases', {
+      "actions" : [
+        { "remove" : { "index" : index, "alias" : alias } }
+      ]
+    });
+    await es.del(index);
+  }
+
   async createElasticSearchIndex() {
     var es = this.di.getElasticSearchClient();
     var alias = this.di.getConfig().elasticsearch.index.event;
@@ -78,6 +91,7 @@ class SuperCommands {
           "_source": { "enabled": false },
           "_all": { "enabled": false },
           "properties": {
+            "creationTime": { "type": "long" },
             "point": { "type": "geo_point" },
             "content": { "type": "text" },
             "startTime": { "type": "long" },
@@ -92,19 +106,6 @@ class SuperCommands {
         { "add" : { "index" : index, "alias" : alias } }
       ]
     });
-  }
-
-  async dropElasticSearchIndex() {
-    var es = this.di.getElasticSearchClient();
-    var alias = this.di.getConfig().elasticsearch.index.event;
-    var index = `${alias}-v1`;
-
-    await es.post('/_aliases', {
-      "actions" : [
-        { "remove" : { "index" : index, "alias" : alias } }
-      ]
-    });
-    await es.del(index);
   }
 }
 
