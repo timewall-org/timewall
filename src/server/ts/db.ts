@@ -12,10 +12,10 @@ function check(cond: boolean) {
   }
 }
 
-function firstRow(res: cassandra.types.ResultSet, userMessage: string) {
+function firstRow(res: cassandra.types.ResultSet) {
   var first = res.rows[0];
   if (!first) {
-    throw new Util.AppError(404, "Row not found", userMessage);
+    throw new Util.AppError(404, "Not found", "Not found");
   }
   return first;
 }
@@ -35,7 +35,6 @@ class DB {
     check(event.isValid());
     await this.cs.execute("INSERT INTO event JSON ?", [JSON.stringify(event)]);
     var esdoc = {
-      point: event.location.point,
       startTime: event.startTime.value,
       endTime: event.endTime.value,
       content: event.content
@@ -45,8 +44,28 @@ class DB {
 
   async getEvent(id: any): Promise<Model.Event> {
     var res = await this.cs.execute("SELECT * FROM event WHERE id = ?", [id]);
-    var data = firstRow(res, "Event not found");
-    return new Model.Event().fromCassandra(data);
+    return Model.Event.fromCassandra(firstRow(res));
+  }
+
+  async getLastEvents() {
+    var query: any = {
+      query: { match_all: {} },
+      size: 10,
+      sort: [
+        { endTime: "desc" }
+      ]
+    };
+
+    var res = await this.es.search(this.esEventPath, query);
+    if (!(res && res.hits && res.hits.hits)) {
+      return [];
+    }
+
+    var pros = [];
+    for (var doc of res.hits.hits) {
+      pros.push(this.getEvent(doc._id));
+    }
+    return Promise.all(pros);
   }
 }
 

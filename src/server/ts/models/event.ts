@@ -1,42 +1,32 @@
-import Geopoint = require('./geopoint');
 import Location = require('./location');
 import Histamp = require('./histamp');
 import BaseModel = require('./base');
+import TimeUuid = require('./timeuuid');
 import Util = require('../util');
 
 class Event extends BaseModel {
-  id: any; // timeuuid
-  location: Location;
+  id: TimeUuid;
+  location?: Location;
   startTime: Histamp;
   endTime: Histamp;
   content: string;
 
-  constructor() {
-    super();
-    this.id = Util.uuid1();
+  setNewId() {
+    this.id = new TimeUuid();
   }
 
   isValid() {
-    if (!(this.id && this.location && this.location.isValid() && this.startTime && this.endTime && this.content)) {
-      return false;
-    }
-    if (this.startTime.value > this.endTime.value) {
-      return false;
-    }
-    return true;
+    return !!(this.id && this.startTime && this.endTime && this.content);
   }
 
-  fromCassandra(obj: any) {
-    this.id = obj.id;
-    this.location = new Location().fromCassandra(obj.location);
-    this.startTime = Histamp.fromCassandra(obj.starttime);
-    this.endTime = Histamp.fromCassandra(obj.endtime);
-    this.content = obj.content;
-    return this;
-  }
-
-  shallowCopy() {
-    return Util.copyObject(this);
+  static fromCassandra(obj: any) {
+    var ret = new Event();
+    ret.id = obj.id;
+    ret.location = obj.location ? Location.fromCassandra(obj.location) : undefined;
+    ret.startTime = Histamp.fromCassandra(obj.starttime);
+    ret.endTime = Histamp.fromCassandra(obj.endtime);
+    ret.content = obj.content;
+    return ret;
   }
 }
 

@@ -1,10 +1,10 @@
 import { TestDI } from './base';
-import DI = require('../deps');
-import DB = require('../db');
-import Util = require('../util');
-import CassandraClient = require('../csclient');
-import ElasticSearchClient = require('../esclient');
-import Model = require('../models/all');
+import DI = require('../../../src/server/ts/deps');
+import DB = require('../../../src/server/ts/db');
+import Util = require('../../../src/server/ts/util');
+import CassandraClient = require('../../../src/server/ts/csclient');
+import ElasticSearchClient = require('../../../src/server/ts/esclient');
+import Model = require('../../../src/server/ts/models/all');
 import amock = require('./amock');
 import assert = require('assert');
 

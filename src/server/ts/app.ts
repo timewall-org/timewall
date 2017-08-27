@@ -8,6 +8,7 @@ import process = require('process');
 import DI = require('./deps');
 import api = require('./api');
 import {Request, Response, NextFunction, IRouterMatcher} from "express";
+import {Logger} from "./logger";
 
 function asyncRoute(f: (req: Request, res: Response, next: NextFunction) => Promise<void>) {
 	return async (req: Request, res: Response, next: NextFunction) => {
@@ -20,7 +21,10 @@ function asyncRoute(f: (req: Request, res: Response, next: NextFunction) => Prom
 }
 
 class App {
-  constructor (public di: DI) {}
+  logger: Logger;
+  constructor (public di: DI) {
+    this.logger = di.getLogger("app");
+  }
 
   createExpressApp () {
     var app = express();
@@ -54,16 +58,12 @@ class App {
     // ROUTES
 
     app.get('/api/v1', asyncRoute(async (req, res) => {
-      var endpoint = req.body.endpoint;
-      var body = req.body.body;
-      var request = new api.Request(endpoint, body);
       try {
-        var ret = await this.di.getAPI().execute(request);
+        var ret = await this.di.getAPI().execute(req, res);
         res.status(200).send(ret);
       } catch (e) {
-        if (config.log.enabled) {
-          console.error(e);
-        }
+        console.log(e);
+        this.logger.error(e);
         res.status(e.status).send({ error: e.userMessage });
       }
     }));

@@ -1,23 +1,23 @@
 import { TestDI, doreq } from './base';
-import DI = require('../deps');
-import App = require('../app');
-import { Request, API } from '../api';
-import Util = require('../util');
-import config = require('../conf');
+import DI = require('../../../src/server/ts/deps');
+import App = require('../../../src/server/ts/app');
+import { Request, API } from '../../../src/server/ts/api';
+import Util = require('../../../src/server/ts/util');
+import config = require('../../../src/server/ts/conf');
 import amock = require('./amock');
 import request = require('supertest');
 import assert = require('assert');
 
 describe('Routes', () => {
-  var di, api: any, server: any;
+  var di, api: any, app: any;
   beforeEach(async () => {
     api = amock.of(API);
     di = amock(new TestDI());
     di.createAPI.returns(api);
-    server = await Util.startApp(new App(di).createExpressApp(), di.getConfig().port);
+    app = new App(di).createExpressApp();
   });
   afterEach(() => {
-    server.close();
+    app.close();
   });
 
   describe('/api/v1', () => {
@@ -26,7 +26,7 @@ describe('Routes', () => {
       var res = { test: "test" };
       api.execute.areturns(res);
 
-      await doreq(request(server)
+      await doreq(request(app)
       .get("/api/v1")
       .send(req)
       .expect(res)
@@ -38,7 +38,7 @@ describe('Routes', () => {
       var req = { endpoint: "anything", body: "something" };
       api.execute.athrows(new Util.AppError(456, "Test", "Test user"));
 
-      await doreq(request(server)
+      await doreq(request(app)
       .get("/api/v1")
       .send(req)
       .expect({ error: "Test user" })

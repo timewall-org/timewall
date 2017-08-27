@@ -51,6 +51,11 @@ export function fromLong(long: Long): number {
   return long.toNumber();
 }
 
+export function toObject(obj: any, cls: any) {
+  Object.setPrototypeOf(obj, cls.prototype);
+  return obj;
+}
+
 export function deepObjectOverride(target: any, override: any) {
   for (var name of Object.getOwnPropertyNames(override)) {
     if (override.hasOwnProperty(name)) {

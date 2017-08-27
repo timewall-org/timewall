@@ -5,11 +5,11 @@ import Util = require('./util');
 class ElasticSearchClient {
 	constructor(public di: DI) {}
 
-	request (method: string, path: string, data?: string): Promise<any> {
+	request (method: string, path: string, data?: string, extraParams?: string): Promise<any> {
 		var resolve: any, reject: any;
 		var p = new Promise((f1, f2) => { resolve = f1; reject = f2; });
 
-    var fullpath = path+"?filter_path=errors,took,hits";
+    var fullpath = path+"?filter_path=errors,took,hits&" + (extraParams || "");
 		var opts = {
 				hostname: this.di.getConfig().elasticsearch.host,
 				port: this.di.getConfig().elasticsearch.port,
@@ -69,8 +69,8 @@ class ElasticSearchClient {
 		return await this.request("POST", path, data);
 	}
 
-	async put(path: string, data: any) {
-		return await this.request("PUT", path, data);
+	async put(path: string, data: any, extraParams: string) {
+		return await this.request("PUT", path, data, extraParams);
 	}
 
 	async del(path: string) {
@@ -89,7 +89,7 @@ class ElasticSearchClient {
 	}
 
   async create (path: string, doc: any) {
-    var res = await this.put(`${path}/_create`, doc);
+    var res = await this.put(`${path}/_create`, doc, "&refresh=wait_for");
 		return res;
   }
 

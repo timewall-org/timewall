@@ -9,6 +9,7 @@ import Util = require('./util');
 import { API } from './api';
 
 import config = require('./conf');
+import {ConsoleLogger, Logger, NullLogger, PrefixLogger} from "./logger";
 
 // Sane, simple container for dependency injection
 class DI {
@@ -37,6 +38,10 @@ class DI {
   getElasticSearchClient(): ElasticSearchClient { return this.getInstance("elasticSearchClient", () => this.createElasticSearchClient()); }
   getAPI(): API { return this.getInstance("api", () => this.createAPI()); }
   getDB(): DB { return this.getInstance("db", () => this.createDB()); }
+  getLogger(prefix: any): Logger {
+    var rootLogger = this.getInstance("rootLogger", () => this.createRootLogger());
+    return new PrefixLogger(rootLogger, prefix);
+  }
 
   createConfig(): typeof config.default {
     var newconfig = Util.deepCloneJSON(config.default);
@@ -52,6 +57,13 @@ class DI {
   createElasticSearchClient(): ElasticSearchClient { return null as any; }
   createAPI(): API { return null as any; }
   createDB(): DB { return null as any; }
+  createRootLogger(): Logger {
+    if (this.getConfig().log.enabled) {
+      return new ConsoleLogger();
+    } else {
+      return new NullLogger();
+    }
+  }
 }
 
 export = DI;

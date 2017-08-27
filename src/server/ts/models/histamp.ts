@@ -1,14 +1,22 @@
-import Util = require('../util');
+import * as Long from "long";
 
 class Histamp {
-  constructor(public value: number) {}
-
-  static fromCassandra(obj: any) {
-    return new Histamp(Util.fromLong(obj.value));
-  }
+  value: Long;
 
   isValid() {
     return !!this.value;
+  }
+
+  static now() {
+    var res = new Histamp();
+    res.value = Long.fromNumber(new Date().getTime() / 1000);
+    return res;
+  }
+
+  static fromCassandra(obj: any) {
+    var res = new Histamp();
+    res.value = obj.value;
+    return res;
   }
 }
 

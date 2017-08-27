@@ -5,15 +5,16 @@ class Location {
   point: Geopoint;
   url: string;
 
-  fromCassandra(obj: any) {
-    this.name = obj.name;
-    this.point = new Geopoint().fromCassandra(obj.point);
-    this.url = obj.url;
-    return this;
+  static fromCassandra(obj: any) {
+    var res = new Location();
+    res.name = obj.name;
+    res.point = Geopoint.fromCassandra(obj.point);
+    res.url = obj.url;
+    return res;
   }
 
   isValid() {
-    return this.name && this.point && this.point.isValid() && this.url;
+    return !!(this.name && this.point && this.point.isValid() && this.url);
   }
 }
 

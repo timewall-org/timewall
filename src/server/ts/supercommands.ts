@@ -60,23 +60,10 @@ class SuperCommands {
     await cs.execute(`DROP KEYSPACE ${keyspace}`);
   }
 
-  async dropElasticSearchIndex() {
-    var es = this.di.getElasticSearchClient();
-    var event = this.di.getConfig().elasticsearch.index.event;
-    var index = `${event}-v1`;
-
-    await es.post('/_aliases', {
-      "actions" : [
-        { "remove" : { "index" : index, "alias" : event } }
-      ]
-    });
-    await es.del(index);
-  }
-
   async createElasticSearchIndex() {
     var es = this.di.getElasticSearchClient();
-    var event = this.di.getConfig().elasticsearch.index.event;
-    var index = `${event}-v1`;
+    var alias = this.di.getConfig().elasticsearch.index.event;
+    var index = `${alias}-v1`;
     await es.put(index, {
       "settings": {
         "index": {
@@ -102,9 +89,22 @@ class SuperCommands {
 
     await es.post('/_aliases', {
       "actions" : [
-        { "add" : { "index" : index, "alias" : event } }
+        { "add" : { "index" : index, "alias" : alias } }
       ]
     });
+  }
+
+  async dropElasticSearchIndex() {
+    var es = this.di.getElasticSearchClient();
+    var alias = this.di.getConfig().elasticsearch.index.event;
+    var index = `${alias}-v1`;
+
+    await es.post('/_aliases', {
+      "actions" : [
+        { "remove" : { "index" : index, "alias" : alias } }
+      ]
+    });
+    await es.del(index);
   }
 }
 
