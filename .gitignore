@@ -5,3 +5,4 @@ node_modules
 result
 .tested
 .DS_Store
+package-lock.json

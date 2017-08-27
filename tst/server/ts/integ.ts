@@ -37,7 +37,7 @@ beforeEach(function() {
   var doreq = cookieSession();
   send = async (req: any) => {
     var res = await doreq(request(app)
-      .get("/api/v1")
+      .post("/api/v1")
       .send(req)
       .expect(200));
     return res.body.result;

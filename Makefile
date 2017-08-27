@@ -8,6 +8,7 @@ SERVER_DIR=src/server/ts
 TEST_DIR=tst/server/ts
 TSC=node_modules/.bin/tsc
 MOCHA=node_modules/.bin/mocha
+NODE=node
 
 all: build test
 
@@ -24,6 +25,9 @@ buildClientStatic:
 buildServer:
 	$(TSC) -p $(SERVER_DIR)
 
+run:
+	$(NODE) $(SERVER_OUT)/js/main.js
+
 test:
 	TS_NODE_PROJECT=$(TEST_DIR) $(MOCHA) --require ts-node/register --timeout 10000 $(TEST_DIR)/*.ts
 
@@ -39,4 +43,4 @@ watch:
 clean:
 	rm -rf build
 
-.PHONY: all buildClient buildClientJs buildClientStatic buildServer test watch clean
+.PHONY: all buildClient buildClientJs buildClientStatic buildServer run test watch clean

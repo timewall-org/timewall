@@ -1,11 +1,10 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2015",
     "module": "system",
     "outFile": "../../../build/client/js/main.js",
     "sourceMap": true,
     "jsx": "react",
-    "noImplicitAny": true,
     "strictNullChecks": true,
     "alwaysStrict": true,
     "removeComments": true

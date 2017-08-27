@@ -57,13 +57,13 @@ class App {
 
     // ROUTES
 
-    app.get('/api/v1', asyncRoute(async (req, res) => {
+    app.post('/api/v1', asyncRoute(async (req, res) => {
       try {
         var ret = await this.di.getAPI().execute(req, res);
         res.status(200).send(ret);
       } catch (e) {
         this.logger.error(e);
-        res.status(e.status).send({ error: e.userMessage });
+        res.status(e.status || 500).send({ error: (e.userMessage || "Internal error") });
       }
     }));
 

@@ -24,7 +24,7 @@ describe('Routes', () => {
       api.execute.areturns(res);
 
       await doreq(request(app)
-      .get("/api/v1")
+      .post("/api/v1")
       .send(req)
       .expect(res)
       .expect(200));
@@ -36,7 +36,7 @@ describe('Routes', () => {
       api.execute.athrows(new Util.AppError(456, "Test", "Test user"));
 
       await doreq(request(app)
-      .get("/api/v1")
+      .post("/api/v1")
       .send(req)
       .expect({ error: "Test user" })
       .expect(456));
