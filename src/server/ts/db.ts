@@ -1,7 +1,6 @@
 import DI = require('./deps');
 import Util = require('./util');
 import Model = require('./models/all');
-import CassandraClient = require('./csclient');
 import ElasticSearchClient = require('./esclient');
 
 import cassandra = require('cassandra-driver');
@@ -21,19 +20,21 @@ function firstRow(res: cassandra.types.ResultSet) {
 }
 
 class DB {
-  cs: CassandraClient;
+  cs: cassandra.Client;
   es: ElasticSearchClient;
+  csKeyspace: string;
   esEventPath: string;
 
   constructor(public di: DI) {
     this.cs = di.getCassandraClient();
     this.es = di.getElasticSearchClient();
+    this.csKeyspace = this.di.getConfig().cassandra.keyspace;
     this.esEventPath = di.getConfig().elasticsearch.index.event+"/event";
   }
 
   async insertEvent(event: Model.Event) {
     check(event.isValid());
-    await this.cs.execute("INSERT INTO event JSON ?", [JSON.stringify(event)]);
+    await this.cs.execute(`INSERT INTO ${this.csKeyspace}.event JSON ?`, [JSON.stringify(event)]);
     var esdoc = {
       creationTime: event.id.getDate().getTime(),
       startTime: event.startTime.value,
@@ -44,7 +45,7 @@ class DB {
   }
 
   async getEvent(id: any): Promise<Model.Event> {
-    var res = await this.cs.execute("SELECT * FROM event WHERE id = ?", [id]);
+    var res = await this.cs.execute(`SELECT * FROM ${this.csKeyspace}.event WHERE id = ?`, [id]);
     return Model.Event.fromCassandra(firstRow(res));
   }
 
@@ -66,7 +67,7 @@ class DB {
     for (var doc of res.hits.hits) {
       pros.push(this.getEvent(doc._id));
     }
-    return Promise.all(pros);
+    return await Promise.all(pros);
   }
 }
 

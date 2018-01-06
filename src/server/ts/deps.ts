@@ -2,7 +2,6 @@ import cassandra = require('cassandra-driver');
 
 import App = require('./app');
 import SuperCommands = require('./supercommands');
-import CassandraClient = require('./csclient');
 import ElasticSearchClient = require('./esclient');
 import DB = require('./db');
 import Util = require('./util');
@@ -31,10 +30,7 @@ class DI {
   getConfig(): typeof config.default { return this.getInstance("config", () => this.createConfig()); }
   getApp(): App { return this.getInstance("app", () => this.createApp()); }
   getSuperCommands(): SuperCommands { return this.getInstance("superCommands", () => this.createSuperCommands()); }
-  getNativeCassandraClient(): cassandra.Client { return this.getInstance("nativeCassandraClient", () => this.createNativeCassandraClient()); }
-  getRootNativeCassandraClient(): cassandra.Client { return this.getInstance("rootNativeCassandraClient", () => this.createRootNativeCassandraClient()); }
-  getRootCassandraClient(): CassandraClient { return this.getInstance("rootCassandraClient", () => this.createRootCassandraClient()); }
-  getCassandraClient(): CassandraClient { return this.getInstance("cassandraClient", () => this.createCassandraClient()); }
+  getCassandraClient(): cassandra.Client { return this.getInstance("cassandraClient", () => this.createCassandraClient()); }
   getElasticSearchClient(): ElasticSearchClient { return this.getInstance("elasticSearchClient", () => this.createElasticSearchClient()); }
   getAPI(): API { return this.getInstance("api", () => this.createAPI()); }
   getDB(): DB { return this.getInstance("db", () => this.createDB()); }
@@ -50,10 +46,7 @@ class DI {
   }
   createApp(): App { return null as any; }
   createSuperCommands(): SuperCommands { return null as any; }
-  createNativeCassandraClient(): any { return null as any; }
-  createRootNativeCassandraClient(): any { return null as any; }
-  createRootCassandraClient(): CassandraClient { return null as any; }
-  createCassandraClient(): CassandraClient { return null as any; }
+  createCassandraClient(): cassandra.Client { return null as any; }
   createElasticSearchClient(): ElasticSearchClient { return null as any; }
   createAPI(): API { return null as any; }
   createDB(): DB { return null as any; }

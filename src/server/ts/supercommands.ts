@@ -1,7 +1,14 @@
 import DI = require('./deps');
+import cassandra = require('cassandra-driver');
 
 class SuperCommands {
-  constructor(public di: DI) {}
+  cs: cassandra.Client;
+  keyspace: string;
+  
+  constructor(public di: DI) {
+    this.cs = di.getCassandraClient();
+    this.keyspace = this.di.getConfig().cassandra.keyspace;
+  }
 
   async upgradeV0() {
     await this.createCassandraKeyspace();
@@ -10,11 +17,8 @@ class SuperCommands {
   }
 
   async createCassandraKeyspace() {
-    var rootcs = this.di.getRootCassandraClient();
-    var keyspace = this.di.getConfig().cassandra.keyspace;
-
-    await rootcs.execute(`
-      CREATE KEYSPACE ${keyspace} WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 } AND DURABLE_WRITES = true;
+    await this.cs.execute(`
+      CREATE KEYSPACE ${this.keyspace} WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 } AND DURABLE_WRITES = true;
     `);
   }
 
@@ -22,32 +26,32 @@ class SuperCommands {
     var cs = this.di.getCassandraClient();
 
     await cs.execute(`
-      CREATE TYPE Histamp (
+      CREATE TYPE ${this.keyspace}.Histamp (
         value bigint
       )
     `);
 
     await cs.execute(`
-      CREATE TYPE Geopoint (
+      CREATE TYPE ${this.keyspace}.Geopoint (
         lon double,
         lat double
       )
     `);
 
     await cs.execute(`
-      CREATE TYPE Location (
+      CREATE TYPE ${this.keyspace}.Location (
         name text,
-        point frozen<Geopoint>,
+        point frozen<${this.keyspace}.Geopoint>,
         url text
       )
     `);
 
     await cs.execute(`
-      CREATE TABLE Event (
+      CREATE TABLE ${this.keyspace}.Event (
         id timeuuid,
-        location frozen<Location>,
-        startTime frozen<Histamp>,
-        endTime frozen<Histamp>,
+        location frozen<${this.keyspace}.Location>,
+        startTime frozen<${this.keyspace}.Histamp>,
+        endTime frozen<${this.keyspace}.Histamp>,
         content text,
         primary key (id)
       )
@@ -55,9 +59,7 @@ class SuperCommands {
   }
 
   async dropCassandraKeyspace() {
-    var cs = this.di.getRootCassandraClient();
-    var keyspace = this.di.getConfig().cassandra.keyspace;
-    await cs.execute(`DROP KEYSPACE ${keyspace}`);
+    await this.cs.execute(`DROP KEYSPACE ${this.keyspace}`);
   }
 
   async dropElasticSearchIndex() {
