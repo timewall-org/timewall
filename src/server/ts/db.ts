@@ -32,7 +32,7 @@ class DB {
     this.esEventPath = di.getConfig().elasticsearch.index.event+"/event";
   }
 
-  async insertEvent(event: Model.Event) {
+  async putEvent(event: Model.Event) {
     check(event.isValid());
     await this.cs.execute(`INSERT INTO ${this.csKeyspace}.event JSON ?`, [JSON.stringify(event)]);
     var esdoc = {

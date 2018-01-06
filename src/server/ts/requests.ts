@@ -1,5 +1,11 @@
 import Util = require('./util');
 
+export type Operation = "publishEvent" | "getLastEvents";
+
+export class RequestEnvelope {
+  constructor(public operation: Operation, public request: BaseRequest) {}
+}
+
 export abstract class BaseRequest {
   abstract isValid(): boolean;
 }

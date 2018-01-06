@@ -17,6 +17,12 @@ function unexpectedInvocation(obj?: any, name?: any) {
   }
 }
 
+function notNull(obj: any) {
+  if (obj === null || obj === undefined) {
+    throw new Error("Cannot mock " + obj);
+  }
+}
+
 class Amock {
   func: any;
   defaultfunc: any;
@@ -78,9 +84,9 @@ class Amock {
   defaultStub(f: any) { this.defaultfunc = f; return this.stub(f); }
   allow() { return this.stub(this.realfunc); }
   disallow() { return this.stub(unexpectedInvocation(this.parentobj, this.funcname)); }
-  returns(x: any) { return this.stub(() => x); }
+  returns(x?: any) { return this.stub(() => x); }
   throws(e: any) { return this.stub(() => { throw e; }); }
-  areturns(x: any) { return this.stub(() => Promise.resolve(x)); }
+  areturns(x?: any) { return this.stub(() => Promise.resolve(x)); }
   athrows(x: any) { return this.stub(() => Promise.reject(x)); }
 
   catch() { this._catch = true; return this.allow(); }
@@ -94,24 +100,17 @@ class Amock {
   returned(x: any) { assert.deepStrictEqual(this.ccall().result, x); return this; };
 }
 
-var defaultOptions = { parent: undefined, name: undefined, disallowAll: false };
-var amock = ((obj: any, options = defaultOptions) => {
-  if (!(obj instanceof Function)) {
-    var proto = Object.getPrototypeOf(obj);
-    while (proto && proto !== Object.prototype) {
-      var names = Object.getOwnPropertyNames(proto);
-      for (var i = 0; i < names.length; i++) {
-        var name = names[i];
-        if (name !== "constructor") {
-          obj[name] = amock(obj[name], { parent: obj, name: name });
-          if (options.disallowAll) {
-            obj[name].defaultStub(unexpectedInvocation(obj, name));
-          }
-        }
-      }
-      proto = Object.getPrototypeOf(proto);
-    }
-    return obj;
+var amockDefaultOptions = { parent: undefined as any, name: undefined as any };
+var amockObjDefaultOptions = { disallowAll: false };
+type amockType = ((realfunc: any, options?: typeof amockDefaultOptions) => Amock) & {
+  obj: (obj: any, options?: typeof amockObjDefaultOptions) => any,
+  of: (obj: any) => any
+};
+
+var amock = ((realfunc: any, options = amockDefaultOptions) => {
+  notNull(realfunc);
+  if (realfunc._amockd) {
+    return realfunc;
   }
 
   var f = function() {
@@ -119,9 +118,10 @@ var amock = ((obj: any, options = defaultOptions) => {
     return f.spyCall(this, args);
   } as any;
 
-  f.realfunc = obj;
+  f.realfunc = realfunc;
   f.parentobj = options.parent;
   f.funcname = options.name;
+  f._amockd = true;
 
   for (var name of Object.getOwnPropertyNames(Amock.prototype)) {
     if (name !== "constructor") {
@@ -129,11 +129,34 @@ var amock = ((obj: any, options = defaultOptions) => {
     }
   }
 
-  return f.resetAll() as any;
-}) as any;
+  return f.resetAll() as Amock;
+}) as amockType;
 
-amock.Amock = Amock;
-amock.Call = Call;
-amock.of = (f: any) => amock(Object.create(f.prototype), { disallowAll: true });
+amock.obj = ((obj: any, options = amockObjDefaultOptions) => {
+  notNull(obj);
+  if (obj._amockd) {
+    return obj;
+  }
+
+  var proto = Object.getPrototypeOf(obj);
+  while (proto && proto !== Object.prototype) {
+    var names = Object.getOwnPropertyNames(proto);
+    for (var i = 0; i < names.length; i++) {
+      var name = names[i];
+      if (name !== "constructor") {
+        obj[name] = amock(obj[name], { parent: obj, name: name });
+        if (options.disallowAll) {
+          obj[name].defaultStub(unexpectedInvocation(obj, name));
+        }
+      }
+    }
+    proto = Object.getPrototypeOf(proto);
+  }
+  
+  obj._amockd = true;
+  return obj;
+});
+
+amock.of = (obj: any) => amock.obj(Object.create(obj.prototype), { disallowAll: true });
 
 export = amock;

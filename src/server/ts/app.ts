@@ -59,11 +59,13 @@ class App {
 
     app.post('/api/v1', asyncRoute(async (req, res) => {
       try {
-        var ret = await this.di.getAPI().execute(req, res);
+        var ctx = new api.Context();
+        var envelope = req.body;
+        var ret = await this.di.getAPI().execute(ctx, envelope);
         res.status(200).send(ret);
       } catch (e) {
         this.logger.error(e);
-        res.status(e.status || 500).send({ error: (e.userMessage || "Internal error") });
+        res.status(e.status || 500).send({ error: (e.userMessage || "Internal Error") });
       }
     }));
 

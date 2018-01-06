@@ -56,8 +56,8 @@ describe("Integration tests", () => {
 
   it("User experience", async () => {
     var evreq = randomPublishEventRequest();
-    await send({endpoint: "publishEvent", request: {content: evreq.content }});
-    var events = await send({endpoint: "getLastEvents"});
+    await send({operation: "publishEvent", request: { content: evreq.content }});
+    var events = await send({operation: "getLastEvents"});
     assert.equal(events[0].content, evreq.content);
   });
 });
