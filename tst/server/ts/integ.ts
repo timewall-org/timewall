@@ -1,10 +1,12 @@
 import {cookieSession, randomEvent, randomPublishEventRequest} from './base';
+import Deps = require('../../../src/server/ts/deps');
 import DefaultDI = require('../../../src/server/ts/default_deps');
 import request = require("supertest");
 import assert = require("assert");
 
 var cassandraAvailable = false;
 var elasticSearchAvailable = false;
+
 before(async () => {
   var di = new DefaultDI("tests");
   var cmd = di.getSuperCommands();
@@ -24,15 +26,21 @@ before(async () => {
     try { await cmd.dropElasticSearchIndex(); } catch(e) {}
     await cmd.upgradeV0();
   }
+
+  if (cassandraAvailable) {
+    await di.getRootNativeCassandraClient().shutdown();
+    await di.getNativeCassandraClient().shutdown();
+  }
 });
 
 var send: any;
-beforeEach(function() {
-  if (!(cassandraAvailable)) {
+var di: Deps;
+beforeEach(() => {
+  di = new DefaultDI("tests");
+  if (!(cassandraAvailable && elasticSearchAvailable)) {
     this.skip();
   }
 
-  var di = new DefaultDI("tests");
   var app = di.createApp().createExpressApp();
   var doreq = cookieSession();
   send = async (req: any) => {
@@ -44,11 +52,18 @@ beforeEach(function() {
   };
 });
 
+afterEach(async () => {
+  if (cassandraAvailable) {
+    await di.getRootNativeCassandraClient().shutdown();
+    await di.getNativeCassandraClient().shutdown();
+  }
+});
+
 describe("Integration tests", () => {
   it("User experience", async () => {
     var evreq = randomPublishEventRequest();
     await send({endpoint: "publishEvent", request: {content: evreq.content }});
     var events = await send({endpoint: "getLastEvents"});
-    assert.equal(events[0].content, evreq.content)
+    assert.equal(events[0].content, evreq.content);
   });
 });

@@ -31,8 +31,8 @@ class DI {
   getConfig(): typeof config.default { return this.getInstance("config", () => this.createConfig()); }
   getApp(): App { return this.getInstance("app", () => this.createApp()); }
   getSuperCommands(): SuperCommands { return this.getInstance("superCommands", () => this.createSuperCommands()); }
-  getNativeCassandraClient(): any { return this.getInstance("nativeCassandraClient", () => this.createNativeCassandraClient()); }
-  getRootNativeCassandraClient(): any { return this.getInstance("rootNativeCassandraClient", () => this.createRootNativeCassandraClient()); }
+  getNativeCassandraClient(): cassandra.Client { return this.getInstance("nativeCassandraClient", () => this.createNativeCassandraClient()); }
+  getRootNativeCassandraClient(): cassandra.Client { return this.getInstance("rootNativeCassandraClient", () => this.createRootNativeCassandraClient()); }
   getRootCassandraClient(): CassandraClient { return this.getInstance("rootCassandraClient", () => this.createRootCassandraClient()); }
   getCassandraClient(): CassandraClient { return this.getInstance("cassandraClient", () => this.createCassandraClient()); }
   getElasticSearchClient(): ElasticSearchClient { return this.getInstance("elasticSearchClient", () => this.createElasticSearchClient()); }
